@@ -113,7 +113,7 @@ pipeline {
                 }
 
                 script {
-                    pomModel = readMavenPom(file: 'jpms-deps/pom.xml')                    
+                    pomModel = readMavenPom(file: 'pom.xml')                    
                     pomVersion = pomModel.getVersion()
                     isSnapshot = pomVersion.contains("-SNAPSHOT")
                     repositoryId = 'maven-releases'
