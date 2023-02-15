@@ -34,10 +34,11 @@ pipeline {
         stage('Maven Build') {
             agent {
                 docker {
-                    image "${GLOBAL_NEXUS_SERVER_URL}/${GLOBAL_NEXUS_REPO_NAME}/java:17.0.2"
+                    image "maven:3.8.7-eclipse-temurin-19-focal"
                     args '-u root:root'
                 }
             }
+            
 
             steps {
                 script{
@@ -51,26 +52,17 @@ pipeline {
                     }
                 }
             }
-
-            post {
-                always {
-                    dir('./') {
-                        stash includes: '**/*', name: 'tinkar-origin-test-artifacts'
-                    }
-                }
-            }
         }
 
         stage('SonarQube Scan') {
             agent {
                 docker { 
-                    image "${GLOBAL_NEXUS_SERVER_URL}/${GLOBAL_NEXUS_REPO_NAME}/java:17.0.2"
+                    image "maven:3.8.7-eclipse-temurin-19-focal"
                     args "-u root:root"
                 }
             }
             
             steps{
-                unstash 'tinkar-origin-test-artifacts'
                 withSonarQubeEnv(installationName: 'EKS SonarQube', envOnly: true) {
                     // This expands the evironment variables SONAR_CONFIG_NAME, SONAR_HOST_URL, SONAR_AUTH_TOKEN that can be used by any script.
 
@@ -91,16 +83,12 @@ pipeline {
 
             agent {
                 docker {
-                    image "${GLOBAL_NEXUS_SERVER_URL}/${GLOBAL_NEXUS_REPO_NAME}/java:17.0.2"
+                    image "maven:3.8.7-eclipse-temurin-19-focal"
                     args '-u root:root'
                 }
             }
 
             steps {
-
-                dir('./') {
-                    unstash 'tinkar-origin-test-artifacts'
-                }
 
                 script {
                     pomModel = readMavenPom(file: 'pom.xml')                    
