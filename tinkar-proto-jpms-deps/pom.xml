@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.hl7.tinkar</groupId>
+    <artifactId>protobuf-java</artifactId>
+    <version>1.5.0</version>
+
+    <name>Tinkar Protobuf Java</name>
+    <url>https://github.com/HL7/tinkar-proto</url>
+    <parent>
+        <artifactId>tinkar-jpms-deps</artifactId>
+        <groupId>org.hl7.tinkar</groupId>
+        <version>1.0.15</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.moditect</groupId>
+                <artifactId>moditect-maven-plugin</artifactId>
+                <version>1.0.0.RC2</version>
+                <executions>
+                    <execution>
+                        <id>add-module-infos</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-module-info</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/moditect</outputDirectory>
+                            <overwriteExistingFiles>true</overwriteExistingFiles>
+                            <modules>
+                                <module>
+                                    <artifact>
+                                        <groupId>com.google.protobuf</groupId>
+                                        <artifactId>protobuf-java</artifactId>
+                                        <version>${protobuf.java.version}</version>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        module com.google.protobuf {
+                                            requires java.logging;
+                                            exports com.google.protobuf;
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                            </modules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="unzipping file"/>
+                                <unzip src="${project.build.directory}/moditect/protobuf-java-${protobuf.java.version}.jar"
+                                       dest="${project.build.directory}/classes/"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
