@@ -10,7 +10,6 @@
     <artifactId>roaring</artifactId>
     <packaging>jar</packaging>
     <name>TINKAR: Roaring</name>
-    <version>${roaringbitmap.version}</version>
     <build>
         <plugins>
             <plugin>

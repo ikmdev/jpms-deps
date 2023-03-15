@@ -10,7 +10,6 @@
     <artifactId>mvstore</artifactId>
     <packaging>jar</packaging>
     <name>TINKAR: MVStore</name>
-    <version>${h2-mvstore.version}</version>
     <build>
         <plugins>
             <plugin>
