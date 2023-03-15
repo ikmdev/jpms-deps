@@ -10,7 +10,6 @@
     <artifactId>auto-service</artifactId>
     <packaging>jar</packaging>
     <name>TINKAR: Auto service</name>
-    <version>${auto-service.version}</version>
     <build>
         <plugins>
             <plugin>

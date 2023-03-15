@@ -10,7 +10,6 @@
     <artifactId>lucene</artifactId>
     <packaging>jar</packaging>
     <name>TINKAR: Lucene</name>
-    <version>${lucene.version}</version>
     <dependencies>
         <dependency>
             <groupId>org.apache.lucene</groupId>
