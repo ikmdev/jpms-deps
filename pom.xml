@@ -36,7 +36,7 @@
         <maven.project.info.reports.plugin.version>3.4.0</maven.project.info.reports.plugin.version>
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
-        <protobuf.java.version>3.21.3</protobuf.java.version>
+        <protobuf.java.version>3.21.12</protobuf.java.version>
 
     </properties>
     <dependencyManagement>
@@ -133,6 +133,79 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>protocVersion</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/get-protoc-version.sh</executable>
+                            <outputFile>${basedir}/prototype-version.properties</outputFile>
+                        </configuration>
+                    </execution>
+
+                    <!--          -->
+                    <!--          <execution>-->
+                    <!--            <id>protocVersion</id>-->
+                    <!--            <phase>validate</phase>-->
+                    <!--            <goals>-->
+                    <!--              <goal>exec</goal>-->
+                    <!--            </goals>-->
+                    <!--            <configuration>-->
+                    <!--              <executable>protoc</executable>-->
+                    <!--              <outputFile>src/main/resources/prototype-version-1.properties</outputFile>-->
+                    <!--              <arguments>-->
+                    <!--                <argument> &#45;&#45;version</argument>-->
+                    <!--              </arguments>-->
+                    <!--            </configuration>-->
+                    <!--          </execution>-->
+
+                    <!--          <execution>-->
+                    <!--            <id>protocVersionProcess</id>-->
+                    <!--            <phase>validate</phase>-->
+                    <!--            <goals>-->
+                    <!--              <goal>exec</goal>-->
+                    <!--            </goals>-->
+                    <!--            <configuration>-->
+                    <!--              <executable>cut</executable>-->
+                    <!--              <outputFile> src/main/resources/prototype-version.properties </outputFile>-->
+                    <!--              <arguments>-->
+                    <!--                <argument> -d " " -f 2 </argument>-->
+                    <!--                <argument> src/main/resources/prototype-version-1.properties </argument>-->
+                    <!--              </arguments>-->
+                    <!--            </configuration>-->
+                    <!--          </execution>-->
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${basedir}/prototype-version.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
     </build>
     <modules>
         <module>tinkar-proto-jpms-deps</module>
