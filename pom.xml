@@ -147,8 +147,8 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${basedir}/get-protoc-version.sh</executable>
-                            <outputFile>${basedir}/prototype-version.properties</outputFile>
+                            <executable>./get-protoc-version.sh</executable>
+                            <outputFile>./prototype-version.properties</outputFile>
                         </configuration>
                     </execution>
 
