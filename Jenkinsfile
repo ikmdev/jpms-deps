@@ -48,7 +48,7 @@ pipeline {
                         ls -l ./pom.xml
                         ls -l ./get-protoc-version.sh
 
-                        chown root:root ./get-protoc-version.sh
+                        chown jenkins:jenkins ./get-protoc-version.sh
                         mvn clean install -s '${MAVEN_SETTINGS}' \
                             --batch-mode \
                             -e \
