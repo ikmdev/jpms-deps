@@ -141,13 +141,14 @@
                 <version>3.1.0</version>
                 <executions>
                     <execution>
-                        <id>protocVersion</id>
+                        <id>protoc-Version</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>./get-protoc-version.sh</executable>
+                            <executable>/bin/bash</executable>
+                            <arguments><argument>./get-protoc-version.sh</argument></arguments>
                             <outputFile>./prototype-version.properties</outputFile>
                         </configuration>
                     </execution>
