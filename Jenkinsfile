@@ -45,6 +45,9 @@ pipeline {
                     configFileProvider([configFile(fileId: 'settings.xml', variable: 'MAVEN_SETTINGS')]) {
                         sh """
                         chmod +x ./get-protoc-version.sh
+                        ls -l ./pom.xml
+                        ls -l ./get-protoc-version.sh
+
                         chown root:root ./get-protoc-version.sh
                         mvn clean install -s '${MAVEN_SETTINGS}' \
                             --batch-mode \
