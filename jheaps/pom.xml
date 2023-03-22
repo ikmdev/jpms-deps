@@ -3,20 +3,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>tinkar-jpms-deps</artifactId>
-        <groupId>org.hl7.tinkar</groupId>
+        <groupId>dev.ikm.jpms</groupId>
+        <artifactId>jpms-deps</artifactId>
         <version>1.0.15</version>
     </parent>
+
     <artifactId>jheaps</artifactId>
     <packaging>jar</packaging>
-    <name>TINKAR: JHeaps</name>
+    <name>JHeaps</name>
     <version>${jheaps.version}</version>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
-                <version>1.0.0.RC2</version>
                 <executions>
                     <execution>
                         <id>add-module-infos</id>
@@ -51,8 +52,8 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
                 <executions>
                     <execution>
                         <phase>prepare-package</phase>

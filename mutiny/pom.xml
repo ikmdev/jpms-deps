@@ -2,27 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>tinkar-jpms-deps</artifactId>
-        <groupId>org.hl7.tinkar</groupId>
-        <version>1.0.15</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>dev.ikm.jpms</groupId>
+        <artifactId>jpms-deps</artifactId>
+        <version>1.0.15</version>
+    </parent>
+
     <artifactId>mutiny</artifactId>
-    <name>TINKAR: Mutiny</name>
+    <name>Mutiny</name>
     <version>${io.smallrye.reactive.version}</version>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
-                <version>1.0.0.RC2</version>
                 <executions>
                     <execution>
                         <id>add-module-infos</id>
@@ -116,8 +112,8 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
                 <executions>
                     <execution>
                         <phase>prepare-package</phase>

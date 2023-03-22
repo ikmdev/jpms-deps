@@ -3,14 +3,32 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.hl7.tinkar</groupId>
-    <artifactId>tinkar-jpms-deps</artifactId>
+    <parent>
+        <groupId>dev.ikm.build</groupId>
+        <artifactId>java-parent</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+        <relativePath></relativePath>
+    </parent>
+
+    <groupId>dev.ikm.jpms</groupId>
+    <artifactId>jpms-deps</artifactId>
     <version>1.0.15</version>
     <packaging>pom</packaging>
-    <name>TINKAR JPMS Deps: (MMP)</name>
+
+    <name>IKM JPMS Deps</name>
+    <description>
+        This is a set of jars that are necessary to use in the Java 9+ module system that are not currently built
+        for the module system.  These jars are wrapped and modified to allow the module-info to be injected.
+    </description>
+
     <properties>
+        <!-- Plugin Versions -->
+        <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
+        <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+
+        <!-- Versions for maven modules -->
         <auto-service.version>1.0.1</auto-service.version>
-        <activej.version>4.3</activej.version>
+
         <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
         <caffeine.version>3.1.1</caffeine.version>
         <eclipse-collections-api.version>11.1.0</eclipse-collections-api.version>
@@ -24,129 +42,72 @@
         <org.reactivestreams.version>1.0.3</org.reactivestreams.version>
         <record-builder-core.version>34</record-builder-core.version>
         <roaringbitmap.version>0.9.31</roaringbitmap.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.clean.plugin.version>3.2.0</maven.clean.plugin.version>
-        <maven.resources.plugin.version>3.3.0</maven.resources.plugin.version>
-        <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
-        <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
-        <maven.jar.plugin.version>3.2.2</maven.jar.plugin.version>
-        <maven.install.plugin.version>3.0.1</maven.install.plugin.version>
-        <maven.deploy.plugin.version>3.0.0</maven.deploy.plugin.version>
-        <maven.site.plugin.version>3.12.0</maven.site.plugin.version>
-        <maven.project.info.reports.plugin.version>3.4.0</maven.project.info.reports.plugin.version>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
         <protobuf.java.version>3.21.12</protobuf.java.version>
+        <snorocket.version>4.0.1</snorocket.version>
+
+        <!-- Versions for maven modules - these don't match semantic versioning and have to be adjusted -->
+        <activej.version>4.3</activej.version>
+        <activej.release.version>4.3.0</activej.release.version>
+
+        <skipCodeQuality>true</skipCodeQuality>
 
     </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-slf4j-impl</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-         </dependencies>
-    </dependencyManagement>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>${maven.clean.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven.resources.plugin.version}</version>
-                </plugin>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>3.0.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>${maven-assembly-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <version>${build-helper-maven-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>com.mycila</groupId>
-                    <artifactId>license-maven-plugin</artifactId>
-                    <configuration>
-                        <header>${basedir}/../../etc/license.txt</header>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven.surefire.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven.compiler.plugin.version}</version>
-                    <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <target>${maven.compiler.target}</target>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <goals>
-                                <goal>jar</goal>
-                                <goal>test-jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${maven.jar.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>${maven.install.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>${maven.site.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>${maven.project.info.reports.plugin.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
     <modules>
-        <module>tinkar-proto-jpms-deps</module>
         <module>activej</module>
         <module>auto-service</module>
         <module>caffeine</module>
-        <module>chronicle-map</module>
+        <!--TODO check with Keith on deletion-->
+<!--        <module>chronicle-map</module>-->
         <module>eclipse-collections</module>
         <module>jheaps</module>
         <module>lucene</module>
+        <module>lucene-highlighter</module>
+        <module>lucene-memory</module>
+        <module>lucene-queryparser</module>
         <module>mvstore</module>
+        <module>protobuf-java</module>
         <module>record-builder-core</module>
         <module>roaring</module>
         <module>snorocket</module>
         <module>mutiny</module>
     </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.moditect</groupId>
+                    <artifactId>moditect-maven-plugin</artifactId>
+                    <version>${maven.moditect.plugin}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven.antrun.plugin}</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- Use of Enforcer plugin to:
+                         * Not allow snapshots
+                         * Require semantic Versioning Conformance
+                     -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-no-snapshots</id>
+                        <configuration>
+                            <fail>false</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

@@ -8,10 +8,10 @@
         <version>1.0.15</version>
     </parent>
 
-    <artifactId>activej</artifactId>
+    <artifactId>lucene-memory</artifactId>
     <packaging>jar</packaging>
-    <name>Activej</name>
-    <version>${activej.release.version}</version>
+    <name>Lucene Memory</name>
+    <version>${lucene.version}</version>
 
     <build>
         <plugins>
@@ -31,27 +31,15 @@
                             <modules>
                                 <module>
                                     <artifact>
-                                        <groupId>io.activej</groupId>
-                                        <artifactId>activej-bytebuf</artifactId>
-                                        <version>${activej.version}</version>
-                                     </artifact>
-                                    <moduleInfoSource>
-                                        open module org.hl7.tinkar.activej {
-                                            exports io.activej.bytebuf;
-                                        }
-                                    </moduleInfoSource>
-                                </module>
-                                <module>
-                                    <artifact>
-                                        <groupId>io.activej</groupId>
-                                        <artifactId>activej-common</artifactId>
-                                        <version>${activej.version}</version>
+                                        <groupId>org.apache.lucene</groupId>
+                                        <artifactId>lucene-memory</artifactId>
+                                        <version>${lucene.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.activej {
-                                            exports io.activej.bytebuf;
+                                        open module org.hl7.tinkar.lucene {
+                                            exports org.apache.lucene.index.memory;
                                         }
-                                     </moduleInfoSource>
+                                    </moduleInfoSource>
                                 </module>
                             </modules>
                         </configuration>
@@ -66,10 +54,8 @@
                         <phase>prepare-package</phase>
                         <configuration>
                             <target>
-                                <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/activej-bytebuf-${activej.version}.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/activej-common-${activej.version}.jar"
+                                <echo message="unzipping file" />
+                                <unzip src="${project.build.directory}/moditect/lucene-memory-${lucene.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>

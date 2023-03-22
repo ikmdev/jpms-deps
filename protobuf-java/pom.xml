@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>dev.ikm.jpms</groupId>
@@ -8,11 +9,12 @@
         <version>1.0.15</version>
     </parent>
 
-    <artifactId>activej</artifactId>
+    <artifactId>protobuf-java</artifactId>
+    <version>${protobuf.java.version}</version>
     <packaging>jar</packaging>
-    <name>Activej</name>
-    <version>${activej.release.version}</version>
 
+    <name>Tinkar Protobuf Java</name>
+    <url>https://github.com/HL7/tinkar-proto</url>
     <build>
         <plugins>
             <plugin>
@@ -21,7 +23,7 @@
                 <executions>
                     <execution>
                         <id>add-module-infos</id>
-                        <phase>prepare-package</phase>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>add-module-info</goal>
                         </goals>
@@ -31,27 +33,16 @@
                             <modules>
                                 <module>
                                     <artifact>
-                                        <groupId>io.activej</groupId>
-                                        <artifactId>activej-bytebuf</artifactId>
-                                        <version>${activej.version}</version>
-                                     </artifact>
-                                    <moduleInfoSource>
-                                        open module org.hl7.tinkar.activej {
-                                            exports io.activej.bytebuf;
-                                        }
-                                    </moduleInfoSource>
-                                </module>
-                                <module>
-                                    <artifact>
-                                        <groupId>io.activej</groupId>
-                                        <artifactId>activej-common</artifactId>
-                                        <version>${activej.version}</version>
+                                        <groupId>com.google.protobuf</groupId>
+                                        <artifactId>protobuf-java</artifactId>
+                                        <version>${protobuf.java.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.activej {
-                                            exports io.activej.bytebuf;
+                                        module com.google.protobuf {
+                                            requires java.logging;
+                                            exports com.google.protobuf;
                                         }
-                                     </moduleInfoSource>
+                                    </moduleInfoSource>
                                 </module>
                             </modules>
                         </configuration>
@@ -66,11 +57,9 @@
                         <phase>prepare-package</phase>
                         <configuration>
                             <target>
-                                <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/activej-bytebuf-${activej.version}.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/activej-common-${activej.version}.jar"
-                                       dest="${project.build.directory}/classes/" />
+                                <echo message="unzipping file"/>
+                                <unzip src="${project.build.directory}/moditect/protobuf-java-${protobuf.java.version}.jar"
+                                       dest="${project.build.directory}/classes/"/>
                             </target>
                         </configuration>
                         <goals>

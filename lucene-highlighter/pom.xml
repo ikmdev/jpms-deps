@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>tinkar-jpms-deps</artifactId>
-        <groupId>org.hl7.tinkar</groupId>
+        <groupId>dev.ikm.jpms</groupId>
+        <artifactId>jpms-deps</artifactId>
         <version>1.0.15</version>
     </parent>
-    <artifactId>protobuf-java</artifactId>
-    <version>${protobuf.java.version}</version>
-    <packaging>jar</packaging>
 
-    <name>Tinkar Protobuf Java</name>
-    <url>https://github.com/HL7/tinkar-proto</url>
+    <artifactId>lucene-highlighter</artifactId>
+    <packaging>jar</packaging>
+    <name>Lucene Highlighter</name>
+    <version>${lucene.version}</version>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
-                <version>1.0.0.RC2</version>
                 <executions>
                     <execution>
                         <id>add-module-infos</id>
-                        <phase>generate-resources</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>add-module-info</goal>
                         </goals>
@@ -33,14 +31,13 @@
                             <modules>
                                 <module>
                                     <artifact>
-                                        <groupId>com.google.protobuf</groupId>
-                                        <artifactId>protobuf-java</artifactId>
-                                        <version>${protobuf.java.version}</version>
+                                        <groupId>org.apache.lucene</groupId>
+                                        <artifactId>lucene-highlighter</artifactId>
+                                        <version>${lucene.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        module com.google.protobuf {
-                                            requires java.logging;
-                                            exports com.google.protobuf;
+                                        open module org.hl7.tinkar.lucene {
+                                            exports org.apache.lucene.search.highlight;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -50,16 +47,16 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
                 <executions>
                     <execution>
                         <phase>prepare-package</phase>
                         <configuration>
                             <target>
-                                <echo message="unzipping file"/>
-                                <unzip src="${project.build.directory}/moditect/protobuf-java-${protobuf.java.version}.jar"
-                                       dest="${project.build.directory}/classes/"/>
+                                <echo message="unzipping file" />
+                                <unzip src="${project.build.directory}/moditect/lucene-highlighter-${lucene.version}.jar"
+                                       dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>
                         <goals>
