@@ -61,7 +61,7 @@
         <module>eclipse-collections-api</module>
         <module>eclipse-collections</module>
         <module>jheaps</module>
-        <module>lucene</module>
+        <module>lucene-core</module>
         <module>lucene-highlighter</module>
         <module>lucene-memory</module>
         <module>lucene-queryparser</module>

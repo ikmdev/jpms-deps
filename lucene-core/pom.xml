@@ -8,7 +8,7 @@
         <version>1.0.15</version>
     </parent>
 
-    <artifactId>lucene</artifactId>
+    <artifactId>lucene-core</artifactId>
     <packaging>jar</packaging>
     <name>Lucene Core</name>
     <version>${lucene.version}</version>
