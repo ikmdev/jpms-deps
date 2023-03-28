@@ -13,13 +13,6 @@
     <name>Lucene Core</name>
     <version>${lucene.version}</version>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.lucene</groupId>
-            <artifactId>lucene-core</artifactId>
-            <version>${lucene.version}</version>
-        </dependency>
-    </dependencies>
     <build>
         <plugins>
             <plugin>
