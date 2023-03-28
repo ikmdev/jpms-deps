@@ -42,7 +42,7 @@
         <org.reactivestreams.version>1.0.3</org.reactivestreams.version>
         <record-builder-core.version>34</record-builder-core.version>
         <roaringbitmap.version>0.9.31</roaringbitmap.version>
-        <protobuf.java.version>3.21.12</protobuf.java.version>
+        <protobuf.java.version>3.22.0</protobuf.java.version>
         <snorocket.version>4.0.1</snorocket.version>
 
         <!-- Versions for maven modules - these don't match semantic versioning and have to be adjusted -->
