@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -9,10 +10,9 @@
         <version>1.0.15</version>
     </parent>
 
-    <artifactId>mvstore</artifactId>
-    <packaging>jar</packaging>
-    <name>MVStore</name>
-    <version>${h2-mvstore.version}</version>
+    <artifactId>reactive-streams</artifactId>
+    <name>Reactive Streams</name>
+    <version>${org.reactivestreams.version}</version>
 
     <build>
         <plugins>
@@ -32,13 +32,18 @@
                             <modules>
                                 <module>
                                     <artifact>
-                                        <groupId>com.h2database</groupId>
-                                        <artifactId>h2-mvstore</artifactId>
-                                        <version>${h2-mvstore.version}</version>
+                                        <groupId>org.reactivestreams</groupId>
+                                        <artifactId>reactive-streams</artifactId>
+                                        <version>${org.reactivestreams.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.h2.mvstore {
-                                            exports org.h2.mvstore;
+                                        module org.reactivestreams {
+                                            exports org.reactivestreams;
+
+                                            uses io.smallrye.mutiny.infrastructure.MultiInterceptor;
+                                            uses io.smallrye.mutiny.infrastructure.ExecutorConfiguration;
+                                            uses io.smallrye.mutiny.infrastructure.UniInterceptor;
+                                            uses io.smallrye.mutiny.infrastructure.CallbackDecorator;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -55,12 +60,15 @@
                         <phase>prepare-package</phase>
                         <configuration>
                             <target>
-                                <echo message="unzipping file" />
-                                <unzip src="${project.build.directory}/moditect/h2-mvstore-${h2-mvstore.version}.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <move file="${project.build.directory}/classes/META-INF/versions/9/org/h2/util/Bits.class"
-                                      tofile="${project.build.directory}/classes/org/h2/util/Bits.class"/>
-                                <delete dir="${project.build.directory}/classes/META-INF/versions/"/>
+                                <echo message="unzipping files" />
+                                <unzip src="${project.build.directory}/moditect/reactive-streams-${org.reactivestreams.version}.jar"
+                                       dest="${project.build.directory}/classes/" >
+                                    <patternset>
+                                        <exclude name="**/ECLIPSE_.RSA"/>
+                                        <exclude name="**/ECLIPSE_.SF"/>
+                                        <exclude name="**/MANIFEST.MF"/>
+                                    </patternset>
+                                </unzip>
                             </target>
                         </configuration>
                         <goals>
@@ -71,4 +79,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

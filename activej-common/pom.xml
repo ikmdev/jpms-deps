@@ -2,17 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>dev.ikm.jpms</groupId>
         <artifactId>jpms-deps</artifactId>
         <version>1.0.15</version>
     </parent>
 
-    <artifactId>roaring</artifactId>
+    <artifactId>activej-common</artifactId>
     <packaging>jar</packaging>
-    <name>Roaring</name>
-    <version>${roaringbitmap.version}</version>
+    <name>Activej Common</name>
+    <version>${activej.release.version}</version>
+
     <build>
         <plugins>
             <plugin>
@@ -31,19 +31,28 @@
                             <modules>
                                 <module>
                                     <artifact>
-                                        <groupId>org.roaringbitmap</groupId>
-                                        <artifactId>RoaringBitmap</artifactId>
-                                        <version>${roaringbitmap.version}</version>
+                                        <groupId>io.activej</groupId>
+                                        <artifactId>activej-common</artifactId>
+                                        <version>${activej.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        module org.hl7.tinkar.roaring {
-                                            exports org.roaringbitmap;
-                                            exports org.roaringbitmap.art;
-                                            exports org.roaringbitmap.buffer;
-                                            exports org.roaringbitmap.insights;
-                                            exports org.roaringbitmap.longlong;
+                                        open module io.activej.common {
+                                            exports io.activej.common;
+                                            exports io.activej.common.api;
+                                            exports io.activej.common.collection;
+                                            exports io.activej.common.concurrent;
+                                            exports io.activej.common.exception;
+                                            exports io.activej.common.inspector;
+                                            exports io.activej.common.jmx;
+                                            exports io.activej.common.recycle;
+                                            exports io.activej.common.ref;
+                                            exports io.activej.common.reflection;
+                                            exports io.activej.common.service;
+                                            exports io.activej.common.sql;
+                                            exports io.activej.common.time;
+                                            exports io.activej.common.tuple;
                                         }
-                                    </moduleInfoSource>
+                                     </moduleInfoSource>
                                 </module>
                             </modules>
                         </configuration>
@@ -58,8 +67,8 @@
                         <phase>prepare-package</phase>
                         <configuration>
                             <target>
-                                <echo message="unzipping file" />
-                                <unzip src="${project.build.directory}/moditect/RoaringBitmap-${roaringbitmap.version}.jar"
+                                <echo message="unzipping files" />
+                                <unzip src="${project.build.directory}/moditect/activej-common-${activej.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>

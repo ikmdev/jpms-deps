@@ -36,7 +36,7 @@
                                         <version>${record-builder-core.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        module org.hl7.tinkar.record.builder {
+                                        module io.soabase.recordbuilder.core {
                                             exports io.soabase.recordbuilder.core;
                                         }
                                     </moduleInfoSource>

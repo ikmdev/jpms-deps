@@ -8,7 +8,7 @@
         <version>1.0.15</version>
     </parent>
 
-    <artifactId>lucene-core</artifactId>
+    <artifactId>lucene</artifactId>
     <packaging>jar</packaging>
     <name>Lucene Core</name>
     <version>${lucene.version}</version>
@@ -36,7 +36,7 @@
                                         <version>${lucene.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.lucene {
+                                        open module org.apache.lucene {
                                             exports org.apache.lucene.analysis;
                                             exports org.apache.lucene.analysis.standard;
                                             exports org.apache.lucene.document;
@@ -44,18 +44,6 @@
                                             exports org.apache.lucene.search;
                                             exports org.apache.lucene.store;
                                             exports org.apache.lucene.util;
-                                        }
-                                    </moduleInfoSource>
-                                </module>
-                                <module>
-                                    <artifact>
-                                        <groupId>org.apache.lucene</groupId>
-                                        <artifactId>lucene-highlighter</artifactId>
-                                        <version>${lucene.version}</version>
-                                    </artifact>
-                                    <moduleInfoSource>
-                                        open module org.hl7.tinkar.lucene {
-                                        exports org.apache.lucene.search.highlight;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -74,8 +62,6 @@
                             <target>
                                 <echo message="unzipping file" />
                                 <unzip src="${project.build.directory}/moditect/lucene-core-${lucene.version}.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/lucene-highlighter-${lucene.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>

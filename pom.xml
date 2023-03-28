@@ -49,26 +49,29 @@
         <activej.version>4.3</activej.version>
         <activej.release.version>4.3.0</activej.release.version>
 
-        <skipCodeQuality>true</skipCodeQuality>
-
     </properties>
 
     <modules>
-        <module>activej</module>
+        <module>activej-bytebuf</module>
+        <module>activej-common</module>
         <module>auto-service</module>
         <module>caffeine</module>
         <!--TODO check with Keith on deletion-->
 <!--        <module>chronicle-map</module>-->
+        <module>eclipse-collections-api</module>
         <module>eclipse-collections</module>
         <module>jheaps</module>
         <module>lucene</module>
         <module>lucene-highlighter</module>
         <module>lucene-memory</module>
         <module>lucene-queryparser</module>
+        <module>lucene-sandbox</module>
         <module>mvstore</module>
+        <module>ontology-model</module>
         <module>protobuf-java</module>
+        <module>reactive-streams</module>
         <module>record-builder-core</module>
-        <module>roaring</module>
+        <module>roaringbitmap</module>
         <module>snorocket</module>
         <module>mutiny</module>
     </modules>
@@ -90,24 +93,6 @@
 
             </plugins>
         </pluginManagement>
-        <plugins>
-            <!-- Use of Enforcer plugin to:
-                         * Not allow snapshots
-                         * Require semantic Versioning Conformance
-                     -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>enforce-no-snapshots</id>
-                        <configuration>
-                            <fail>false</fail>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
 
 </project>

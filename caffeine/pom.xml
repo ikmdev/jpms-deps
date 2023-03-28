@@ -36,7 +36,7 @@
                                         <version>${caffeine.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        module org.hl7.tinkar.caffeine {
+                                        module com.github.benmanes.caffeine {
                                             exports com.github.benmanes.caffeine.cache;
                                         }
                                     </moduleInfoSource>

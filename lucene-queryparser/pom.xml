@@ -36,7 +36,9 @@
                                         <version>${lucene.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.lucene {
+                                        open module org.apache.lucene.queryparser {
+                                            requires org.apache.lucene.queries;
+                                            requires org.apache.lucene.sandbox;
                                             exports org.apache.lucene.queryparser.classic;
                                         }
                                     </moduleInfoSource>

@@ -36,7 +36,8 @@
                                         <version>${lucene.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.lucene {
+                                        open module org.apache.lucene.search.highlight {
+                                            requires org.apache.lucene.lucene;
                                             exports org.apache.lucene.search.highlight;
                                         }
                                     </moduleInfoSource>

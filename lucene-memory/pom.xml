@@ -36,7 +36,8 @@
                                         <version>${lucene.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.lucene {
+                                        open module org.apache.lucene.index.memory {
+                                            requires org.apache.lucene;
                                             exports org.apache.lucene.index.memory;
                                         }
                                     </moduleInfoSource>

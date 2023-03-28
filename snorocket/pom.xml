@@ -38,24 +38,6 @@
                                     </artifact>
                                         <moduleInfoSource>
                                         open module org.hl7.tinkar.snorocket {
-                                            exports au.csiro.ontology;
-                                            exports au.csiro.ontology.model;
-                                            exports au.csiro.ontology.classification;
-                                            exports au.csiro.snorocket.core;
-                                        }
-                                    </moduleInfoSource>
-                                </module>
-                                <module>
-                                    <artifact>
-                                        <groupId>au.csiro</groupId>
-                                        <artifactId>ontology-model</artifactId>
-                                        <version>${snorocket.version}</version>
-                                    </artifact>
-                                    <moduleInfoSource>
-                                        open module org.hl7.tinkar.snorocket {
-                                            exports au.csiro.ontology;
-                                            exports au.csiro.ontology.model;
-                                            exports au.csiro.ontology.classification;
                                             exports au.csiro.snorocket.core;
                                         }
                                     </moduleInfoSource>
@@ -75,8 +57,6 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/ontology-model-${snorocket.version}.jar"
-                                       dest="${project.build.directory}/classes/" />
                                 <unzip src="${project.build.directory}/moditect/snorocket-core-${snorocket.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>

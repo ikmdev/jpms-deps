@@ -36,7 +36,7 @@
                                         <version>${auto-service.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        module org.hl7.tinkar.autoservice {
+                                        module com.google.auto.service {
                                             exports com.google.auto.service;
                                         }
                                     </moduleInfoSource>

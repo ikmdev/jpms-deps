@@ -43,7 +43,7 @@
                                         <version>${chronicle-map.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
+                                        open module net.openhft.chronicle {
                                             requires java.naming;
                                             requires java.management;
                                             requires jdk.unsupported;
@@ -61,7 +61,7 @@
                                         <version>${chronicle-values.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
+                                        open module net.openhft.chronicle {
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
@@ -79,7 +79,7 @@
                                         <version>${chronicle-core.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
+                                        open module net.openhft.chronicle {
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
