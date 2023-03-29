@@ -11,7 +11,7 @@
     <artifactId>activej-common</artifactId>
     <packaging>jar</packaging>
     <name>Activej Common</name>
-    <version>${activej.release.version}</version>
+    <version>${activej.version}</version>
 
     <build>
         <plugins>
