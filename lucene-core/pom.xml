@@ -9,6 +9,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>lucene-core</artifactId>
     <packaging>jar</packaging>
     <name>Lucene Core</name>

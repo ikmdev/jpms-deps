@@ -9,6 +9,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>auto-service</artifactId>
     <packaging>jar</packaging>
     <name>Auto service</name>

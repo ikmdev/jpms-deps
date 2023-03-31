@@ -9,12 +9,14 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>lucene-queries</artifactId>
     <packaging>jar</packaging>
     <name>Lucene Queries</name>
     <version>${lucene.version}-r2</version>
     <properties>
         <lucene.version>8.9.0</lucene.version>
+        <lucene-core.version>8.9.0-r2</lucene-core.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -24,7 +26,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>lucene-core</artifactId>
-            <version>${lucene.version}</version>
+            <version>${lucene-core.version}</version>
         </dependency>
     </dependencies>
 

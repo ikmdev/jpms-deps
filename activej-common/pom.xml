@@ -9,6 +9,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>activej-common</artifactId>
     <packaging>jar</packaging>
     <name>Activej Common</name>

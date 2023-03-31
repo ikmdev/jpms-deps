@@ -10,6 +10,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>mutiny</artifactId>
     <name>Mutiny</name>
     <version>${io.smallrye.reactive.version}-r2</version>
@@ -17,6 +18,9 @@
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+        <smallrye-common-annotation.version>1.8.0-r1</smallrye-common-annotation.version>
+        <org.reactivestreams.version>1.3.1-r2</org.reactivestreams.version>
+        <io.smallrye.reactive.version>2.1.0</io.smallrye.reactive.version>
     </properties>
 
     <dependencies>

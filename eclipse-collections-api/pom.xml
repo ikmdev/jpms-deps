@@ -9,6 +9,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>eclipse-collections-api</artifactId>
     <packaging>jar</packaging>
     <name>Eclipse collections API</name>

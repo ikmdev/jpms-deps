@@ -9,6 +9,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>eclipse-collections</artifactId>
     <packaging>jar</packaging>
     <name>Eclipse collections</name>
@@ -227,7 +228,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/eclipse-collections-${eclipse-collections-api.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/eclipse-collections-${eclipse-collections.version}.jar"
                                        dest="${project.build.directory}/classes/" >
                                     <patternset>
                                         <exclude name="**/ECLIPSE_.RSA"/>

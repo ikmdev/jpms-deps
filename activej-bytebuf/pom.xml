@@ -9,13 +9,15 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>activej-bytebuf</artifactId>
     <packaging>jar</packaging>
     <name>Activej Bytebuf</name>
-    <version>${activej.version}-r2</version>
+    <version>${activej.version}-r3</version>
 
     <properties>
         <activej.version>4.3</activej.version>
+        <activej.common.version>4.3-r2</activej.common.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -23,9 +25,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.activej</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>activej-common</artifactId>
-            <version>${activej.version}</version>
+            <version>${activej.common.version}</version>
         </dependency>
     </dependencies>
 

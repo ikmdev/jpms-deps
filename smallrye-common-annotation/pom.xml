@@ -10,6 +10,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>smallrye-common-annotation</artifactId>
     <name>SmallRye Common Annotations</name>
     <version>${smallrye-common-annotation.version}-r1</version>

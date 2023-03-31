@@ -9,6 +9,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>record-builder-core</artifactId>
     <packaging>jar</packaging>
     <name>Record builder</name>

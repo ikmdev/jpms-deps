@@ -9,6 +9,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>jheaps</artifactId>
     <packaging>jar</packaging>
     <name>JHeaps</name>

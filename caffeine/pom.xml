@@ -9,6 +9,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>caffeine</artifactId>
     <packaging>jar</packaging>
     <name>Caffeine</name>

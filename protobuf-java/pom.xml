@@ -10,6 +10,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>protobuf-java</artifactId>
     <version>${protobuf.java.version}-r2</version>
     <packaging>jar</packaging>
