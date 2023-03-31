@@ -9,9 +9,9 @@
         <relativePath></relativePath>
     </parent>
 
-    <artifactId>lucene-sandbox</artifactId>
+    <artifactId>lucene-queries</artifactId>
     <packaging>jar</packaging>
-    <name>Lucene Query Sandbox</name>
+    <name>Lucene Queries</name>
     <version>${lucene.version}-r2</version>
     <properties>
         <lucene.version>8.9.0</lucene.version>
@@ -63,18 +63,13 @@
                                 <module>
                                     <artifact>
                                         <groupId>org.apache.lucene</groupId>
-                                        <artifactId>lucene-sandbox</artifactId>
+                                        <artifactId>lucene-queries</artifactId>
                                         <version>${lucene.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.apache.lucene.sandbox {
+                                        open module org.apache.lucene.queries {
                                             requires org.apache.lucene;
-
-                                            exports org.apache.lucene.codecs.idversion;
-                                            exports org.apache.lucene.document;
-                                            exports org.apache.lucene.payloads;
-                                            exports org.apache.lucene.sandbox.queries;
-                                            exports org.apache.lucene.search;
+                                            exports org.apache.lucene.queries;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -92,7 +87,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping file" />
-                                <unzip src="${project.build.directory}/moditect/lucene-sandbox-${lucene.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/lucene-queries-${lucene.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>

@@ -3,17 +3,49 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>dev.ikm.jpms</groupId>
-        <artifactId>jpms-deps</artifactId>
-        <version>1.0.15</version>
+        <groupId>dev.ikm.build</groupId>
+        <artifactId>java-parent</artifactId>
+        <version>0.3.0</version>
+        <relativePath></relativePath>
     </parent>
 
     <artifactId>activej-bytebuf</artifactId>
     <packaging>jar</packaging>
     <name>Activej Bytebuf</name>
-    <version>${activej.version}</version>
+    <version>${activej.version}-r2</version>
+
+    <properties>
+        <activej.version>4.3</activej.version>
+        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+        <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
+        <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.activej</groupId>
+            <artifactId>activej-common</artifactId>
+            <version>${activej.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.moditect</groupId>
+                    <artifactId>moditect-maven-plugin</artifactId>
+                    <version>${maven.moditect.plugin}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven.antrun.plugin}</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.moditect</groupId>

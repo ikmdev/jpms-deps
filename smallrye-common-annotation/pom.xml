@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>dev.ikm.build</groupId>
@@ -9,24 +10,17 @@
         <relativePath></relativePath>
     </parent>
 
-    <artifactId>lucene-sandbox</artifactId>
-    <packaging>jar</packaging>
-    <name>Lucene Query Sandbox</name>
-    <version>${lucene.version}-r2</version>
+    <artifactId>smallrye-common-annotation</artifactId>
+    <name>SmallRye Common Annotations</name>
+    <version>${smallrye-common-annotation.version}-r1</version>
     <properties>
-        <lucene.version>8.9.0</lucene.version>
+        <smallrye-common-annotation.version>1.8.0</smallrye-common-annotation.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>lucene-core</artifactId>
-            <version>${lucene.version}</version>
-        </dependency>
-    </dependencies>
+    <!-- Has no dependencies in this artifact -->
 
     <build>
         <pluginManagement>
@@ -62,19 +56,13 @@
                             <modules>
                                 <module>
                                     <artifact>
-                                        <groupId>org.apache.lucene</groupId>
-                                        <artifactId>lucene-sandbox</artifactId>
-                                        <version>${lucene.version}</version>
+                                        <groupId>io.smallrye.common</groupId>
+                                        <artifactId>smallrye-common-annotation</artifactId>
+                                        <version>${smallrye-common-annotation.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.apache.lucene.sandbox {
-                                            requires org.apache.lucene;
-
-                                            exports org.apache.lucene.codecs.idversion;
-                                            exports org.apache.lucene.document;
-                                            exports org.apache.lucene.payloads;
-                                            exports org.apache.lucene.sandbox.queries;
-                                            exports org.apache.lucene.search;
+                                        module io.smallrye.common.annotation {
+                                            exports io.smallrye.common.annotation;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -91,9 +79,15 @@
                         <phase>prepare-package</phase>
                         <configuration>
                             <target>
-                                <echo message="unzipping file" />
-                                <unzip src="${project.build.directory}/moditect/lucene-sandbox-${lucene.version}.jar"
-                                       dest="${project.build.directory}/classes/" />
+                                <echo message="unzipping files" />
+                                <unzip src="${project.build.directory}/moditect/smallrye-common-annotation-${smallrye-common-annotation.version}.jar"
+                                       dest="${project.build.directory}/classes/" >
+                                    <patternset>
+                                        <exclude name="**/ECLIPSE_.RSA"/>
+                                        <exclude name="**/ECLIPSE_.SF"/>
+                                        <exclude name="**/MANIFEST.MF"/>
+                                    </patternset>
+                                </unzip>
                             </target>
                         </configuration>
                         <goals>
@@ -104,4 +98,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
