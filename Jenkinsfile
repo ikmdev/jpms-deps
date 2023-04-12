@@ -32,7 +32,7 @@ pipeline {
                 }
             }
             steps {
-                echo "stage 1: not a change request"
+                echo "stage 1: not a change request $CHANGE_ID"
             }
         }
 
@@ -41,7 +41,7 @@ pipeline {
                 expression { return changeRequest() }
             }
             steps {
-                echo "stage 2: It is a change request"
+                echo "stage 2: It is a change request  $CHANGE_ID"
             }    
         }
             
