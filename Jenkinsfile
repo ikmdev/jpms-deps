@@ -28,7 +28,10 @@ pipeline {
         stage("stage 1") {            
             when {
                 not {
-                    expression { return changeRequest() }
+                    anyOf { 
+                        env.BRANCH_NAME == 'main' 
+                        env.BRANCH_NAME == 'master'
+                    }
                 }
             }
             steps {
@@ -38,10 +41,13 @@ pipeline {
 
         stage("stage 2") {            
             when {
-                expression { return changeRequest() }
+                anyOf { 
+                    env.BRANCH_NAME == 'main' 
+                    env.BRANCH_NAME == 'master'
+                }
             }
             steps {
-                echo 'stage 1: not a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
+                echo 'stage 2: not a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
             }    
         }
             
