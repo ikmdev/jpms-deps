@@ -29,8 +29,8 @@ pipeline {
             when {
                 not {
                     anyOf { 
-                        env.BRANCH_NAME == 'main' 
-                        env.BRANCH_NAME == 'master'
+                        branch 'main' 
+                        branch 'master'
                     }
                 }
             }
@@ -42,8 +42,8 @@ pipeline {
         stage("stage 2") {            
             when {
                 anyOf { 
-                    env.BRANCH_NAME == 'main' 
-                    env.BRANCH_NAME == 'master'
+                    branch 'main' 
+                    branch 'master'
                 }
             }
             steps {
