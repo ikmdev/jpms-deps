@@ -24,6 +24,34 @@ pipeline {
     }       
     
     stages {
+
+        stage('stage main'){
+            when {
+                beforeAgent true
+                anyOf{
+                    branch "main"
+                    branch "master"
+                }
+            }
+            sh '''
+                echo executing main branch
+            ''' 
+        }
+
+        stage('stage feature branch'){
+            when {
+                beforeAgent true
+                not{
+                    anyOf{
+                        branch "main"
+                        branch "master"
+                    }
+                }                
+            }
+            sh '''
+                echo "executing feature branch"
+            ''' 
+        }
             
         stage('Maven Build') {
             agent {
