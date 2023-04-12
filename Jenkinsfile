@@ -28,7 +28,10 @@ pipeline {
         stage("stage 1") {            
             when {
                 not {
-                    expression { return changeRequest() }
+                    anyOf { 
+                        branch 'main' 
+                        branch 'master'
+                    }
                 }
             }
             steps {
@@ -38,12 +41,16 @@ pipeline {
 
         stage("stage 2") {            
             when {
-                expression { return changeRequest() }
+                anyOf { 
+                    branch 'main' 
+                    branch 'master'
+                }
             }
             steps {
-                echo 'stage 2: It is a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH
+                echo 'stage 2: not a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
             }    
         }
+
             
         stage('Maven Build') {
             agent {
