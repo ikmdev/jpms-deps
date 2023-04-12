@@ -35,7 +35,7 @@ pipeline {
                 }
             }
             steps {
-                echo 'stage 1: not a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
+                echo 'stage 1: IS a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
             }
         }
 
@@ -47,7 +47,7 @@ pipeline {
                 }
             }
             steps {
-                echo 'stage 2: not a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
+                echo 'stage 2: IS not a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
             }    
         }
 
