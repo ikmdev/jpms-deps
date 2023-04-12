@@ -51,8 +51,11 @@ pipeline {
         stage("Publish to Nexus Repository Manager") {
             
             when {
-                env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
                 beforeAgent true
+                anyOf{
+                    branch "main"
+                    branch "master"
+                }
             }
 
             agent {
