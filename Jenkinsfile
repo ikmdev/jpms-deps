@@ -15,10 +15,6 @@ pipeline {
         BRANCH_NAME         = "${GIT_BRANCH.split("/").size() > 1 ? GIT_BRANCH.split("/")[1] : GIT_BRANCH}"
     }
 
-    triggers {
-        cron(cron_string)
-    }
-
     options {
 
         // Set this to true if you want to clean workspace during the prep stage
