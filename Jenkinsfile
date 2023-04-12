@@ -9,7 +9,7 @@ pipeline {
         SONARQUBE_URL       = "${GLOBAL_SONARQUBE_URL}"
         SONAR_HOST_URL      = "${GLOBAL_SONARQUBE_URL}"
         
-        BRANCH_NAME         = "${GIT_BRANCH.split("/").size() > 1 ? GIT_BRANCH.split("/")[1] : GIT_BRANCH}"
+        BRANCH_NAME         = "${GIT_BRANCH.split("/").size() > 1 ? GIT_BRANCH.split("/")[1] : GIT_BRANCH}"        
         
     }
 
@@ -24,32 +24,6 @@ pipeline {
     }       
     
     stages {
-
-        stage("stage 1") {            
-            when {
-                not {
-                    anyOf { 
-                        branch 'main' 
-                        branch 'master'
-                    }
-                }
-            }
-            steps {
-                echo 'stage 1: not a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
-            }
-        }
-
-        stage("stage 2") {            
-            when {
-                anyOf { 
-                    branch 'main' 
-                    branch 'master'
-                }
-            }
-            steps {
-                echo 'stage 2: not a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
-            }    
-        }
             
         stage('Maven Build') {
             agent {
@@ -77,9 +51,8 @@ pipeline {
         stage("Publish to Nexus Repository Manager") {
             
             when {
-                not {
-                    expression { return changeRequest() }
-                }
+                env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
+                beforeAgent true
             }
 
             agent {
