@@ -23,6 +23,26 @@ pipeline {
         ansiColor('xterm')
     }
         
+    stage("stage 1") {            
+        when {
+            not {
+                expression { return changeRequest() }
+            }
+        }
+        steps {
+            echo "stage 1: not a change request"
+        }
+    }
+
+    stage("stage 2") {            
+        when {
+            expression { return changeRequest() }
+        }
+        steps {
+            echo "stage 2: It is a change request"
+        }    
+    }
+
     stages {
         
         stage('Maven Build') {
