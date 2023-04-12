@@ -25,32 +25,37 @@ pipeline {
     
     stages {
 
-        stage("stage 1") {            
+        stage('stage main'){
             when {
-                not {
-                    anyOf { 
-                        branch 'main' 
-                        branch 'master'
+                beforeAgent true
+                anyOf{
+                    branch "main"
+                    branch "master"
+                }
+            }
+            steps{
+                sh '''
+                    echo executing main branch
+                '''        
+            }             
+        }
+
+        stage('stage feature branch'){
+            when {
+                beforeAgent true
+                not{
+                    anyOf{
+                        branch "main"
+                        branch "master"
                     }
-                }
+                }                
             }
-            steps {
-                echo 'stage 1: IS a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
-            }
+            steps{
+                sh '''
+                    echo "executing feature branch"
+                '''
+            }             
         }
-
-        stage("stage 2") {            
-            when {
-                anyOf { 
-                    branch 'main' 
-                    branch 'master'
-                }
-            }
-            steps {
-                echo 'stage 2: IS not a change request ' + env.BRANCH_NAME + ' == ' + env.GIT_BRANCH 
-            }    
-        }
-
             
         stage('Maven Build') {
             agent {
