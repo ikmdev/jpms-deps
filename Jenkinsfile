@@ -1,8 +1,5 @@
 @Library("titan-library") _ 
 
-//run the build at 03:10 on every day-of-week from Monday through Friday but only on the main branch
-String cron_string = BRANCH_NAME == "main" ? "10 3 * * 1-5" : ""
-
 pipeline {
     agent any
     
