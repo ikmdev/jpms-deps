@@ -50,7 +50,11 @@ pipeline {
 
         stage("Publish to Nexus Repository Manager") {
             
-            when { changeRequest() == '' }
+            when {
+                not {
+                    expression { return changeRequest() }
+                }
+            }
 
             agent {
                 docker {
@@ -93,8 +97,10 @@ pipeline {
 
         stage("Deploy skipped") {
             
-            when { changeRequest() != '' }
-
+            when {
+                expression { return changeRequest() }
+            }
+            
             steps {
                 echo 'Skipped Deploy as this is PullRequest'
             }
