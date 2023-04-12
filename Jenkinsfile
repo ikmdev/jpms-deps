@@ -33,9 +33,11 @@ pipeline {
                     branch "master"
                 }
             }
-            sh '''
-                echo executing main branch
-            ''' 
+            steps{
+                sh '''
+                    echo executing main branch
+                '''        
+            }             
         }
 
         stage('stage feature branch'){
@@ -48,9 +50,11 @@ pipeline {
                     }
                 }                
             }
-            sh '''
-                echo "executing feature branch"
-            ''' 
+            steps{
+                sh '''
+                    echo "executing feature branch"
+                '''
+            }             
         }
             
         stage('Maven Build') {
