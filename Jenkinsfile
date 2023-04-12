@@ -33,8 +33,7 @@ pipeline {
             }
             
 
-            steps {
-                updateGitlabCommitStatus name: 'build', state: 'running'
+            steps {                
                 script{
                     configFileProvider([configFile(fileId: 'settings.xml', variable: 'MAVEN_SETTINGS')]) {
                         sh """
