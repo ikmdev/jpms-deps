@@ -10,6 +10,7 @@ pipeline {
         SONAR_HOST_URL      = "${GLOBAL_SONARQUBE_URL}"
         
         BRANCH_NAME         = "${GIT_BRANCH.split("/").size() > 1 ? GIT_BRANCH.split("/")[1] : GIT_BRANCH}"
+        
     }
 
     options {
@@ -48,6 +49,8 @@ pipeline {
         }
 
         stage("Publish to Nexus Repository Manager") {
+            
+            when { changeRequest() == '' }
 
             agent {
                 docker {
@@ -56,13 +59,13 @@ pipeline {
                 }
             }
 
-            steps {
+            steps {               
 
                 script {
                     pomModel = readMavenPom(file: 'pom.xml')                    
                     pomVersion = pomModel.getVersion()
                     isSnapshot = pomVersion.contains("-SNAPSHOT")
-                    repositoryId = 'maven-releases'
+                    repositoryId = 'maven-releases'                    
 
                     if (isSnapshot) {
                         repositoryId = 'maven-snapshots'
@@ -85,6 +88,15 @@ pipeline {
                         -DrepositoryId='${repositoryId}'
                     """              
                 }
+            }
+        }
+
+        stage("Deploy skipped") {
+            
+            when { changeRequest() != '' }
+
+            steps {
+                echo 'Skipped Deploy as this is PullRequest'
             }
         }
     }
