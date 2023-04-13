@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>dev.ikm.build</groupId>
+        <artifactId>java-parent</artifactId>
+        <version>0.3.0</version>
+        <relativePath></relativePath>
+    </parent>
+
+    <groupId>dev.ikm.jpms</groupId>
+    <artifactId>eclipse-collections-api</artifactId>
+    <packaging>jar</packaging>
+    <name>Eclipse collections API</name>
+    <version>${eclipse-collections-api.version}-r3</version>
+    <properties>
+        <eclipse-collections-api.version>11.1.0</eclipse-collections-api.version>
+        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+        <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
+        <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+    </properties>
+
+    <!-- Has no dependencies in this artifact -->
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.moditect</groupId>
+                    <artifactId>moditect-maven-plugin</artifactId>
+                    <version>${maven.moditect.plugin}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven.antrun.plugin}</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.moditect</groupId>
+                <artifactId>moditect-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-module-infos</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>add-module-info</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/moditect</outputDirectory>
+                            <overwriteExistingFiles>true</overwriteExistingFiles>
+                            <modules>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.eclipse.collections</groupId>
+                                        <artifactId>eclipse-collections-api</artifactId>
+                                        <version>${eclipse-collections-api.version}</version>
+                                     </artifact>
+                                    <moduleInfoSource>
+                                        open module org.eclipse.collections.api {
+
+                                            uses org.eclipse.collections.api.factory.bag.MutableBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.MutableFloatBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.MutableIntBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.MutableDoubleBagFactory;
+                                            uses org.eclipse.collections.api.factory.map.primitive.MutableObjectLongMapFactory;
+                                            uses org.eclipse.collections.api.factory.bag.sorted.ImmutableSortedBagFactory;
+                                            uses org.eclipse.collections.api.factory.set.sorted.MutableSortedSetFactory;
+                                            uses org.eclipse.collections.api.factory.map.primitive.MutableObjectDoubleMapFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.MutableByteBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.MutableCharBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.MutableBooleanBagFactory;
+                                            uses org.eclipse.collections.api.factory.set.MutableSetFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.MutableShortBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.MutableLongBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.ImmutableBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.ImmutableFloatBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.ImmutableIntBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.ImmutableDoubleBagFactory;
+                                            uses org.eclipse.collections.api.factory.map.primitive.ImmutableObjectLongMapFactory;
+                                            uses org.eclipse.collections.api.factory.bag.sorted.MutableSortedBagFactory;
+                                            uses org.eclipse.collections.api.factory.set.sorted.ImmutableSortedSetFactory;
+                                            uses org.eclipse.collections.api.factory.map.primitive.ImmutableObjectDoubleMapFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.ImmutableByteBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.ImmutableCharBagFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.ImmutableBooleanBagFactory;
+                                            uses org.eclipse.collections.api.factory.set.ImmutableSetFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.ImmutableShortBagFactory;
+                                            uses org.eclipse.collections.api.factory.map.ImmutableMapFactory;
+                                            uses org.eclipse.collections.api.factory.bag.primitive.ImmutableLongBagFactory;
+                                            uses org.eclipse.collections.api.factory.map.FixedSizeMapFactory;
+                                            uses org.eclipse.collections.api.factory.map.MutableMapFactory;
+                                            uses org.eclipse.collections.api.factory.list.ImmutableListFactory;
+                                            uses org.eclipse.collections.api.factory.list.MutableListFactory;
+                                            uses org.eclipse.collections.api.factory.list.FixedSizeListFactory;
+                                            uses org.eclipse.collections.api.factory.list.MultiReaderListFactory;
+                                            uses org.eclipse.collections.api.factory.map.primitive.ImmutableObjectIntMapFactory;
+                                            uses org.eclipse.collections.api.factory.map.primitive.MutableObjectIntMapFactory;
+                                            uses org.eclipse.collections.api.factory.list.primitive.ImmutableCharListFactory;
+                                            uses org.eclipse.collections.api.factory.list.primitive.MutableCharListFactory;
+                                            uses org.eclipse.collections.api.factory.bag.MultiReaderBagFactory;
+                                            uses org.eclipse.collections.api.factory.map.sorted.ImmutableSortedMapFactory;
+                                            uses org.eclipse.collections.api.factory.set.FixedSizeSetFactory;
+                                            uses org.eclipse.collections.api.factory.set.MultiReaderSetFactory;
+                                            uses org.eclipse.collections.api.factory.map.sorted.MutableSortedMapFactory;
+                                            uses org.eclipse.collections.api.factory.map.primitive.ImmutableIntIntMapFactory;
+                                            uses org.eclipse.collections.api.factory.map.primitive.MutableIntIntMapFactory;
+                                            uses org.eclipse.collections.api.factory.map.primitive.ImmutableIntObjectMapFactory;
+                                            uses org.eclipse.collections.api.factory.map.primitive.MutableIntObjectMapFactory;
+
+                                            exports org.eclipse.collections.api;
+                                            exports org.eclipse.collections.api.annotation;
+                                            exports org.eclipse.collections.api.bag;
+                                            exports org.eclipse.collections.api.bag.primitive;
+                                            exports org.eclipse.collections.api.bag.sorted;
+                                            exports org.eclipse.collections.api.bimap;
+                                            exports org.eclipse.collections.api.block;
+                                            exports org.eclipse.collections.api.block.comparator;
+                                            exports org.eclipse.collections.api.block.comparator.primitive;
+                                            exports org.eclipse.collections.api.block.factory;
+                                            exports org.eclipse.collections.api.block.function;
+                                            exports org.eclipse.collections.api.block.function.primitive;
+                                            exports org.eclipse.collections.api.block.predicate;
+                                            exports org.eclipse.collections.api.block.predicate.primitive;
+                                            exports org.eclipse.collections.api.block.procedure;
+                                            exports org.eclipse.collections.api.block.procedure.primitive;
+                                            exports org.eclipse.collections.api.collection;
+                                            exports org.eclipse.collections.api.collection.primitive;
+                                            exports org.eclipse.collections.api.factory;
+                                            exports org.eclipse.collections.api.factory.bag;
+                                            exports org.eclipse.collections.api.factory.bag.primitive;
+                                            exports org.eclipse.collections.api.factory.bag.sorted;
+                                            exports org.eclipse.collections.api.factory.bag.strategy;
+                                            exports org.eclipse.collections.api.factory.bimap;
+                                            exports org.eclipse.collections.api.factory.list;
+                                            exports org.eclipse.collections.api.factory.list.primitive;
+                                            exports org.eclipse.collections.api.factory.map;
+                                            exports org.eclipse.collections.api.factory.map.primitive;
+                                            exports org.eclipse.collections.api.factory.map.sorted;
+                                            exports org.eclipse.collections.api.factory.map.strategy;
+                                            exports org.eclipse.collections.api.factory.primitive;
+                                            exports org.eclipse.collections.api.factory.set;
+                                            exports org.eclipse.collections.api.factory.set.sorted;
+                                            exports org.eclipse.collections.api.factory.set.primitive;
+                                            exports org.eclipse.collections.api.factory.stack;
+                                            exports org.eclipse.collections.api.factory.stack.primitive;
+                                            exports org.eclipse.collections.api.iterator;
+                                            exports org.eclipse.collections.api.list;
+                                            exports org.eclipse.collections.api.list.primitive;
+                                            exports org.eclipse.collections.api.set;
+                                            exports org.eclipse.collections.api.set.primitive;
+                                            exports org.eclipse.collections.api.set.sorted;
+                                            exports org.eclipse.collections.api.map;
+                                            exports org.eclipse.collections.api.map.primitive;
+                                            exports org.eclipse.collections.api.map.sorted;
+                                            exports org.eclipse.collections.api.multimap;
+                                            exports org.eclipse.collections.api.multimap.bag;
+                                            exports org.eclipse.collections.api.multimap.list;
+                                            exports org.eclipse.collections.api.multimap.set;
+                                            exports org.eclipse.collections.api.multimap.sortedbag;
+                                            exports org.eclipse.collections.api.multimap.sortedset;
+                                            exports org.eclipse.collections.api.ordered;
+                                            exports org.eclipse.collections.api.ordered.primitive;
+                                            exports org.eclipse.collections.api.partition;
+                                            exports org.eclipse.collections.api.partition.bag;
+                                            exports org.eclipse.collections.api.partition.list;
+                                            exports org.eclipse.collections.api.partition.ordered;
+                                            exports org.eclipse.collections.api.partition.set;
+                                            exports org.eclipse.collections.api.partition.stack;
+                                            exports org.eclipse.collections.api.stack;
+                                            exports org.eclipse.collections.api.tuple;
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                            </modules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="unzipping files" />
+                                <unzip src="${project.build.directory}/moditect/eclipse-collections-api-${eclipse-collections-api.version}.jar"
+                                       dest="${project.build.directory}/classes/" >
+                                    <patternset>
+                                        <exclude name="**/ECLIPSE_.RSA"/>
+                                        <exclude name="**/ECLIPSE_.SF"/>
+                                        <exclude name="**/MANIFEST.MF"/>
+                                    </patternset>
+                                </unzip>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

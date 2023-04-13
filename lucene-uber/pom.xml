@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>dev.ikm.build</groupId>
+        <artifactId>java-parent</artifactId>
+        <version>0.3.0</version>
+        <relativePath></relativePath>
+    </parent>
+
+    <groupId>dev.ikm.jpms</groupId>
+    <artifactId>lucene-uber</artifactId>
+    <packaging>jar</packaging>
+    <name>Lucene Uber</name>
+    <version>${lucene.version}-r2</version>
+
+    <properties>
+        <lucene.version>8.9.0</lucene.version>
+        <lucene-core.version>8.9.0-r2</lucene-core.version>
+        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+        <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
+        <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+    </properties>
+
+    <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>dev.ikm.jpms</groupId>-->
+<!--            <artifactId>lucene-core</artifactId>-->
+<!--            <version>8.9.0-r2</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>dev.ikm.jpms</groupId>-->
+<!--            <artifactId>lucene-memory</artifactId>-->
+<!--            <version>8.9.0-r2</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>dev.ikm.jpms</groupId>-->
+<!--            <artifactId>lucene-queries</artifactId>-->
+<!--            <version>8.9.0-r2</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>dev.ikm.jpms</groupId>-->
+<!--            <artifactId>lucene-queryparser</artifactId>-->
+<!--            <version>8.9.0-r2</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>dev.ikm.jpms</groupId>-->
+<!--            <artifactId>lucene-highlighter</artifactId>-->
+<!--            <version>8.9.0-r2</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>dev.ikm.jpms</groupId>-->
+<!--            <artifactId>lucene-sandbox</artifactId>-->
+<!--            <version>8.9.0-r2</version>-->
+<!--        </dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>dev.ikm.jpms</groupId>
+                            <artifactId>lucene-core</artifactId>
+                            <version>8.9.0-r2</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <destFileName>lucene-core.jar</destFileName>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>dev.ikm.jpms</groupId>
+                            <artifactId>lucene-memory</artifactId>
+                            <version>8.9.0-r2</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <destFileName>lucene-memory.jar</destFileName>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>dev.ikm.jpms</groupId>
+                            <artifactId>lucene-queries</artifactId>
+                            <version>8.9.0-r2</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <destFileName>lucene-queries.jar</destFileName>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>dev.ikm.jpms</groupId>
+                            <artifactId>lucene-queryparser</artifactId>
+                            <version>8.9.0-r2</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <destFileName>lucene-queryparser.jar</destFileName>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>dev.ikm.jpms</groupId>
+                            <artifactId>lucene-highlighter</artifactId>
+                            <version>8.9.0-r2</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <destFileName>lucene-highlighter.jar</destFileName>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>dev.ikm.jpms</groupId>
+                            <artifactId>lucene-sandbox</artifactId>
+                            <version>8.9.0-r2</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <destFileName>lucene-sandbox.jar</destFileName>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>unzip-lucene-core</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="unzipping file" />
+                                <unzip src="${project.build.directory}/lucene-core.jar"
+                                       dest="${project.build.directory}/lucene-core/"  >
+                                    <patternSet>
+                                        <exclude name="**/module-info.class"></exclude>
+                                        <exclude name="META-INF/versions/**"></exclude>
+                                    </patternSet>
+                                </unzip>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>unzip-lucene-memory</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="unzipping file" />
+                                <unzip src="${project.build.directory}/lucene-memory.jar"
+                                       dest="${project.build.directory}/lucene-memory/" >
+                                    <patternSet>
+                                        <exclude name="**/module-info.class"></exclude>
+                                        <exclude name="META-INF/versions/**"></exclude>
+                                    </patternSet>
+                                </unzip>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>unzip-lucene-queries</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="unzipping file" />
+                                <unzip src="${project.build.directory}/lucene-queries.jar"
+                                       dest="${project.build.directory}/lucene-queries/"  >
+                                    <patternSet>
+                                        <exclude name="**/module-info.class"></exclude>
+                                        <exclude name="META-INF/versions/**"></exclude>
+                                    </patternSet>
+                                </unzip>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>unzip-lucene-queryparser</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="unzipping file" />
+                                <unzip src="${project.build.directory}/lucene-queryparser.jar"
+                                       dest="${project.build.directory}/lucene-queryparser/"  >
+                                    <patternSet>
+                                        <exclude name="**/module-info.class"></exclude>
+                                        <exclude name="META-INF/versions/**"></exclude>
+                                    </patternSet>
+                                </unzip>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>unzip-lucene-highlighter</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="unzipping file" />
+                                <unzip src="${project.build.directory}/lucene-highlighter.jar"
+                                       dest="${project.build.directory}/lucene-highlighter/"  >
+                                    <patternSet>
+                                        <exclude name="**/module-info.class"></exclude>
+                                        <exclude name="META-INF/versions/**"></exclude>
+                                    </patternSet>
+                                </unzip>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>unzip-lucene-sandbox</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="unzipping file" />
+                                <unzip src="${project.build.directory}/lucene-sandbox.jar"
+                                       dest="${project.build.directory}/lucene-sandbox/" >
+                                    <patternSet>
+                                        <exclude name="**/module-info.class"></exclude>
+                                        <exclude name="META-INF/versions/**"></exclude>
+                                    </patternSet>
+                                </unzip>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>clean-lucene-jars</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <copy todir="${project.build.directory}/classes/org">
+                                    <fileset dir="${project.build.directory}/lucene-core/org" includes="**" />
+                                </copy>
+                                <copy todir="${project.build.directory}/classes/META-INF/services">
+                                    <fileset dir="${project.build.directory}/lucene-core/META-INF/services" includes="**" erroronmissingdir="false" />
+                                </copy>
+
+                                <copy todir="${project.build.directory}/classes/org">
+                                    <fileset dir="${project.build.directory}/lucene-memory/org" includes="**" />
+                                </copy>
+                                <copy todir="${project.build.directory}/classes/META-INF/services" >
+                                    <fileset dir="${project.build.directory}/lucene-memory/META-INF/services" includes="**" erroronmissingdir="false"/>
+                                </copy>
+
+                                <copy todir="${project.build.directory}/classes/org">
+                                    <fileset dir="${project.build.directory}/lucene-highlighter/org" includes="**" />
+                                </copy>
+                                <copy todir="${project.build.directory}/classes/META-INF/services">
+                                    <fileset dir="${project.build.directory}/lucene-highlighter/META-INF/services" includes="**" erroronmissingdir="false"/>
+                                </copy>
+
+                                <copy todir="${project.build.directory}/classes/org">
+                                    <fileset dir="${project.build.directory}/lucene-queries/org" includes="**" />
+                                </copy>
+                                <copy todir="${project.build.directory}/classes/META-INF/services">
+                                    <fileset dir="${project.build.directory}/lucene-queries/META-INF/services" includes="**" erroronmissingdir="false"/>
+                                </copy>
+
+                                <copy todir="${project.build.directory}/classes/org">
+                                    <fileset dir="${project.build.directory}/lucene-queryparser/org" includes="**" />
+                                </copy>
+                                <copy todir="${project.build.directory}/classes/META-INF/services">
+                                    <fileset dir="${project.build.directory}/lucene-queryparser/META-INF/services" includes="**" erroronmissingdir="false" />
+                                </copy>
+
+                                <copy todir="${project.build.directory}/classes/org">
+                                    <fileset dir="${project.build.directory}/lucene-sandbox/org" includes="**" />
+                                </copy>
+                                <copy todir="${project.build.directory}/classes/META-INF/services">
+                                    <fileset dir="${project.build.directory}/lucene-sandbox/META-INF/services" includes="**" erroronmissingdir="false" />
+                                </copy>
+
+                                <delete>
+                                    <file name="${project.build.directory}/lucene-sandbox.jar" />
+                                    <file name="${project.build.directory}/lucene-highlighter.jar" />
+                                    <file name="${project.build.directory}/lucene-queryparser.jar" />
+                                    <file name="${project.build.directory}/lucene-queries.jar" />
+                                    <file name="${project.build.directory}/lucene-memory.jar" />
+                                    <file name="${project.build.directory}/lucene-core.jar" />
+                                </delete>
+
+                                <delete dir="${project.build.directory}/lucene-sandbox" />
+                                <delete dir="${project.build.directory}/lucene-highlighter" />
+                                <delete dir="${project.build.directory}/lucene-queryparser" />
+                                <delete dir="${project.build.directory}/lucene-queries" />
+                                <delete dir="${project.build.directory}/lucene-memory" />
+                                <delete dir="${project.build.directory}/lucene-core" />
+
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <classesDirectory>${project.build.directory}/classes</classesDirectory>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.moditect</groupId>
+                <artifactId>moditect-maven-plugin</artifactId>
+                <version>1.0.0.RC2</version>
+                <executions>
+                    <execution>
+                        <id>add-module-infos</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>add-module-info</goal>
+                        </goals>
+                        <configuration>
+                            <module>
+                                <moduleInfo>
+                                    <name>dev.ikm.jpms.lucene.luceneuber</name>
+                                    <requires>
+                                        org.apache.lucene;
+                                        org.apache.lucene.queries;
+                                        org.apache.lucene.queryparser;
+                                        org.apache.lucene.index.memory;
+                                    </requires>
+                                    <exports>
+                                        org.apache.lucene.analysis;
+                                        org.apache.lucene.analysis.standard;
+                                        org.apache.lucene.document;
+                                        org.apache.lucene.index;
+                                        org.apache.lucene.search;
+                                        org.apache.lucene.store;
+                                        org.apache.lucene.util;
+                                        org.apache.lucene.codecs.idversion;
+                                        org.apache.lucene.payloads;
+                                        org.apache.lucene.sandbox.queries;
+                                        org.apache.lucene.queryparser.classic;
+                                        org.apache.lucene.queries;
+                                        org.apache.lucene.index.memory;
+                                        org.apache.lucene.search.highlight;
+                                    </exports>
+                                </moduleInfo>
+                            </module>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

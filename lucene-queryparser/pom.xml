@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>dev.ikm.build</groupId>
+        <artifactId>java-parent</artifactId>
+        <version>0.3.0</version>
+        <relativePath></relativePath>
+    </parent>
+
+    <groupId>dev.ikm.jpms</groupId>
+    <artifactId>lucene-queryparser</artifactId>
+    <packaging>jar</packaging>
+    <name>Lucene Query Parser</name>
+    <version>${lucene.version}-r2</version>
+    <properties>
+        <lucene.version>8.9.0</lucene.version>
+        <lucene-core.version>8.9.0-r2</lucene-core.version>
+        <lucene-queries.version>8.9.0-r2</lucene-queries.version>
+        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+        <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
+        <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${lucene-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>lucene-queries</artifactId>
+            <version>${lucene-queries.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.moditect</groupId>
+                    <artifactId>moditect-maven-plugin</artifactId>
+                    <version>${maven.moditect.plugin}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven.antrun.plugin}</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.moditect</groupId>
+                <artifactId>moditect-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-module-infos</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>add-module-info</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/moditect</outputDirectory>
+                            <overwriteExistingFiles>true</overwriteExistingFiles>
+                            <modules>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.apache.lucene</groupId>
+                                        <artifactId>lucene-queryparser</artifactId>
+                                        <version>${lucene.version}</version>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        open module org.apache.lucene.queryparser {
+                                        requires org.apache.lucene;
+                                        requires org.apache.lucene.queries;
+                                        exports org.apache.lucene.queryparser.classic;
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                                <module>
+                                    <artifact>
+                                        <groupId>org.apache.lucene</groupId>
+                                        <artifactId>lucene-sandbox</artifactId>
+                                        <version>${lucene.version}</version>
+                                    </artifact>
+                                    <moduleInfoSource>
+                                        open module org.apache.lucene.queryparser {
+                                        requires org.apache.lucene;
+                                        requires org.apache.lucene.queries;
+                                        exports org.apache.lucene.queryparser.classic;
+                                        }
+                                    </moduleInfoSource>
+                                </module>
+                            </modules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="unzipping file" />
+                                <unzip src="${project.build.directory}/moditect/lucene-queryparser-${lucene.version}.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/lucene-sandbox-${lucene.version}.jar"
+                                       dest="${project.build.directory}/classes/" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
