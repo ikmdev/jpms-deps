@@ -1,8 +1,5 @@
 @Library("titan-library") _ 
 
-//run the build at 03:10 on every day-of-week from Monday through Friday but only on the main branch
-String cron_string = BRANCH_NAME == "main" ? "10 3 * * 1-5" : ""
-
 pipeline {
     agent any
     
@@ -12,11 +9,8 @@ pipeline {
         SONARQUBE_URL       = "${GLOBAL_SONARQUBE_URL}"
         SONAR_HOST_URL      = "${GLOBAL_SONARQUBE_URL}"
         
-        BRANCH_NAME         = "${GIT_BRANCH.split("/").size() > 1 ? GIT_BRANCH.split("/")[1] : GIT_BRANCH}"
-    }
-
-    triggers {
-        cron(cron_string)
+        BRANCH_NAME         = "${GIT_BRANCH.split("/").size() > 1 ? GIT_BRANCH.split("/")[1] : GIT_BRANCH}"        
+        
     }
 
     options {
@@ -27,10 +21,42 @@ pipeline {
         // Console debug options
         timestamps()
         ansiColor('xterm')
-    }
-        
+    }       
+    
     stages {
-        
+
+        stage('stage main'){
+            when {
+                beforeAgent true
+                anyOf{
+                    branch "main"
+                    branch "master"
+                }
+            }
+            steps{
+                sh '''
+                    echo executing main branch
+                '''        
+            }             
+        }
+
+        stage('stage feature branch'){
+            when {
+                beforeAgent true
+                not{
+                    anyOf{
+                        branch "main"
+                        branch "master"
+                    }
+                }                
+            }
+            steps{
+                sh '''
+                    echo "executing feature branch"
+                '''
+            }             
+        }
+            
         stage('Maven Build') {
             agent {
                 docker {
@@ -40,7 +66,7 @@ pipeline {
             }
             
 
-            steps {
+            steps {                
                 script{
                     configFileProvider([configFile(fileId: 'settings.xml', variable: 'MAVEN_SETTINGS')]) {
                         sh """
@@ -55,6 +81,14 @@ pipeline {
         }
 
         stage("Publish to Nexus Repository Manager") {
+            
+            when {
+                beforeAgent true
+                anyOf{
+                    branch "main"
+                    branch "master"
+                }
+            }
 
             agent {
                 docker {
@@ -63,13 +97,13 @@ pipeline {
                 }
             }
 
-            steps {
+            steps {               
 
                 script {
                     pomModel = readMavenPom(file: 'pom.xml')                    
                     pomVersion = pomModel.getVersion()
                     isSnapshot = pomVersion.contains("-SNAPSHOT")
-                    repositoryId = 'maven-releases'
+                    repositoryId = 'maven-releases'                    
 
                     if (isSnapshot) {
                         repositoryId = 'maven-snapshots'
@@ -92,6 +126,17 @@ pipeline {
                         -DrepositoryId='${repositoryId}'
                     """              
                 }
+            }
+        }
+
+        stage("Deploy skipped") {
+            
+            when {
+                expression { return changeRequest() }
+            }
+            
+            steps {
+                echo 'Skipped Deploy as this is PullRequest'
             }
         }
     }
