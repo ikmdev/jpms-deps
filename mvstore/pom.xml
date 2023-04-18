@@ -14,7 +14,7 @@
     <artifactId>mvstore</artifactId>
     <packaging>jar</packaging>
     <name>MVStore</name>
-    <version>1.4.200-r2</version>
+    <version>1.4.200-r3</version>
     <properties>
         <h2-mvstore.version>1.4.200</h2-mvstore.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>

@@ -13,7 +13,7 @@
     <artifactId>lucene-uber</artifactId>
     <packaging>jar</packaging>
     <name>Lucene Uber</name>
-    <version>${lucene.version}-r2</version>
+    <version>${lucene.version}-r3</version>
 
     <properties>
         <lucene.version>8.9.0</lucene.version>
@@ -22,39 +22,6 @@
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
     </properties>
-
-    <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>dev.ikm.jpms</groupId>-->
-<!--            <artifactId>lucene-core</artifactId>-->
-<!--            <version>8.9.0-r2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>dev.ikm.jpms</groupId>-->
-<!--            <artifactId>lucene-memory</artifactId>-->
-<!--            <version>8.9.0-r2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>dev.ikm.jpms</groupId>-->
-<!--            <artifactId>lucene-queries</artifactId>-->
-<!--            <version>8.9.0-r2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>dev.ikm.jpms</groupId>-->
-<!--            <artifactId>lucene-queryparser</artifactId>-->
-<!--            <version>8.9.0-r2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>dev.ikm.jpms</groupId>-->
-<!--            <artifactId>lucene-highlighter</artifactId>-->
-<!--            <version>8.9.0-r2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>dev.ikm.jpms</groupId>-->
-<!--            <artifactId>lucene-sandbox</artifactId>-->
-<!--            <version>8.9.0-r2</version>-->
-<!--        </dependency>-->
-    </dependencies>
 
     <build>
         <plugins>
@@ -76,7 +43,7 @@
                         <artifactItem>
                             <groupId>dev.ikm.jpms</groupId>
                             <artifactId>lucene-core</artifactId>
-                            <version>8.9.0-r2</version>
+                            <version>8.9.0-r3</version>
                             <type>jar</type>
                             <overWrite>true</overWrite>
                             <outputDirectory>${project.build.directory}</outputDirectory>
@@ -85,7 +52,7 @@
                         <artifactItem>
                             <groupId>dev.ikm.jpms</groupId>
                             <artifactId>lucene-memory</artifactId>
-                            <version>8.9.0-r2</version>
+                            <version>8.9.0-r3</version>
                             <type>jar</type>
                             <overWrite>true</overWrite>
                             <outputDirectory>${project.build.directory}</outputDirectory>
@@ -94,7 +61,7 @@
                         <artifactItem>
                             <groupId>dev.ikm.jpms</groupId>
                             <artifactId>lucene-queries</artifactId>
-                            <version>8.9.0-r2</version>
+                            <version>8.9.0-r3</version>
                             <type>jar</type>
                             <overWrite>true</overWrite>
                             <outputDirectory>${project.build.directory}</outputDirectory>
@@ -103,7 +70,7 @@
                         <artifactItem>
                             <groupId>dev.ikm.jpms</groupId>
                             <artifactId>lucene-queryparser</artifactId>
-                            <version>8.9.0-r2</version>
+                            <version>8.9.0-r3</version>
                             <type>jar</type>
                             <overWrite>true</overWrite>
                             <outputDirectory>${project.build.directory}</outputDirectory>
@@ -112,7 +79,7 @@
                         <artifactItem>
                             <groupId>dev.ikm.jpms</groupId>
                             <artifactId>lucene-highlighter</artifactId>
-                            <version>8.9.0-r2</version>
+                            <version>8.9.0-r3</version>
                             <type>jar</type>
                             <overWrite>true</overWrite>
                             <outputDirectory>${project.build.directory}</outputDirectory>
@@ -121,7 +88,7 @@
                         <artifactItem>
                             <groupId>dev.ikm.jpms</groupId>
                             <artifactId>lucene-sandbox</artifactId>
-                            <version>8.9.0-r2</version>
+                            <version>8.9.0-r3</version>
                             <type>jar</type>
                             <overWrite>true</overWrite>
                             <outputDirectory>${project.build.directory}</outputDirectory>

@@ -13,7 +13,7 @@
     <artifactId>roaringbitmap</artifactId>
     <packaging>jar</packaging>
     <name>Roaring</name>
-    <version>${roaringbitmap.version}-r2</version>
+    <version>${roaringbitmap.version}-r3</version>
     <properties>
         <roaringbitmap.version>0.9.31</roaringbitmap.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>

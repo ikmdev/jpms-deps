@@ -13,7 +13,7 @@
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>mutiny</artifactId>
     <name>Mutiny</name>
-    <version>${io.smallrye.reactive.version}-r2</version>
+    <version>${io.smallrye.reactive.version}-r3</version>
     <properties>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>

@@ -13,7 +13,7 @@
     <artifactId>eclipse-collections-api</artifactId>
     <packaging>jar</packaging>
     <name>Eclipse collections API</name>
-    <version>${eclipse-collections-api.version}-r3</version>
+    <version>${eclipse-collections-api.version}-r4</version>
     <properties>
         <eclipse-collections-api.version>11.1.0</eclipse-collections-api.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>

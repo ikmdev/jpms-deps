@@ -13,7 +13,7 @@
     <artifactId>lucene-highlighter</artifactId>
     <packaging>jar</packaging>
     <name>Lucene Highlighter</name>
-    <version>${lucene.version}-r2</version>
+    <version>${lucene.version}-r3</version>
     <properties>
         <lucene.version>8.9.0</lucene.version>
         <lucene-core.version>8.9.0-r2</lucene-core.version>

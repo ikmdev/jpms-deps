@@ -13,7 +13,7 @@
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>ontology-model</artifactId>
     <name>Snorocket</name>
-    <version>${snorocket.version}-r2</version>
+    <version>${snorocket.version}-r3</version>
     <properties>
 
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
