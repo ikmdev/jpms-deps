@@ -322,6 +322,7 @@
                                     <exports>
                                         org.apache.lucene.analysis;
                                         org.apache.lucene.analysis.standard;
+                                        org.apache.lucene.analysis.tokenattributes;
                                         org.apache.lucene.document;
                                         org.apache.lucene.index;
                                         org.apache.lucene.search;
