@@ -5,7 +5,7 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>0.3.0</version>
+        <version>0.4.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -13,7 +13,7 @@
     <artifactId>record-builder-core</artifactId>
     <packaging>jar</packaging>
     <name>Record builder</name>
-    <version>${record-builder-core.version}-r2</version>
+    <version>${record-builder-core.version}-r3</version>
     <properties>
         <record-builder-core.version>34</record-builder-core.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>

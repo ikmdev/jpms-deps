@@ -6,13 +6,13 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>0.3.0</version>
+        <version>0.4.0</version>
         <relativePath></relativePath>
     </parent>
 
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>protobuf-java</artifactId>
-    <version>${protobuf.java.version}-r2</version>
+    <version>${protobuf.java.version}-r3</version>
     <packaging>jar</packaging>
     <properties>
         <protobuf.java.version>3.22.0</protobuf.java.version>

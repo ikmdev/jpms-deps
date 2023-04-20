@@ -6,14 +6,14 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>0.3.0</version>
+        <version>0.4.0</version>
         <relativePath></relativePath>
     </parent>
 
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>smallrye-common-annotation</artifactId>
     <name>SmallRye Common Annotations</name>
-    <version>${smallrye-common-annotation.version}-r1</version>
+    <version>${smallrye-common-annotation.version}-r2</version>
     <properties>
         <smallrye-common-annotation.version>1.8.0</smallrye-common-annotation.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>

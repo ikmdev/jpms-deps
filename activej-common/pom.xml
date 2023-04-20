@@ -5,7 +5,7 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>0.3.0</version>
+        <version>0.4.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -13,7 +13,7 @@
     <artifactId>activej-common</artifactId>
     <packaging>jar</packaging>
     <name>Activej Common</name>
-    <version>${activej.version}-r2</version>
+    <version>${activej.version}-r3</version>
 
     <properties>
         <activej.version>4.3</activej.version>

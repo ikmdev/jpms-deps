@@ -5,7 +5,7 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>0.3.0</version>
+        <version>0.4.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -13,7 +13,7 @@
     <artifactId>eclipse-collections-api</artifactId>
     <packaging>jar</packaging>
     <name>Eclipse collections API</name>
-    <version>${eclipse-collections-api.version}-r3</version>
+    <version>${eclipse-collections-api.version}-r4</version>
     <properties>
         <eclipse-collections-api.version>11.1.0</eclipse-collections-api.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
@@ -112,6 +112,8 @@
                                             uses org.eclipse.collections.api.factory.map.primitive.MutableIntIntMapFactory;
                                             uses org.eclipse.collections.api.factory.map.primitive.ImmutableIntObjectMapFactory;
                                             uses org.eclipse.collections.api.factory.map.primitive.MutableIntObjectMapFactory;
+                                            uses org.eclipse.collections.api.factory.list.primitive.ImmutableIntListFactory;
+                                            uses org.eclipse.collections.api.factory.list.primitive.MutableIntListFactory;
 
                                             exports org.eclipse.collections.api;
                                             exports org.eclipse.collections.api.annotation;
