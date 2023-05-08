@@ -96,7 +96,7 @@ pipeline {
 
                         // Push the branch to downstream remote
                         sh "git pull downstream ${BRANCH}"
-                        //sh "git push downstream ${BRANCH}"
+                        sh "git push downstream ${BRANCH}"
                     }
                 }
             }
