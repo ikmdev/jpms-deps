@@ -13,7 +13,7 @@
     <artifactId>eclipse-collections</artifactId>
     <packaging>jar</packaging>
     <name>Eclipse collections</name>
-    <version>${eclipse-collections.version}-r3</version>
+    <version>${eclipse-collections.version}-r5</version>
 
     <properties>
         <eclipse-collections.version>11.1.0</eclipse-collections.version>
@@ -211,6 +211,11 @@
                                             with org.eclipse.collections.impl.stack.immutable.ImmutableStackFactoryImpl;
                                             provides org.eclipse.collections.api.factory.stack.MutableStackFactory
                                             with org.eclipse.collections.impl.stack.mutable.MutableStackFactoryImpl;
+                                            provides org.eclipse.collections.api.factory.set.primitive.ImmutableIntSetFactory
+                                            with org.eclipse.collections.impl.set.immutable.primitive.ImmutableIntSetFactoryImpl;
+                                            provides org.eclipse.collections.api.factory.set.primitive.MutableIntSetFactory
+                                            with org.eclipse.collections.impl.set.mutable.primitive.MutableIntSetFactoryImpl;
+
                                         }
                                     </moduleInfoSource>
                                 </module>
