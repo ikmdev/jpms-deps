@@ -13,7 +13,7 @@
 	<groupId>dev.ikm.jpms</groupId>
 	<artifactId>jsr305</artifactId>
 	<packaging>jar</packaging>
-	<version>3.0.2-r1-SNAPSHOT</version>
+	<version>3.0.2-r1</version>
 
 	<properties>
 		<core.artifact.version>3.0.2</core.artifact.version>

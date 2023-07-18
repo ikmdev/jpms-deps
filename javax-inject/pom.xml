@@ -14,7 +14,7 @@
 	<groupId>dev.ikm.jpms</groupId>
 	<artifactId>javax.inject</artifactId>
 	<packaging>jar</packaging>
-	<version>1-r1-SNAPSHOT</version>
+	<version>1-r1</version>
 
 	<properties>
 		<core.artifact.version>1</core.artifact.version>
