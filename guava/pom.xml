@@ -14,7 +14,7 @@
 	<groupId>dev.ikm.jpms</groupId>
 	<artifactId>guava</artifactId>
 	<packaging>jar</packaging>
-	<version>31.1-jre-r1-SNAPSHOT</version>
+	<version>31.1-jre-r1</version>
 
 	<properties>
 		<core.artifact.version>31.1-jre</core.artifact.version>
