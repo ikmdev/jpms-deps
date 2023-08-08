@@ -13,7 +13,7 @@
     <artifactId>eclipse-collections-api</artifactId>
     <packaging>jar</packaging>
     <name>Eclipse collections API</name>
-    <version>${eclipse-collections-api.version}-r5</version>
+    <version>${eclipse-collections-api.version}-r6-SNAPSHOT</version>
     <properties>
         <eclipse-collections-api.version>11.1.0</eclipse-collections-api.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
@@ -41,6 +41,75 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>sources</classifier>
+                            <classesDirectory>${project.build.directory}/generated-sources/java/</classesDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.eclipse.collections</groupId>
+                                    <artifactId>eclipse-collections-api</artifactId>
+                                    <version>${eclipse-collections-api.version}</version>
+                                    <classifier>sources</classifier>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/generated-sources/java</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.4.0</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/java/</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <skip>true</skip>
+                    <failOnError>false</failOnError>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
@@ -91,8 +160,10 @@
                                             uses org.eclipse.collections.api.factory.list.MutableListFactory;
                                             uses org.eclipse.collections.api.factory.list.primitive.ImmutableCharListFactory;
                                             uses org.eclipse.collections.api.factory.list.primitive.ImmutableIntListFactory;
+                                            uses org.eclipse.collections.api.factory.list.primitive.ImmutableLongListFactory;
                                             uses org.eclipse.collections.api.factory.list.primitive.MutableCharListFactory;
                                             uses org.eclipse.collections.api.factory.list.primitive.MutableIntListFactory;
+                                            uses org.eclipse.collections.api.factory.list.primitive.MutableLongListFactory;
                                             uses org.eclipse.collections.api.factory.map.FixedSizeMapFactory;
                                             uses org.eclipse.collections.api.factory.map.ImmutableMapFactory;
                                             uses org.eclipse.collections.api.factory.map.MutableMapFactory;
@@ -113,7 +184,9 @@
                                             uses org.eclipse.collections.api.factory.set.MultiReaderSetFactory;
                                             uses org.eclipse.collections.api.factory.set.MutableSetFactory;
                                             uses org.eclipse.collections.api.factory.set.primitive.ImmutableIntSetFactory;
+                                            uses org.eclipse.collections.api.factory.set.primitive.ImmutableLongSetFactory;
                                             uses org.eclipse.collections.api.factory.set.primitive.MutableIntSetFactory;
+                                            uses org.eclipse.collections.api.factory.set.primitive.MutableLongSetFactory;
                                             uses org.eclipse.collections.api.factory.set.sorted.ImmutableSortedSetFactory;
                                             uses org.eclipse.collections.api.factory.set.sorted.MutableSortedSetFactory;
 
