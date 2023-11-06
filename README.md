@@ -6,7 +6,7 @@ jpms-deps is an internal JPMS-compliant library which makes non-JPMS compliant m
 
 Follow the instructions below to set up the local environment for `jpms-deps`:
 
-1. Download and install Open JDK Java 19
+1. Download and install Open JDK Java 21
 
 2. Download and install Apache Maven 3.9 or greater
 
