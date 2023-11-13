@@ -25,6 +25,14 @@
     <url>https://github.com/HL7/tinkar-proto</url>
 
     <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/</directory>
+                <includes>
+                    <include>LICENSE.txt</include>
+                </includes>
+            </resource>
+        </resources>
         <pluginManagement>
             <plugins>
                 <plugin>
