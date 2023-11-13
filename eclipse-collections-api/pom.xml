@@ -24,6 +24,16 @@
     <!-- Has no dependencies in this artifact -->
 
     <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/</directory>
+                <includes>
+                    <include>LICENSE-EDL.txt</include>
+                    <include>LICENSE-EPL.txt</include>
+                </includes>
+            </resource>
+        </resources>
+
         <pluginManagement>
             <plugins>
                 <plugin>

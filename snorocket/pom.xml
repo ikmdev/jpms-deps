@@ -23,6 +23,14 @@
     </properties>
 
     <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/</directory>
+                <includes>
+                    <include>LICENSE.txt</include>
+                </includes>
+            </resource>
+        </resources>
         <pluginManagement>
             <plugins>
                 <plugin>
