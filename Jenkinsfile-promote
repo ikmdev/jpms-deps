@@ -1,0 +1,21 @@
+pipeline {
+
+    agent {
+        label 'linux'
+    }
+
+     tools {
+        jdk "java-21"
+        maven "default"
+        git "git"
+     }
+
+
+    stages {
+        stage('Promote') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
