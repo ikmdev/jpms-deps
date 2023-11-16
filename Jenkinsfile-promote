@@ -1,3 +1,5 @@
+@Library("titan-library") _
+
 pipeline {
 
     agent {
@@ -10,12 +12,46 @@ pipeline {
         git "git"
      }
 
+       environment {
+             TRUNK_BRANCH_NAME   = 'main'
+             REPO_NAME           = "${GIT_URL.split('/')[4].split('\\.')[0]}"
+             BRANCH_NAME         = "${GIT_BRANCH.startsWith('origin/') ? GIT_BRANCH['origin/'.length()..-1] : GIT_BRANCH}"
+
+             GITLAB_OWNER        = "${GIT_URL.split('/')[3]}"
+             GITLAB_REPO         = "https://gitlab.tinkarbuild.com/${GITLAB_OWNER}/${REPO_NAME}.git"
+             GITLAB_RELEASE_API  = "https://gitlab.tinkarbuild.com/api/v4/projects/${GITLAB_OWNER}%2F${REPO_NAME}/releases"
+             GITLAB_CREDS_ID     = 'gitlab-jenkins-username-pat'
+
+             GITHUB_OWNER        = "ikmdev"
+             GITHUB_REPO         = "https://github.com/${GITHUB_OWNER}/${REPO_NAME}.git"
+             GITHUB_RELEASE_API  = "https://api.github.com/repos/${GITHUB_OWNER}/${REPO_NAME}/releases"
+             GITHUB_UPLOAD_API   = "https://uploads.github.com/repos/${GITHUB_OWNER}/${REPO_NAME}/releases"
+             GITHUB_CREDS_ID     = 'github-promote-pat'
+         }
+
+
 
     stages {
-        stage('Promote') {
-            steps {
-                echo 'Hello World'
-            }
-        }
+        stage('Push Commit to GitHub') {
+                        steps {
+                            script {
+                                withCredentials([gitUsernamePassword(credentialsId: GITHUB_CREDS_ID, gitToolName: 'git')]) {
+                                    //Is this commit on GitHub?
+                                    echo "Adding GitHub remote..."
+                                    sh """
+                                        git remote rm upstream || true
+                                        git remote add upstream ${GITHUB_REPO} || true
+                                        git remote -v
+                                        git fetch upstream
+                                    """
+                                   echo "Pushing Code to GitHub"
+                                   sh "git push upstream HEAD:${TRUNK_BRANCH_NAME}"
+
+                                }
+                            }
+                        }
+                    }
+
     }
+
 }
