@@ -44,6 +44,11 @@ pipeline {
                                         git remote -v
                                         git fetch upstream
                                     """
+                                   echo "Pulling From GitHub remote"
+                                   sh """
+                                        git checkout upstream ${TRUNK_BRANCH_NAME"}
+                                        git pull --dry-run
+                                      """
                                    echo "Pushing Code to GitHub"
                                    sh "git push upstream HEAD:${TRUNK_BRANCH_NAME}"
 
