@@ -46,7 +46,8 @@ pipeline {
                                     """
                                    echo "Pulling From GitHub remote"
                                    sh """
-                                        git pull upstream HEAD:${TRUNK_BRANCH_NAME} --dry-run
+                                        git pull upstream ${TRUNK_BRANCH_NAME}:${TRUNK_BRANCH_NAME}
+                                       //git merge origin/${TRUNK_BRANCH_NAME}
                                       """
                                    echo "Pushing Code to GitHub"
                                    sh "git push upstream HEAD:${TRUNK_BRANCH_NAME}"
