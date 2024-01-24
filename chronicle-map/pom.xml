@@ -20,6 +20,7 @@
     <artifactId>chronicle-map</artifactId>
     <packaging>jar</packaging>
     <name>Chronicle map</name>
+    <version>1.0.15</version>
 
     <properties>
         <chronicle-map.version>3.20.84</chronicle-map.version>
