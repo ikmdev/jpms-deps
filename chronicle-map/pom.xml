@@ -17,6 +17,7 @@
         <relativePath></relativePath>
     </parent>
 
+    <groupId>dev.ikm.jpms</groupId>
     <artifactId>chronicle-map</artifactId>
     <packaging>jar</packaging>
     <name>Chronicle map</name>
