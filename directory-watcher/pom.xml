@@ -13,7 +13,7 @@
     <artifactId>directory-watcher</artifactId>
     <packaging>jar</packaging>
     <name>directory watcher</name>
-    <version>${directory-watcher.version}-r1</version>
+    <version>${directory-watcher.version}-r2</version>
 
     <properties>
         <directory-watcher.version>0.18.0</directory-watcher.version>
@@ -83,9 +83,15 @@
                                         <version>${directory-watcher.version}</version>
                                      </artifact>
                                     <moduleInfoSource>
-                                        open module io.methvin.directory.watcher {
+                                        module io.methvin.directory.watcher {
                                             exports io.methvin.watcher;
                                             exports io.methvin.watchservice;
+
+                                            exports io.methvin.watchservice.jna to com.sun.jna;
+
+                                            requires com.sun.jna;
+                                            requires org.slf4j;
+                                            requires jdk.unsupported;
                                         }
                                     </moduleInfoSource>
                                 </module>
