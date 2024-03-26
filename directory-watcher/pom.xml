@@ -13,7 +13,7 @@
     <artifactId>directory-watcher</artifactId>
     <packaging>jar</packaging>
     <name>directory watcher</name>
-    <version>${directory-watcher.version}-r2</version>
+    <version>${directory-watcher.version}-r3</version>
 
     <properties>
         <directory-watcher.version>0.18.0</directory-watcher.version>
@@ -83,7 +83,7 @@
                                         <version>${directory-watcher.version}</version>
                                      </artifact>
                                     <moduleInfoSource>
-                                        module io.methvin.directory.watcher {
+                                        module dev.ikm.jpms.directory.watcher {
                                             exports io.methvin.watcher;
                                             exports io.methvin.watchservice;
 
