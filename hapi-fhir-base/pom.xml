@@ -12,12 +12,12 @@
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
-	<artifactId>org.hl7.fhir.r4</artifactId>
+	<artifactId>hapi-fhir-base</artifactId>
 	<packaging>jar</packaging>
-	<version>6.3.3</version>
+	<version>7.0.2</version>
 
 	<properties>
-		<hapi-fhir.version>6.3.3</hapi-fhir.version>
+		<hapi-fhir-base.version>7.0.2</hapi-fhir-base.version>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -80,14 +80,51 @@
 								<module>
 									<artifact>
 										<groupId>ca.uhn.hapi.fhir</groupId>
-										<artifactId>org.hl7.fhir.r4</artifactId>
-										<version>${hapi-fhir.version}</version>
+										<artifactId>hapi-fhir-base</artifactId>
+										<version>${hapi-fhir-base.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										module org.hl7.fhir.r4 {
-										requires transitive hapi.fhir.base;
-										exports org.hl7.fhir.r4.model;
+										module hapi.fhir.base {
 
+											requires org.slf4j;
+<!--											requires com.ctc.wstx;-->
+											requires com.fasterxml.jackson.annotation;
+											requires com.fasterxml.jackson.core;
+											requires com.fasterxml.jackson.databind;
+											requires com.fasterxml.jackson.datatype.jsr310;
+<!--											requires com.google.common;-->
+<!--											requires com.helger.commons;-->
+<!--											requires com.helger.schematron.xslt;-->
+<!--											requires com.helger.schematron;-->
+<!--											requires jakarta.annotation;-->
+											requires org.apache.commons.codec;
+											requires org.apache.commons.io;
+											requires org.apache.commons.lang3;
+											requires org.apache.commons.text;
+											requires org.apache.httpcomponents.httpclient;
+											requires org.apache.httpcomponents.httpcore;
+											requires org.apache.jena.arq;
+											requires org.apache.jena.core;
+										
+											exports ca.uhn.fhir.context;
+											exports ca.uhn.fhir.model.api;
+											exports ca.uhn.fhir.parser;
+											exports ca.uhn.fhir.rest.gclient;
+											exports ca.uhn.fhir.util;
+											exports org.hl7.fhir.instance.model.api;
+
+											uses ca.uhn.fhir.model.api.IElement;
+											uses org.hl7.fhir.instance.model.api.IAnyResource;
+											uses org.hl7.fhir.instance.model.api.IBase;
+											uses org.hl7.fhir.instance.model.api.IBaseBackboneElement;
+											uses org.hl7.fhir.instance.model.api.IBaseDatatype;
+											uses org.hl7.fhir.instance.model.api.IBaseElement;
+											uses org.hl7.fhir.instance.model.api.IBaseExtension;
+											uses org.hl7.fhir.instance.model.api.IBaseHasExtensions;
+											uses org.hl7.fhir.instance.model.api.IBaseHasModifierExtensions;
+											uses org.hl7.fhir.instance.model.api.IBaseMetaType;
+											uses org.hl7.fhir.instance.model.api.ICompositeType;
+											uses org.hl7.fhir.instance.model.api.IDomainResource;
 
 										}
 									</moduleInfoSource>
@@ -107,7 +144,7 @@
 							<target>
 								<echo message="unzipping files" />
 								<unzip
-									src="${project.build.directory}/moditect/${project.artifactId}-${hapi-fhir.version}.jar"
+									src="${project.build.directory}/moditect/${project.artifactId}-${hapi-fhir-base.version}.jar"
 									dest="${project.build.directory}/classes/">
 									<patternset>
 										<exclude name="**/MANIFEST.MF" />

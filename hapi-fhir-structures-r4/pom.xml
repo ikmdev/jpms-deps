@@ -12,12 +12,12 @@
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
-	<artifactId>org.hl7.fhir.r4</artifactId>
+	<artifactId>hapi-fhir-structures-r4</artifactId>
 	<packaging>jar</packaging>
-	<version>6.3.3</version>
+	<version>7.0.2</version>
 
 	<properties>
-		<hapi-fhir.version>6.3.3</hapi-fhir.version>
+		<hapi-fhir-base.version>7.0.2</hapi-fhir-base.version>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -80,14 +80,13 @@
 								<module>
 									<artifact>
 										<groupId>ca.uhn.hapi.fhir</groupId>
-										<artifactId>org.hl7.fhir.r4</artifactId>
-										<version>${hapi-fhir.version}</version>
+										<artifactId>hapi-fhir-structures-r4</artifactId>
+										<version>${hapi-fhir-base.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										module org.hl7.fhir.r4 {
-										requires transitive hapi.fhir.base;
-										exports org.hl7.fhir.r4.model;
+										module hapi.fhir.structures.r4 {
 
+											exports org.hl7.fhir.r4.hapi.ctx;
 
 										}
 									</moduleInfoSource>
@@ -107,7 +106,7 @@
 							<target>
 								<echo message="unzipping files" />
 								<unzip
-									src="${project.build.directory}/moditect/${project.artifactId}-${hapi-fhir.version}.jar"
+									src="${project.build.directory}/moditect/${project.artifactId}-${hapi-fhir-base.version}.jar"
 									dest="${project.build.directory}/classes/">
 									<patternset>
 										<exclude name="**/MANIFEST.MF" />
