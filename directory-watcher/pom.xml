@@ -13,7 +13,7 @@
     <artifactId>directory-watcher</artifactId>
     <packaging>jar</packaging>
     <name>directory watcher</name>
-    <version>${directory-watcher.version}-r3</version>
+    <version>${directory-watcher.version}-r4</version>
 
     <properties>
         <directory-watcher.version>0.18.0</directory-watcher.version>
