@@ -84,27 +84,19 @@
 										<version>${hapi-fhir-base.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										module hapi.fhir.base {
+										module dev.ikm.jpms.hapi.fhir.base {
 
 											requires org.slf4j;
-<!--											requires com.ctc.wstx;-->
 											requires com.fasterxml.jackson.annotation;
 											requires com.fasterxml.jackson.core;
 											requires com.fasterxml.jackson.databind;
 											requires com.fasterxml.jackson.datatype.jsr310;
-<!--											requires com.google.common;-->
-<!--											requires com.helger.commons;-->
-<!--											requires com.helger.schematron.xslt;-->
-<!--											requires com.helger.schematron;-->
-<!--											requires jakarta.annotation;-->
 											requires org.apache.commons.codec;
 											requires org.apache.commons.io;
 											requires org.apache.commons.lang3;
 											requires org.apache.commons.text;
 											requires org.apache.httpcomponents.httpclient;
 											requires org.apache.httpcomponents.httpcore;
-											requires org.apache.jena.arq;
-											requires org.apache.jena.core;
 										
 											exports ca.uhn.fhir.context;
 											exports ca.uhn.fhir.model.api;
@@ -125,7 +117,6 @@
 											uses org.hl7.fhir.instance.model.api.IBaseMetaType;
 											uses org.hl7.fhir.instance.model.api.ICompositeType;
 											uses org.hl7.fhir.instance.model.api.IDomainResource;
-
 										}
 									</moduleInfoSource>
 								</module>

@@ -12,7 +12,7 @@
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
-	<artifactId>org.hl7.fhir.r4</artifactId>
+	<artifactId>org.hl7.fhir.utilities</artifactId>
 	<packaging>jar</packaging>
 	<version>6.3.3</version>
 
@@ -56,6 +56,7 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>com.github.jlgrock</groupId>
 				<artifactId>pom-check-maven-plugin</artifactId>
@@ -63,6 +64,7 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.moditect</groupId>
 				<artifactId>moditect-maven-plugin</artifactId>
@@ -80,19 +82,17 @@
 								<module>
 									<artifact>
 										<groupId>ca.uhn.hapi.fhir</groupId>
-										<artifactId>org.hl7.fhir.r4</artifactId>
+										<artifactId>org.hl7.fhir.utilities</artifactId>
 										<version>${hapi-fhir.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										module dev.ikm.jpms.org.hl7.fhir.r4 {
+										module dev.ikm.jpms.org.hl7.fhir.utilities {
 
-											requires transitive hapi.fhir.base;
-											requires org.apache.commons.lang3;
-											requires org.hl7.fhir.utilities;
+											requires hapi.fhir.base;
 
-											opens org.hl7.fhir.r4.model;
-
-											exports org.hl7.fhir.r4.model;
+											exports org.hl7.fhir.utilities.xhtml;
+											exports org.hl7.fhir.exceptions;
+											exports org.hl7.fhir.utilities;
 										}
 									</moduleInfoSource>
 								</module>

@@ -87,7 +87,6 @@
 										module hapi.fhir.structures.r4 {
 
 											exports org.hl7.fhir.r4.hapi.ctx;
-
 										}
 									</moduleInfoSource>
 								</module>
