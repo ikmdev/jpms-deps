@@ -6,23 +6,19 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>1.42.0</version>
+        <version>1.23.0</version>
         <relativePath></relativePath>
     </parent>
 
     <groupId>dev.ikm.jpms</groupId>
-    <artifactId>directory-watcher</artifactId>
-    <packaging>jar</packaging>
-    <name>directory watcher</name>
-    <version>${directory-watcher.version}-r5</version>
+    <artifactId>jgit</artifactId>
+    <version>${jgit.version}-r1-SNAPSHOT</version>
 
     <properties>
-        <directory.watcher.version>0.18.0</directory.watcher.version>
+        <jgit.version>6.7.0.202309050840-r</jgit.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
         <maven.moditect.plugin>1.0.0.Final</maven.moditect.plugin>
+        <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -42,6 +38,7 @@
                     <artifactId>moditect-maven-plugin</artifactId>
                     <version>${maven.moditect.plugin}</version>
                 </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
@@ -64,9 +61,9 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>io.methvin</groupId>
-                                    <artifactId>directory-watcher</artifactId>
-                                    <version>${directory.watcher.version}</version>
+                                    <groupId>org.eclipse.jgit</groupId>
+                                    <artifactId>org.eclipse.jgit</artifactId>
+                                    <version>${jgit.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -82,9 +79,9 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>io.methvin</groupId>
-                                    <artifactId>directory-watcher</artifactId>
-                                    <version>${directory.watcher.version}</version>
+                                    <groupId>org.eclipse.jgit</groupId>
+                                    <artifactId>org.eclipse.jgit</artifactId>
+                                    <version>${jgit.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -137,21 +134,68 @@
                             <modules>
                                 <module>
                                     <artifact>
-                                        <groupId>io.methvin</groupId>
-                                        <artifactId>directory-watcher</artifactId>
-                                        <version>${directory.watcher.version}</version>
+                                        <groupId>org.eclipse.jgit</groupId>
+                                        <artifactId>org.eclipse.jgit</artifactId>
+                                        <version>${jgit.version}</version>
                                     </artifact>
-                                    <!--  List of exports from https://javadoc.io/doc/org.eclipse.jgit/org.eclipse.jgit/latest/org.eclipse.jgit/module-summary.html-->
+<!--  List of exports from https://javadoc.io/doc/org.eclipse.jgit/org.eclipse.jgit/latest/org.eclipse.jgit/module-summary.html-->
                                     <moduleInfoSource>
-                                        module dev.ikm.directory.watcher {
-                                            exports io.methvin.watcher;
-                                            exports io.methvin.watchservice;
-
-                                            exports io.methvin.watchservice.jna to com.sun.jna;
-
-                                            requires com.sun.jna;
-                                            requires org.slf4j;
-                                            requires jdk.unsupported;
+                                        module org.eclipse.jgit {
+                                            exports org.eclipse.jgit.annotations;
+                                            exports org.eclipse.jgit.api;
+                                            exports org.eclipse.jgit.api.errors;
+                                            exports org.eclipse.jgit.attributes;
+                                            exports org.eclipse.jgit.blame;
+                                            exports org.eclipse.jgit.diff;
+                                            exports org.eclipse.jgit.dircache;
+                                            exports org.eclipse.jgit.errors;
+                                            exports org.eclipse.jgit.events;
+                                            exports org.eclipse.jgit.fnmatch;
+                                            exports org.eclipse.jgit.gitrepo;
+                                            exports org.eclipse.jgit.gitrepo.internal;
+                                            exports org.eclipse.jgit.hooks;
+                                            exports org.eclipse.jgit.ignore;
+                                            exports org.eclipse.jgit.ignore.internal;
+                                            exports org.eclipse.jgit.internal;
+                                            exports org.eclipse.jgit.internal.diff;
+                                            exports org.eclipse.jgit.internal.diffmergetool;
+                                            exports org.eclipse.jgit.internal.fsck;
+                                            exports org.eclipse.jgit.internal.revwalk;
+                                            exports org.eclipse.jgit.internal.storage.commitgraph;
+                                            exports org.eclipse.jgit.internal.storage.dfs;
+                                            exports org.eclipse.jgit.internal.storage.file;
+                                            exports org.eclipse.jgit.internal.storage.io;
+                                            exports org.eclipse.jgit.internal.storage.memory;
+                                            exports org.eclipse.jgit.internal.storage.pack;
+                                            exports org.eclipse.jgit.internal.storage.reftable;
+                                            exports org.eclipse.jgit.internal.submodule;
+                                            exports org.eclipse.jgit.internal.transport.connectivity;
+                                            exports org.eclipse.jgit.internal.transport.http;
+                                            exports org.eclipse.jgit.internal.transport.parser;
+                                            exports org.eclipse.jgit.internal.transport.ssh;
+                                            exports org.eclipse.jgit.internal.util;
+                                            exports org.eclipse.jgit.lib;
+                                            exports org.eclipse.jgit.lib.internal;
+                                            exports org.eclipse.jgit.logging;
+                                            exports org.eclipse.jgit.merge;
+                                            exports org.eclipse.jgit.nls;
+                                            exports org.eclipse.jgit.notes;
+                                            exports org.eclipse.jgit.patch;
+                                            exports org.eclipse.jgit.revplot;
+                                            exports org.eclipse.jgit.revwalk;
+                                            exports org.eclipse.jgit.revwalk.filter;
+                                            exports org.eclipse.jgit.storage.file;
+                                            exports org.eclipse.jgit.storage.pack;
+                                            exports org.eclipse.jgit.submodule;
+                                            exports org.eclipse.jgit.transport;
+                                            exports org.eclipse.jgit.transport.http;
+                                            exports org.eclipse.jgit.transport.resolver;
+                                            exports org.eclipse.jgit.treewalk;
+                                            exports org.eclipse.jgit.treewalk.filter;
+                                            exports org.eclipse.jgit.util;
+                                            exports org.eclipse.jgit.util.io;
+                                            exports org.eclipse.jgit.util.sha1;
+                                            exports org.eclipse.jgit.util.time;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -169,7 +213,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping file"/>
-                                <unzip src="${project.build.directory}/moditect/directory-watcher-${directory.watcher.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/org.eclipse.jgit-${jgit.version}.jar"
                                        dest="${project.build.directory}/classes/"/>
                             </target>
                         </configuration>
