@@ -85,8 +85,19 @@ pipeline {
         }
 
         stage("Publish to OSSRH maven central") {
+
+            when{
+                expression{
+                    buildingTag() && !isSnapshot
+                }
+            }
+
             steps {
                 script {
+                    pomModel = readMavenPom(file: 'pom.xml')
+                    pomVersion = pomModel.getVersion()
+                    isSnapshot = pomVersion.contains("-SNAPSHOT")
+
                     repositoryId = 'maven-releases'
 
                     dir("${FOLDER_NAME}") {
@@ -103,7 +114,7 @@ pipeline {
                                     -s '${MAVEN_SETTINGS}' \
                                     -DrepositoryId='${repositoryId}' \
                                     -DrepositoryIdOSSRH='true' \
-                                    -PemptySourceJavadocOSSRH,stageOSSRH -Dgpg.passphrase='${GPG_PASSPHRASE}'
+                                    -PstageOSSRH -Dgpg.passphrase='${GPG_PASSPHRASE}'
                             """
                         }
                     }
