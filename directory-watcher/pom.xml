@@ -14,10 +14,12 @@
     <artifactId>directory-watcher</artifactId>
     <packaging>jar</packaging>
     <name>directory watcher</name>
-    <version>${directory-watcher.version}-r5</version>
+    <version>${directory-watcher.version}-${directory-watcher.release}</version>
 
     <properties>
-        <directory.watcher.version>0.18.0</directory.watcher.version>
+        <directory-watcher.version>0.18.0</directory-watcher.version>
+        <!-- change release here-->
+        <directory-watcher.release>r4</directory-watcher.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
         <maven.compiler.source>21</maven.compiler.source>
@@ -42,85 +44,74 @@
                     <artifactId>moditect-maven-plugin</artifactId>
                     <version>${maven.moditect.plugin}</version>
                 </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>${maven.antrun.plugin}</version>
                 </plugin>
+
             </plugins>
         </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.6.0</version>
                 <executions>
                     <execution>
-                        <phase>generate-resources</phase>
                         <id>sources</id>
                         <goals>
-                            <goal>unpack</goal>
+                            <goal>copy</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>io.methvin</groupId>
                                     <artifactId>directory-watcher</artifactId>
-                                    <version>${directory.watcher.version}</version>
+                                    <version>${directory-watcher.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>${project.build.directory}/generated-sources/java</outputDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <id>javadoc</id>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
                                 <artifactItem>
                                     <groupId>io.methvin</groupId>
                                     <artifactId>directory-watcher</artifactId>
-                                    <version>${directory.watcher.version}</version>
+                                    <version>${directory-watcher.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.build.directory}/apidocs</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.5.0</version>
-                <configuration>
-                    <skip>true</skip>
-                    <failOnError>false</failOnError>
-                </configuration>
-            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.4.0</version>
                 <executions>
                     <execution>
-                        <id>add-source</id>
-                        <phase>prepare-package</phase>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>add-source</goal>
+                            <goal>attach-artifact</goal>
                         </goals>
                         <configuration>
-                            <sources>
-                                <source>${project.build.directory}/generated-sources/java/</source>
-                            </sources>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/dependency/directory-watcher-${directory-watcher.version}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${project.build.directory}/dependency/directory-watcher-${directory-watcher.version}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc</classifier>
+                                </artifact>
+                            </artifacts>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
@@ -139,11 +130,10 @@
                                     <artifact>
                                         <groupId>io.methvin</groupId>
                                         <artifactId>directory-watcher</artifactId>
-                                        <version>${directory.watcher.version}</version>
+                                        <version>${directory-watcher.version}</version>
                                     </artifact>
-                                    <!--  List of exports from https://javadoc.io/doc/org.eclipse.jgit/org.eclipse.jgit/latest/org.eclipse.jgit/module-summary.html-->
                                     <moduleInfoSource>
-                                        module dev.ikm.directory.watcher {
+                                        module dev.ikm.jpms.directory.watcher {
                                             exports io.methvin.watcher;
                                             exports io.methvin.watchservice;
 
@@ -165,35 +155,45 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
                     <execution>
+                        <id>rename-sources</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/directory-watcher-${directory-watcher.version}-sources.jar"
+                                      tofile="${project.build.directory}/directory-watcher-${directory-watcher.version}-${directory-watcher.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-javadoc</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/directory-watcher-${directory-watcher.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/directory-watcher-${directory-watcher.version}-${directory-watcher.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <phase>prepare-package</phase>
                         <configuration>
                             <target>
-                                <echo message="unzipping file"/>
-                                <unzip src="${project.build.directory}/moditect/directory-watcher-${directory.watcher.version}.jar"
-                                       dest="${project.build.directory}/classes/"/>
+                                <echo message="unzipping files" />
+                                <unzip src="${project.build.directory}/moditect/directory-watcher-${directory-watcher.version}.jar"
+                                       dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>
                         <goals>
                             <goal>run</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
-                <executions>
-                    <execution>
-                        <id>javadoc-package</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <configuration>
-                            <classifier>javadoc</classifier>
-                            <classesDirectory>${project.build.directory}/apidocs</classesDirectory>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
