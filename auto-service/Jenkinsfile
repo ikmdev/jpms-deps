@@ -36,6 +36,21 @@ pipeline {
     }
 
     stages {
+
+        stage('Setup') {
+            steps {
+                sh """
+                    echo "setup stage"
+                    printenv                    
+                """
+                script {
+                    pomModel = readMavenPom(file: 'pom.xml')
+                    pomVersion = pomModel.getVersion()
+                    isSnapshot = pomVersion.contains("-SNAPSHOT")
+                }
+            }
+        }
+
         stage('Maven Build') {
             steps {
                 updateGitlabCommitStatus name: 'build', state: 'running'
