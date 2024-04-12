@@ -153,7 +153,7 @@
                             <target>
                                 <echo message="renaming sources file" />
                                 <copy file="${project.build.directory}/dependency/auto-service-annotations-${auto-service.version}-sources.jar"
-                                      tofile="${project.build.directory}/auto-service-annotations-${auto-service.version}-${auto-service.release}-sources.jar" />
+                                      tofile="${project.build.directory}/auto-service-${auto-service.version}-${auto-service.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -167,7 +167,7 @@
                             <target>
                                 <echo message="renaming javadoc file" />
                                 <copy file="${project.build.directory}/dependency/auto-service-annotations-${auto-service.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/auto-service-annotations-${auto-service.version}-${auto-service.release}-javadoc.jar" />
+                                      tofile="${project.build.directory}/auto-service-${auto-service.version}-${auto-service.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
