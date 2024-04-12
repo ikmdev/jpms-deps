@@ -111,9 +111,9 @@ pipeline {
 
             steps {
                 script {
-                    pomModel = readMavenPom(file: 'pom.xml')
-                    pomVersion = pomModel.getVersion()
-                    isSnapshot = pomVersion.contains("-SNAPSHOT")
+//                    pomModel = readMavenPom(file: 'pom.xml')
+//                    pomVersion = pomModel.getVersion()
+//                    isSnapshot = pomVersion.contains("-SNAPSHOT")
 
                     repositoryId = 'maven-releases'
 
