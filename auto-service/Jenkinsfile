@@ -39,10 +39,6 @@ pipeline {
 
         stage('Setup') {
             steps {
-                sh """
-                    echo "setup stage"
-                    printenv                    
-                """
                 dir("${FOLDER_NAME}") {
                     script {
                         pomModel = readMavenPom(file: 'pom.xml')
@@ -111,10 +107,6 @@ pipeline {
 
             steps {
                 script {
-//                    pomModel = readMavenPom(file: 'pom.xml')
-//                    pomVersion = pomModel.getVersion()
-//                    isSnapshot = pomVersion.contains("-SNAPSHOT")
-
                     repositoryId = 'maven-releases'
 
                     dir("${FOLDER_NAME}") {
