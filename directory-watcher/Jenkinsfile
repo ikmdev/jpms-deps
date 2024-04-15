@@ -36,6 +36,19 @@ pipeline {
     }
 
     stages {
+
+        stage('Setup') {
+            steps {
+                dir("${FOLDER_NAME}") {
+                    script {
+                        pomModel = readMavenPom(file: 'pom.xml')
+                        pomVersion = pomModel.getVersion()
+                        isSnapshot = pomVersion.contains("-SNAPSHOT")
+                    }
+                }
+            }
+        }
+
         stage('Maven Build') {
             steps {
                 updateGitlabCommitStatus name: 'build', state: 'running'
@@ -96,9 +109,6 @@ pipeline {
 
             steps {
                 script {
-                    pomModel = readMavenPom(file: 'pom.xml')
-                    pomVersion = pomModel.getVersion()
-                    isSnapshot = pomVersion.contains("-SNAPSHOT")
 
                     repositoryId = 'maven-releases'
 
