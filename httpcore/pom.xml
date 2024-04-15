@@ -7,16 +7,18 @@
 	<parent>
 		<groupId>dev.ikm.build</groupId>
 		<artifactId>java-parent</artifactId>
-		<version>1.40.0</version>
+		<version>1.43.0</version>
 		<relativePath></relativePath>
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
 	<artifactId>httpcore</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<name>Core.artifact</name>
+	<version>${core.artifact.version}-${core.artifact.release}</version>
 
 	<properties>
+		<core.artifact.release>r2</core.artifact.release>
 		<core.artifact.version>4.4.16</core.artifact.version>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
@@ -64,6 +66,63 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sources</id>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<phase>prepare-package</phase>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.apache.httpcomponents</groupId>
+									<artifactId>httpcore</artifactId>
+									<version>${core.artifact.version}</version>
+									<classifier>sources</classifier>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.apache.httpcomponents</groupId>
+									<artifactId>httpcore</artifactId>
+									<version>${core.artifact.version}</version>
+									<classifier>javadoc</classifier>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-artifacts</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attach-artifact</goal>
+						</goals>
+						<configuration>
+							<artifacts>
+								<artifact>
+									<file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar</file>
+									<type>jar</type>
+									<classifier>sources</classifier>
+								</artifact>
+								<artifact>
+									<file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar</file>
+									<type>jar</type>
+									<classifier>javadoc</classifier>
+								</artifact>
+							</artifacts>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.moditect</groupId>
 				<artifactId>moditect-maven-plugin</artifactId>
 				<executions>
@@ -109,6 +168,34 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
+					<execution>
+						<id>rename-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echo message="renaming sources file" />
+								<copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar"
+									  tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-sources.jar" />
+							</target>
+						</configuration>
+					</execution>
+					<execution>
+						<id>rename-javadoc</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echo message="renaming javadoc file" />
+								<copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar"
+									  tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
+							</target>
+						</configuration>
+					</execution>
 					<execution>
 						<phase>prepare-package</phase>
 						<configuration>
