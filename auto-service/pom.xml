@@ -97,12 +97,12 @@
                                 <artifact>
                                     <file>${project.build.directory}/dependency/auto-service-annotations-${auto-service.version}-sources.jar</file>
                                     <type>jar</type>
-                                    <classifier>sources</classifier>
+<!--                                    <classifier>sources</classifier>-->
                                 </artifact>
                                 <artifact>
                                     <file>${project.build.directory}/dependency/auto-service-annotations-${auto-service.version}-javadoc.jar</file>
                                     <type>jar</type>
-                                    <classifier>javadoc</classifier>
+<!--                                    <classifier>javadoc</classifier>-->
                                 </artifact>
                             </artifacts>
                         </configuration>
