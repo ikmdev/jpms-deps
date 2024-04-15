@@ -55,7 +55,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>sources</id>
+                        <id>sources-123</id>
                         <goals>
                             <goal>copy</goal>
                         </goals>
@@ -86,7 +86,7 @@
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>attach-artifacts</id>
+                        <id>attach-artifacts-123</id>
                         <phase>prepare-package</phase>
 <!--                        <phase>package</phase>-->
                         <goals>
@@ -146,8 +146,8 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>rename-sources</id>
-                        <phase>prepare-package</phase>
+                        <id>rename-sources-123</id>
+                        <phase>package</phase>
 <!--                        <phase>process-sources</phase>-->
                         <goals>
                             <goal>run</goal>
@@ -161,8 +161,8 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>rename-javadoc</id>
-                        <phase>prepare-package</phase>
+                        <id>rename-javadoc-123</id>
+                        <phase>package</phase>
 <!--                        <phase>process-sources</phase>-->
                         <goals>
                             <goal>run</goal>
