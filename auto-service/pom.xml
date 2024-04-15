@@ -59,7 +59,7 @@
                         <goals>
                             <goal>copy</goal>
                         </goals>
-                        <phase>deploy</phase>
+                        <phase>prepare-package</phase>
 <!--                        <phase>generate-sources</phase>-->
                         <configuration>
                             <artifactItems>
@@ -87,7 +87,7 @@
                 <executions>
                     <execution>
                         <id>attach-artifacts</id>
-                        <phase>deploy</phase>
+                        <phase>prepare-package</phase>
 <!--                        <phase>package</phase>-->
                         <goals>
                             <goal>attach-artifact</goal>
@@ -147,7 +147,7 @@
                 <executions>
                     <execution>
                         <id>rename-sources</id>
-                        <phase>deploy</phase>
+                        <phase>prepare-package</phase>
 <!--                        <phase>process-sources</phase>-->
                         <goals>
                             <goal>run</goal>
@@ -162,7 +162,7 @@
                     </execution>
                     <execution>
                         <id>rename-javadoc</id>
-                        <phase>deploy</phase>
+                        <phase>prepare-package</phase>
 <!--                        <phase>process-sources</phase>-->
                         <goals>
                             <goal>run</goal>
