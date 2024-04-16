@@ -20,7 +20,7 @@ pipeline {
 
         BRANCH_NAME         = "${GIT_BRANCH.split("/").size() > 1 ? GIT_BRANCH.split("/")[1] : GIT_BRANCH}"
 
-        FOLDER_NAME         = "javax-inject"
+        FOLDER_NAME         = "jgit"
     }
 
     options {
