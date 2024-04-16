@@ -36,6 +36,19 @@ pipeline {
     }
 
     stages {
+
+        stage('Setup') {
+            steps {
+                dir("${FOLDER_NAME}") {
+                    script {
+                        pomModel = readMavenPom(file: 'pom.xml')
+                        pomVersion = pomModel.getVersion()
+                        isSnapshot = pomVersion.contains("-SNAPSHOT")
+                    }
+                }
+            }
+        }
+
         stage('Maven Build') {
             steps {
                 updateGitlabCommitStatus name: 'build', state: 'running'
@@ -76,6 +89,8 @@ pipeline {
                                     -Dmaven.test.skip \
                                     -s '${MAVEN_SETTINGS}' \
                                     -DrepositoryId='${repositoryId}' \
+                                    -Dmaven.source.skip=true  \
+                                    -Dmaven.javadoc.skip=true \
                                     -Dgpg.passphrase='${GPG_PASSPHRASE}'
                             """
                         }
@@ -85,6 +100,13 @@ pipeline {
         }
 
         stage("Publish to OSSRH maven central") {
+
+            when{
+                expression{
+                    buildingTag() && !isSnapshot
+                }
+            }
+
             steps {
                 script {
                     repositoryId = 'maven-releases'
@@ -105,7 +127,7 @@ pipeline {
                                     -DrepositoryIdOSSRH='true' \
                                     -Dmaven.source.skip=true  \
                                     -Dmaven.javadoc.skip=true \
-                                    -PemptySourceJavadocOSSRH,stageOSSRH -Dgpg.passphrase='${GPG_PASSPHRASE}'
+                                    -PstageOSSRH -Dgpg.passphrase='${GPG_PASSPHRASE}'
                             """
                         }
                     }
