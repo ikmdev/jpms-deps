@@ -49,22 +49,8 @@
 
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.github.jlgrock</groupId>
-                <artifactId>pom-check-maven-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-            
+        
+        <plugins>            
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -74,7 +60,7 @@
 						<goals>
 							<goal>copy</goal>
 						</goals>
-						<phase>generate-sources</phase>
+						<phase>prepare-package</phase>
 						<configuration>
 							<artifactItems>
 								<artifactItem>
