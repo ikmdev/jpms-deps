@@ -93,12 +93,12 @@
 						<configuration>
 							<artifacts>
 								<artifact>
-									<file>${project.build.directory}/dependency/activej-bytebuf-${activej.version}-sources.jar</file>
+									<file>${project.build.directory}/dependency/guava-${core.artifact.version}-sources.jar</file>
 									<type>jar</type>
 									<classifier>sources</classifier>
 								</artifact>
 								<artifact>
-									<file>${project.build.directory}/dependency/activej-bytebuf-${activej.version}-javadoc.jar</file>
+									<file>${project.build.directory}/dependency/guava-${core.artifact.version}-javadoc.jar</file>
 									<type>jar</type>
 									<classifier>javadoc</classifier>
 								</artifact>
