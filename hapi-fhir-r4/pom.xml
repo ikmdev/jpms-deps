@@ -14,7 +14,7 @@
 	<groupId>dev.ikm.jpms</groupId>
 	<artifactId>org.hl7.fhir.r4</artifactId>
 	<packaging>jar</packaging>
-	<version>{hapi-fhir.version}-${hapi-fhir.release}</version>
+	<version>${hapi-fhir.version}-${hapi-fhir.release}</version>
 
 	<properties>
 		<hapi-fhir.version>6.3.3</hapi-fhir.version>
