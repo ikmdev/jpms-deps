@@ -126,7 +126,7 @@ pipeline {
                                     -DrepositoryId='${repositoryId}' \
                                     -Dmaven.source.skip=true  \
                                     -Dmaven.javadoc.skip=true \
-                                    -Dgpg.passphrase='${GPG_PASSPHRASE}'
+                                    -PstageOSSRH -Dgpg.passphrase='${GPG_PASSPHRASE}'
                             """
                         }
                     }
