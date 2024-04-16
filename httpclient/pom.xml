@@ -75,7 +75,7 @@
 						<goals>
 							<goal>copy</goal>
 						</goals>
-						<phase>generate-sources</phase>
+						<phase>prepare-package</phase>
 						<configuration>
 							<artifactItems>
 								<artifactItem>
