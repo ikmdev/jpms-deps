@@ -91,12 +91,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/${project.artifactId}-${jgit.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/${project.artifactId}-${jgit.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
