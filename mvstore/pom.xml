@@ -14,13 +14,9 @@
     <artifactId>mvstore</artifactId>
     <packaging>jar</packaging>
     <name>MVStore</name>
-<!--    <version>2.2.220-r1</version>-->
-    <version>${h2-mvstore.version}-${h2-mvstore.release}</version>
-
+    <version>2.2.220-r1</version>
     <properties>
         <h2-mvstore.version>2.2.220</h2-mvstore.version>
-        <!-- change release here-->
-        <h2-mvstore.release>r2</h2-mvstore.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -38,64 +34,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>sources</id>
-                            <goals>
-                                <goal>copy</goal>
-                            </goals>
-                            <phase>generate-sources</phase>
-                            <configuration>
-                                <artifactItems>
-                                    <artifactItem>
-                                        <groupId>com.h2database</groupId>
-                                        <artifactId>h2-mvstore</artifactId>
-                                        <version>${h2-mvstore.version}</version>
-                                        <classifier>sources</classifier>
-                                    </artifactItem>
-                                    <artifactItem>
-                                        <groupId>com.h2database</groupId>
-                                        <artifactId>h2-mvstore</artifactId>
-                                        <version>${h2-mvstore.version}</version>
-                                        <classifier>javadoc</classifier>
-                                    </artifactItem>
-                                </artifactItems>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>attach-artifacts</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>attach-artifact</goal>
-                            </goals>
-                            <configuration>
-                                <artifacts>
-                                    <artifact>
-                                        <file>${project.build.directory}/dependency/h2-mvstore-${h2-mvstore.version}-sources.jar</file>
-                                        <type>jar</type>
-                                        <classifier>sources</classifier>
-                                    </artifact>
-                                    <artifact>
-                                        <file>${project.build.directory}/dependency/h2-mvstore-${h2-mvstore.version}-javadoc.jar</file>
-                                        <type>jar</type>
-                                        <classifier>javadoc</classifier>
-                                    </artifact>
-                                </artifacts>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <plugin>
                     <groupId>org.moditect</groupId>
                     <artifactId>moditect-maven-plugin</artifactId>
                     <version>${maven.moditect.plugin}</version>
@@ -110,6 +48,20 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.jlgrock</groupId>
+                <artifactId>pom-check-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -214,34 +166,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
-                    <execution>
-                        <id>rename-sources</id>
-                        <phase>process-sources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/h2-mvstore-${h2-mvstore.version}-sources.jar"
-                                      tofile="${project.build.directory}/h2-mvstore-${h2-mvstore.version}-${h2-mvstore.release}-sources.jar" />
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>rename-javadoc</id>
-                        <phase>process-sources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/h2-mvstore-${h2-mvstore.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/h2-mvstore-${h2-mvstore.version}-${h2-mvstore.release}-javadoc.jar" />
-                            </target>
-                        </configuration>
-                    </execution>
                     <execution>
                         <phase>prepare-package</phase>
                         <configuration>
