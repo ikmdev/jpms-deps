@@ -20,7 +20,7 @@ pipeline {
 
         BRANCH_NAME         = "${GIT_BRANCH.split("/").size() > 1 ? GIT_BRANCH.split("/")[1] : GIT_BRANCH}"
 
-        FOLDER_NAME         = "bugsplat"
+        FOLDER_NAME         = "jgit"
     }
 
     options {
@@ -62,7 +62,7 @@ pipeline {
                                     -Dmaven.build.cache.enabled=false \
                                     --batch-mode \
                                     -e \
-                                    -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
+                                    -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
                             """
                         }
                     }

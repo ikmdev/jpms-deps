@@ -6,16 +6,17 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>1.23.0</version>
+        <version>1.43.0</version>
         <relativePath></relativePath>
     </parent>
 
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>jgit</artifactId>
-    <version>${jgit.version}-r1-SNAPSHOT</version>
+    <version>${jgit.version}-${jgit.release}</version>
 
     <properties>
         <jgit.version>6.7.0.202309050840-r</jgit.version>
+        <jgit.release>r2</jgit.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.Final</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -50,14 +51,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.6.0</version>
                 <executions>
                     <execution>
-                        <phase>generate-resources</phase>
                         <id>sources</id>
                         <goals>
-                            <goal>unpack</goal>
+                            <goal>copy</goal>
                         </goals>
+                        <phase>prepare-package</phase>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
@@ -66,18 +66,6 @@
                                     <version>${jgit.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>${project.build.directory}/generated-sources/java</outputDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <id>javadoc</id>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
                                 <artifactItem>
                                     <groupId>org.eclipse.jgit</groupId>
                                     <artifactId>org.eclipse.jgit</artifactId>
@@ -85,35 +73,34 @@
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.build.directory}/apidocs</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.5.0</version>
-                <configuration>
-                    <skip>true</skip>
-                    <failOnError>false</failOnError>
-                </configuration>
-            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.4.0</version>
                 <executions>
                     <execution>
-                        <id>add-source</id>
+                        <id>attach-artifacts</id>
                         <phase>prepare-package</phase>
                         <goals>
-                            <goal>add-source</goal>
+                            <goal>attach-artifact</goal>
                         </goals>
                         <configuration>
-                            <sources>
-                                <source>${project.build.directory}/generated-sources/java/</source>
-                            </sources>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc</classifier>
+                                </artifact>
+                            </artifacts>
                         </configuration>
                     </execution>
                 </executions>
@@ -138,7 +125,6 @@
                                         <artifactId>org.eclipse.jgit</artifactId>
                                         <version>${jgit.version}</version>
                                     </artifact>
-<!--  List of exports from https://javadoc.io/doc/org.eclipse.jgit/org.eclipse.jgit/latest/org.eclipse.jgit/module-summary.html-->
                                     <moduleInfoSource>
                                         module org.eclipse.jgit {
                                             exports org.eclipse.jgit.annotations;
@@ -208,6 +194,34 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
+                    <execution>
+                        <id>rename-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-sources.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${jgit.version}-${jgit.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-javadoc</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${jgit.version}-${jgit.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
                     <execution>
                         <phase>prepare-package</phase>
                         <configuration>
