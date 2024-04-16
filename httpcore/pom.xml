@@ -14,7 +14,6 @@
 	<groupId>dev.ikm.jpms</groupId>
 	<artifactId>httpcore</artifactId>
 	<packaging>jar</packaging>
-	<name>Core.artifact</name>
 	<version>${core.artifact.version}-${core.artifact.release}</version>
 
 	<properties>
@@ -108,12 +107,12 @@
 						<configuration>
 							<artifacts>
 								<artifact>
-									<file>${project.build.directory}/dependency/httpcore-${core.artifact.version}-sources.jar</file>
+									<file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar</file>
 									<type>jar</type>
 									<classifier>sources</classifier>
 								</artifact>
 								<artifact>
-									<file>${project.build.directory}/dependency/httpcore-${core.artifact.version}-javadoc.jar</file>
+									<file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar</file>
 									<type>jar</type>
 									<classifier>javadoc</classifier>
 								</artifact>
@@ -177,8 +176,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming sources file" />
-								<copy file="${project.build.directory}/dependency/httpcore-${core.artifact.version}-sources.jar"
-									  tofile="${project.build.directory}/httpcore-${core.artifact.version}-${core.artifact.release}-sources.jar" />
+								<copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar"
+									  tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-sources.jar" />
 							</target>
 						</configuration>
 					</execution>
@@ -191,8 +190,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming javadoc file" />
-								<copy file="${project.build.directory}/dependency/httpcore-${core.artifact.version}-javadoc.jar"
-									  tofile="${project.build.directory}/httpcore-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
+								<copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar"
+									  tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
 							</target>
 						</configuration>
 					</execution>
