@@ -203,7 +203,7 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${jgit.version}-sources.jar"
+                                <copy file="${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-sources.jar"
                                       tofile="${project.build.directory}/${project.artifactId}-${jgit.version}-${jgit.release}-sources.jar" />
                             </target>
                         </configuration>
@@ -217,7 +217,7 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${jgit.version}-javadoc.jar"
+                                <copy file="${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-javadoc.jar"
                                       tofile="${project.build.directory}/${project.artifactId}-${jgit.version}-${jgit.release}-javadoc.jar" />
                             </target>
                         </configuration>
