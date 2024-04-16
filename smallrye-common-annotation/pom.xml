@@ -6,15 +6,16 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>1.40.0</version>
+        <version>1.43.0</version>
         <relativePath></relativePath>
     </parent>
 
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>smallrye-common-annotation</artifactId>
     <name>SmallRye Common Annotations</name>
-    <version>${smallrye-common-annotation.version}-r2</version>
+    <version>${smallrye-common-annotation.version}-${smallrye-common-annotation.release}</version>
     <properties>
+		<smallrye-common-annotation.release>r3</smallrye-common-annotation.release>
         <smallrye-common-annotation.version>1.8.0</smallrye-common-annotation.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
@@ -63,6 +64,67 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+            
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sources</id>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+                                        <groupId>io.smallrye.common</groupId>
+                                        <artifactId>smallrye-common-annotation</artifactId>
+                                        <version>${smallrye-common-annotation.version}</version>
+									<classifier>sources</classifier>
+								</artifactItem>
+								<artifactItem>
+                                        <groupId>io.smallrye.common</groupId>
+                                        <artifactId>smallrye-common-annotation</artifactId>
+                                        <version>${smallrye-common-annotation.version}</version>
+									<classifier>javadoc</classifier>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-artifacts</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>attach-artifact</goal>
+						</goals>
+						<configuration>
+							<artifacts>
+								<artifact>
+									<file>
+										${project.build.directory}/dependency/smallrye-common-annotation-${smallrye-common-annotation.version}-sources.jar</file>
+									<type>jar</type>
+									<classifier>sources</classifier>
+								</artifact>
+								<artifact>
+									<file>
+										${project.build.directory}/dependency/smallrye-common-annotation-${smallrye-common-annotation.version}-javadoc.jar</file>
+									<type>jar</type>
+									<classifier>javadoc</classifier>
+								</artifact>
+							</artifacts>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+                        
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
@@ -98,6 +160,35 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
+					<execution>
+						<id>rename-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echo message="renaming sources file" />
+								<copy file="${project.build.directory}/dependency/smallrye-common-annotation-${smallrye-common-annotation.version}-sources.jar"
+									  tofile="${project.build.directory}/smallrye-common-annotation-${smallrye-common-annotation.version}-${smallrye-common-annotation.release}-sources.jar" />
+							</target>
+						</configuration>
+					</execution>
+					<execution>
+						<id>rename-javadoc</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echo message="renaming javadoc file" />
+								<copy file="${project.build.directory}/dependency/smallrye-common-annotation-${smallrye-common-annotation.version}-javadoc.jar"
+									  tofile="${project.build.directory}/smallrye-common-annotation-${smallrye-common-annotation.version}-${smallrye-common-annotation.release}-javadoc.jar" />
+							</target>
+						</configuration>
+					</execution>					
+										
                     <execution>
                         <phase>prepare-package</phase>
                         <configuration>

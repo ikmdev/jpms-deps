@@ -6,19 +6,21 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>1.40.0</version>
+        <version>1.43.0</version>
         <relativePath></relativePath>
     </parent>
 
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>mutiny</artifactId>
     <name>Mutiny</name>
-    <version>${io.smallrye.reactive.version}-r3</version>
+    <version>${io.smallrye.reactive.version}-${mutiny.release}</version>
+    
     <properties>
+		<mutiny.release>r4</mutiny.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
-        <smallrye-common-annotation.version>1.8.0-r1</smallrye-common-annotation.version>
+        <smallrye-common-annotation.version>1.8.0-r3</smallrye-common-annotation.version>
         <org.reactivestreams.version>1.3.1-r2</org.reactivestreams.version>
         <io.smallrye.reactive.version>2.1.0</io.smallrye.reactive.version>
     </properties>
@@ -47,8 +49,8 @@
             </resource>
         </resources>
         <pluginManagement>
-            <plugins>
-                <plugin>
+            <plugins>												
+                <plugin>  
                     <groupId>org.moditect</groupId>
                     <artifactId>moditect-maven-plugin</artifactId>
                     <version>${maven.moditect.plugin}</version>
@@ -77,6 +79,67 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sources</id>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>io.smallrye.reactive</groupId>
+									<artifactId>mutiny</artifactId>
+									<version>${io.smallrye.reactive.version}</version>
+									<classifier>sources</classifier>
+								</artifactItem>
+								<artifactItem>
+									<groupId>io.smallrye.reactive</groupId>
+									<artifactId>mutiny</artifactId>
+									<version>${io.smallrye.reactive.version}</version>
+									<classifier>javadoc</classifier>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-artifacts</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>attach-artifact</goal>
+						</goals>
+						<configuration>
+							<artifacts>
+								<artifact>
+									<file>
+										${project.build.directory}/dependency/mutiny-${io.smallrye.reactive.version}-sources.jar</file>
+									<type>jar</type>
+									<classifier>sources</classifier>
+								</artifact>
+								<artifact>
+									<file>
+										${project.build.directory}/dependency/mutiny-${io.smallrye.reactive.version}-javadoc.jar</file>
+									<type>jar</type>
+									<classifier>javadoc</classifier>
+								</artifact>
+							</artifacts>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+                        
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
@@ -139,6 +202,34 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
+					<execution>
+						<id>rename-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echo message="renaming sources file" />
+								<copy file="${project.build.directory}/dependency/mutiny-${io.smallrye.reactive.version}-sources.jar"
+									  tofile="${project.build.directory}/mutiny-${io.smallrye.reactive.version}-${mutiny.release}-sources.jar" />
+							</target>
+						</configuration>
+					</execution>
+					<execution>
+						<id>rename-javadoc</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echo message="renaming javadoc file" />
+								<copy file="${project.build.directory}/dependency/mutiny-${io.smallrye.reactive.version}-javadoc.jar"
+									  tofile="${project.build.directory}/mutiny-${io.smallrye.reactive.version}-${mutiny.release}-javadoc.jar" />
+							</target>
+						</configuration>
+					</execution>					
                     <execution>
                         <phase>prepare-package</phase>
                         <configuration>
