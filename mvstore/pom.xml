@@ -6,7 +6,7 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>1.40.0</version>
+        <version>1.43.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -14,7 +14,6 @@
     <artifactId>mvstore</artifactId>
     <packaging>jar</packaging>
     <name>MVStore</name>
-<!--    <version>2.2.220-r1</version>-->
     <version>${h2-mvstore.version}-${h2-mvstore.release}</version>
 
     <properties>
@@ -62,7 +61,7 @@
 						<goals>
 							<goal>copy</goal>
 						</goals>
-						<phase>generate-sources</phase>
+						<phase>prepare-package</phase>
 						<configuration>
 							<artifactItems>
 								<artifactItem>
@@ -89,7 +88,7 @@
 				<executions>
 					<execution>
 						<id>attach-artifacts</id>
-						<phase>package</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>attach-artifact</goal>
 						</goals>
