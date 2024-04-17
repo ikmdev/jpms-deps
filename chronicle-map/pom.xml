@@ -2,18 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-<!--
-    <parent>
-        <groupId>dev.ikm.jpms</groupId>
-        <artifactId>jpms-deps</artifactId>
-        <version>1.0.15</version>
-    </parent>
--->
 
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>1.40.0</version>
+        <version>1.43.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -21,9 +14,12 @@
     <artifactId>chronicle-map</artifactId>
     <packaging>jar</packaging>
     <name>Chronicle map</name>
-    <version>1.0.15</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
 
     <properties>
+        <core.artifact.version>1.0.15</core.artifact.version>
+        <core.artifact.release>r1</core.artifact.release>
+
         <chronicle-map.version>3.20.84</chronicle-map.version>
         <chronicle-values.version>2.20.80</chronicle-values.version>
         <chronicle-core.version>2.20.122</chronicle-core.version>
@@ -32,6 +28,16 @@
         <chronicle-wire.version>2.20.111</chronicle-wire.version>
         <chronicle-compiler.version>2.4.0</chronicle-compiler.version>
         <chronicle-algorithms.version>2.20.80</chronicle-algorithms.version>
+
+        <chronicle-map.release>r1</chronicle-map.release>
+        <chronicle-values.release>r1</chronicle-values.release>
+        <chronicle-core.release>r1</chronicle-core.release>
+        <chronicle-bytes.release>r1</chronicle-bytes.release>
+        <chronicle-threads.release>r1</chronicle-threads.release>
+        <chronicle-wire.release>r1</chronicle-wire.release>
+        <chronicle-compiler.release>r1</chronicle-compiler.release>
+        <chronicle-algorithms.release>r1</chronicle-algorithms.release>
+
     </properties>
 
     <build>
@@ -46,17 +52,230 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sources</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-map</artifactId>
+                                    <version>${chronicle-map.version}</version>
+                                    <classifier>sources</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-values</artifactId>
+                                    <version>${chronicle-values.version}</version>
+                                    <classifier>sources</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-core</artifactId>
+                                    <version>${chronicle-core.version}</version>
+                                    <classifier>sources</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-bytes</artifactId>
+                                    <version>${chronicle-bytes.version}</version>
+                                    <classifier>sources</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-threads</artifactId>
+                                    <version>${chronicle-threads.version}</version>
+                                    <classifier>sources</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-wire</artifactId>
+                                    <version>${chronicle-wire.version}</version>
+                                    <classifier>sources</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>compiler</artifactId>
+                                    <version>${chronicle-compiler.version}</version>
+                                    <classifier>sources</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-algorithms</artifactId>
+                                    <version>${chronicle-algorithms.version}</version>
+                                    <classifier>sources</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-map</artifactId>
+                                    <version>${chronicle-map.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-values</artifactId>
+                                    <version>${chronicle-values.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-core</artifactId>
+                                    <version>${chronicle-core.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-bytes</artifactId>
+                                    <version>${chronicle-bytes.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-threads</artifactId>
+                                    <version>${chronicle-threads.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-wire</artifactId>
+                                    <version>${chronicle-wire.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>compiler</artifactId>
+                                    <version>${chronicle-compiler.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-algorithms</artifactId>
+                                    <version>${chronicle-algorithms.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
+
             <plugin>
-                <groupId>com.github.jlgrock</groupId>
-                <artifactId>pom-check-maven-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources-1</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc-1</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-values-${chronicle-values.version}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources-2</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-values-${chronicle-values.version}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc-2</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-core-${chronicle-core.version}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources-3</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-core-${chronicle-core.version}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc-3</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-bytes-${chronicle-bytes.version}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources-4</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-bytes-${chronicle-bytes.version}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc-4</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-threads-${chronicle-threads.version}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources-5</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-threads-${chronicle-threads.version}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc-5</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-wire-${chronicle-wire.version}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources-6</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-wire-${chronicle-wire.version}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc-6</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/compiler-${chronicle-compiler.version}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources-7</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/compiler-${chronicle-compiler.version}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc-7</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-algorithms-${chronicle-algorithms.version}-sources.jar</file>
+                                    <type>jar</type>
+                                    <classifier>sources-8</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-algorithms-${chronicle-algorithms.version}-javadoc.jar</file>
+                                    <type>jar</type>
+                                    <classifier>javadoc-8</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.moditect</groupId>
@@ -315,6 +534,230 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
+                    <execution>
+                        <id>rename-sources-1</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar"
+                                      tofile="${project.build.directory}/chronicle-map-${chronicle-map.version}-${chronicle-map.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-javadoc-1</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/chronicle-map-${chronicle-map.version}-${chronicle-map.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-sources-2</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-values-${chronicle-values.version}-sources.jar"
+                                      tofile="${project.build.directory}/chronicle-values-${chronicle-values.version}-${chronicle-values.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-javadoc-2</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-values-${chronicle-values.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/chronicle-values-${chronicle-values.version}-${chronicle-values.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-sources-3</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-core-${chronicle-core.version}-sources.jar"
+                                      tofile="${project.build.directory}/chronicle-core-${chronicle-core.version}-${chronicle-core.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-javadoc-3</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-core-${chronicle-core.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/chronicle-core-${chronicle-core.version}-${chronicle-core.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-sources-4</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-bytes-${chronicle-bytes.version}-sources.jar"
+                                      tofile="${project.build.directory}/chronicle-bytes-${chronicle-bytes.version}-${chronicle-bytes.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-javadoc-4</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-bytes-${chronicle-bytes.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/chronicle-bytes-${chronicle-bytes.version}-${chronicle-bytes.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-sources-5</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-threads-${chronicle-threads.version}-sources.jar"
+                                      tofile="${project.build.directory}/chronicle-threads-${chronicle-threads.version}-${chronicle-threads.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-javadoc-5</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-threads-${chronicle-threads.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/chronicle-threads-${chronicle-threads.version}-${chronicle-threads.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-sources-6</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-wire-${chronicle-wire.version}-sources.jar"
+                                      tofile="${project.build.directory}/chronicle-wire-${chronicle-wire.version}-${chronicle-wire.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-javadoc-6</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-wire-${chronicle-wire.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/chronicle-wire-${chronicle-wire.version}-${chronicle-wire.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-sources-7</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/compiler-${chronicle-compiler.version}-sources.jar"
+                                      tofile="${project.build.directory}/compiler-${chronicle-compiler.version}-${chronicle-compiler.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-javadoc-7</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/compiler-${chronicle-compiler.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/compiler-${chronicle-compiler.version}-${chronicle-compiler.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-sources-8</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-algorithms-${chronicle-algorithms.version}-sources.jar"
+                                      tofile="${project.build.directory}/chronicle-algorithms-${chronicle-algorithms.version}-${chronicle-algorithms.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>rename-javadoc-8</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-algorithms-${chronicle-algorithms.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/chronicle-algorithms-${chronicle-algorithms.version}-${chronicle-algorithms.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
                     <execution>
                         <phase>prepare-package</phase>
                         <configuration>
