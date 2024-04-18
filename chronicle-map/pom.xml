@@ -182,7 +182,7 @@
 <!--                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar-->
                                     </file>
                                     <type>jar</type>
-                                    <classifier>sources-1</classifier>
+                                    <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
                                     <file>
@@ -190,7 +190,7 @@
 <!--                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar-->
                                     </file>
                                     <type>jar</type>
-                                    <classifier>javadoc-1</classifier>
+                                    <classifier>javadoc</classifier>
                                 </artifact>
 <!--                                <artifact>-->
 <!--                                    <file>-->
