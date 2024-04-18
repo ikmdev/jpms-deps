@@ -482,9 +482,9 @@
                                        dest="${project.build.directory}/sources/chronicle-wire/sources/" />
                                 <unzip src="${project.build.directory}/dependency/chronicle-wire-${chronicle-wire.version}-javadoc.jar"
                                        dest="${project.build.directory}/javadoc/chronicle-wire/javadoc/" />
-                                <unzip src="${project.build.directory}/dependency/compiler-${compiler.version}-sources.jar"
+                                <unzip src="${project.build.directory}/dependency/compiler-${chronicle-compiler.version}-sources.jar"
                                        dest="${project.build.directory}/sources/compiler/sources/" />
-                                <unzip src="${project.build.directory}/dependency/compiler-${compiler.version}-javadoc.jar"
+                                <unzip src="${project.build.directory}/dependency/compiler-${chronicle-compiler.version}-javadoc.jar"
                                        dest="${project.build.directory}/javadoc/compiler/javadoc/" />
                                 <unzip src="${project.build.directory}/dependency/chronicle-algorithms-${chronicle-algorithms.version}-sources.jar"
                                        dest="${project.build.directory}/sources/chronicle-algorithms/sources/" />
