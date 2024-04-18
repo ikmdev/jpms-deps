@@ -18,7 +18,7 @@
 
     <properties>
         <core.artifact.version>1.0.15</core.artifact.version>
-        <core.artifact.release>r1</core.artifact.release>
+        <core.artifact.release>r2</core.artifact.release>
 
         <chronicle-map.version>3.20.84</chronicle-map.version>
         <chronicle-values.version>2.20.80</chronicle-values.version>
@@ -534,34 +534,35 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
-                    <execution>
-                        <id>rename-sources-1</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar"
-                                      tofile="${project.build.directory}/chronicle-map-${chronicle-map.version}-${chronicle-map.release}-sources.jar" />
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>rename-javadoc-1</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/chronicle-map-${chronicle-map.version}-${chronicle-map.release}-javadoc.jar" />
-                            </target>
-                        </configuration>
-                    </execution>
+<!--                    <execution>-->
+<!--                        <id>rename-sources-1</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>run</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <target>-->
+<!--                                <echo message="renaming sources file" />-->
+<!--                                <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar"-->
+<!--                                      tofile="${project.build.directory}/chronicle-map-${chronicle-map.version}-${chronicle-map.release}-sources.jar" />-->
+<!--                            </target>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>rename-javadoc-1</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>run</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <target>-->
+<!--                                <echo message="renaming javadoc file" />-->
+<!--                                <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar"-->
+<!--                                      tofile="${project.build.directory}/chronicle-map-${chronicle-map.version}-${chronicle-map.release}-javadoc.jar"-->
+<!--                                />-->
+<!--                            </target>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
 <!--                    <execution>-->
 <!--                        <id>rename-sources-2</id>-->
 <!--                        <phase>package</phase>-->
@@ -758,6 +759,45 @@
 <!--                            </target>-->
 <!--                        </configuration>-->
 <!--                    </execution>-->
+
+
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <target>
+                                <echo message="unzipping chronicle-map sources and javadoc files" />
+                                <unzip src="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar"
+                                       dest="${project.build.directory}/sources/" />
+                                <unzip src="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar"
+                                       dest="${project.build.directory}/javadoc/" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>rename-sources-1</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="generating sources and javadoc jars" />
+                                <zip destfile="${project.build.directory}/chronicle-map-${core.artifact.version}-${core.artifact.release}-sources.jar"
+                                     update="true" comment="generating sources jar">
+                                    <fileset dir="${project.build.directory}/sources/" />
+                                </zip>
+                                <zip destfile="${project.build.directory}/chronicle-map-${core.artifact.version}-${core.artifact.release}-javadoc.jar"
+                                     update="true" comment="generating javadoc jar">
+                                    <fileset dir="${project.build.directory}/javadoc/" />
+                                </zip>
+                            </target>
+                        </configuration>
+                    </execution>
+
                     <execution>
                         <phase>prepare-package</phase>
                         <configuration>
