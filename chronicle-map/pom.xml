@@ -178,13 +178,17 @@
                             <artifacts>
                                 <artifact>
                                     <file>
-                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar</file>
+                                        ${project.build.directory}/chronicle-map-${core.artifact.version}-${core.artifact.release}-sources.jar
+<!--                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar-->
+                                    </file>
                                     <type>jar</type>
                                     <classifier>sources-1</classifier>
                                 </artifact>
                                 <artifact>
                                     <file>
-                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar</file>
+                                        ${project.build.directory}/chronicle-map-${core.artifact.version}-${core.artifact.release}-javadoc.jar
+<!--                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar-->
+                                    </file>
                                     <type>jar</type>
                                     <classifier>javadoc-1</classifier>
                                 </artifact>
