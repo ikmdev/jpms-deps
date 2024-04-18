@@ -595,6 +595,35 @@
 <!--                    </execution>-->
 
 <!--                    <execution>-->
+<!--                        <id>rename-sources-1</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>run</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <target>-->
+<!--                                <echo message="renaming sources file" />-->
+<!--                                <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar"-->
+<!--                                      tofile="${project.build.directory}/chronicle-map-${chronicle-map.version}-${chronicle-map.release}-sources.jar" />-->
+<!--                            </target>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>rename-javadoc-1</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>run</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <target>-->
+<!--                                <echo message="renaming javadoc file" />-->
+<!--                                <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar"-->
+<!--                                      tofile="${project.build.directory}/chronicle-map-${chronicle-map.version}-${chronicle-map.release}-javadoc.jar" />-->
+<!--                            </target>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
 <!--                        <id>rename-sources-2</id>-->
 <!--                        <phase>package</phase>-->
 <!--                        <goals>-->
