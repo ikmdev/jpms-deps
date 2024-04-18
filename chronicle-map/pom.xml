@@ -68,12 +68,12 @@
                                     <version>${chronicle-map.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
-<!--                                <artifactItem>-->
-<!--                                    <groupId>net.openhft</groupId>-->
-<!--                                    <artifactId>chronicle-values</artifactId>-->
-<!--                                    <version>${chronicle-values.version}</version>-->
-<!--                                    <classifier>sources</classifier>-->
-<!--                                </artifactItem>-->
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-values</artifactId>
+                                    <version>${chronicle-values.version}</version>
+                                    <classifier>sources</classifier>
+                                </artifactItem>
 <!--                                <artifactItem>-->
 <!--                                    <groupId>net.openhft</groupId>-->
 <!--                                    <artifactId>chronicle-core</artifactId>-->
@@ -116,12 +116,12 @@
                                     <version>${chronicle-map.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
-<!--                                <artifactItem>-->
-<!--                                    <groupId>net.openhft</groupId>-->
-<!--                                    <artifactId>chronicle-values</artifactId>-->
-<!--                                    <version>${chronicle-values.version}</version>-->
-<!--                                    <classifier>javadoc</classifier>-->
-<!--                                </artifactItem>-->
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-values</artifactId>
+                                    <version>${chronicle-values.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
 <!--                                <artifactItem>-->
 <!--                                    <groupId>net.openhft</groupId>-->
 <!--                                    <artifactId>chronicle-core</artifactId>-->
@@ -832,9 +832,14 @@
                             <target>
                                 <echo message="unzipping chronicle-map sources and javadoc files" />
                                 <unzip src="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar"
-                                       dest="${project.build.directory}/sources/" />
+                                       dest="${project.build.directory}/sources/chronicle-map/sources/" />
                                 <unzip src="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar"
-                                       dest="${project.build.directory}/javadoc/" />
+                                       dest="${project.build.directory}/javadoc/chronicle-map/javadoc/" />
+                                <unzip src="${project.build.directory}/dependency/chronicle-values-${chronicle-values.version}-sources.jar"
+                                       dest="${project.build.directory}/sources/chronicle-values/sources/" />
+                                <unzip src="${project.build.directory}/dependency/chronicle-values-${chronicle-values.version}-javadoc.jar"
+                                       dest="${project.build.directory}/javadoc/chronicle-values/javadoc/" />
+
                             </target>
                         </configuration>
                         <goals>
