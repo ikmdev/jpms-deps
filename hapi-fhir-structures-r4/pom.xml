@@ -8,7 +8,6 @@
 		<groupId>dev.ikm.build</groupId>
 		<artifactId>java-parent</artifactId>
 		<version>1.43.0</version>
-		<relativePath></relativePath>
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
@@ -17,7 +16,7 @@
 	<version>${hapi-fhir-base.version}-${hapi-fhir-base.release}</version>
 
 	<properties>
-		<hapi-fhir-base.release>r2</hapi-fhir-base.release>
+		<hapi-fhir-base.release>r3</hapi-fhir-base.release>
 		<hapi-fhir-base.version>7.0.2</hapi-fhir-base.version>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
@@ -128,8 +127,7 @@
 										<version>${hapi-fhir-base.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										module hapi.fhir.structures.r4 {
-
+										module dev.ikm.jpms.hapi.fhir.structures.r4 {
 											exports org.hl7.fhir.r4.hapi.ctx;
 										}
 									</moduleInfoSource>
