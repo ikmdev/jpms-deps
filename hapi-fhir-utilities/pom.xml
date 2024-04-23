@@ -17,7 +17,7 @@
 
 	<properties>
 		<hapi-fhir.version>6.3.3</hapi-fhir.version>
-		<hapi-fhir.release>r2</hapi-fhir.release>
+		<hapi-fhir.release>r3</hapi-fhir.release>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -135,7 +135,7 @@
 									</artifact>
 									<moduleInfoSource>
 										module dev.ikm.jpms.org.hl7.fhir.utilities {
-											requires transitive dev.ikm.jpms.hapi.fhir.base;
+											requires dev.ikm.jpms.hapi.fhir.base;
 											exports org.hl7.fhir.utilities.xhtml;
 											exports org.hl7.fhir.exceptions;
 											exports org.hl7.fhir.utilities;

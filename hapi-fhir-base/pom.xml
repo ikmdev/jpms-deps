@@ -17,7 +17,7 @@
 
 	<properties>
 		<hapi-fhir-base.version>7.0.2</hapi-fhir-base.version>
-		<hapi-fhir-base.release>r2</hapi-fhir-base.release>
+		<hapi-fhir-base.release>r3</hapi-fhir-base.release>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -139,8 +139,7 @@
 											requires com.fasterxml.jackson.databind;
 											requires com.fasterxml.jackson.datatype.jsr310;
 											requires org.apache.commons.codec;
-											requires org.apache.commons.io;
-											requires org.apache.commons.lang3;
+
 											requires org.apache.commons.text;
 											requires org.apache.httpcomponents.httpclient;
 											requires org.apache.httpcomponents.httpcore;
