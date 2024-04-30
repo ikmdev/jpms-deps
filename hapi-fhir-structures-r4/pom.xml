@@ -16,8 +16,8 @@
 	<version>${hapi-fhir-base.version}-${hapi-fhir-base.release}</version>
 
 	<properties>
-		<hapi-fhir-base.release>r5</hapi-fhir-base.release>
 		<hapi-fhir-base.version>7.0.2</hapi-fhir-base.version>
+		<hapi-fhir-base.release>r5</hapi-fhir-base.release>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>

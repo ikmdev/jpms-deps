@@ -138,9 +138,9 @@
 											requires com.fasterxml.jackson.core;
 											requires com.fasterxml.jackson.databind;
 											requires com.fasterxml.jackson.datatype.jsr310;
-											requires dev.ikm.jpms.commons.io;
-											requires dev.ikm.jpms.org.apache.commons.lang3;
-											requires dev.ikm.jpms.org.apache.commons.text;
+											requires org.apache.commons.io;
+											requires org.apache.commons.lang3;
+											requires org.apache.commons.text;
 
 											exports ca.uhn.fhir.context;
 											exports ca.uhn.fhir.model.api;
