@@ -16,7 +16,7 @@
 	<version>${hapi-fhir-base.version}-${hapi-fhir-base.release}</version>
 
 	<properties>
-		<hapi-fhir-base.release>r4</hapi-fhir-base.release>
+		<hapi-fhir-base.release>r5</hapi-fhir-base.release>
 		<hapi-fhir-base.version>7.0.2</hapi-fhir-base.version>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
@@ -128,6 +128,9 @@
 									</artifact>
 									<moduleInfoSource>
 										module dev.ikm.jpms.hapi.fhir.structures.r4 {
+											requires dev.ikm.jpms.hapi.fhir.base;
+											requires dev.ikm.jpms.org.hl7.fhir.r4;
+
 											exports org.hl7.fhir.r4.hapi.ctx;
 										}
 									</moduleInfoSource>

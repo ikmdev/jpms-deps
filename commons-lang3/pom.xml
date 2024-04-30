@@ -11,13 +11,13 @@
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
-	<artifactId>hapi-fhir-base</artifactId>
+	<artifactId>commons-lang3</artifactId>
 	<packaging>jar</packaging>
-	<version>${hapi-fhir-base.version}-${hapi-fhir-base.release}</version>
+	<version>${commons-lang3.artifact.version}-${commons-lang3.artifact.release}</version>
 
 	<properties>
-		<hapi-fhir-base.version>7.0.2</hapi-fhir-base.version>
-		<hapi-fhir-base.release>r6</hapi-fhir-base.release>
+		<commons-lang3.artifact.release>r1</commons-lang3.artifact.release>
+		<commons-lang3.artifact.version>3.14.0</commons-lang3.artifact.version>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -47,9 +47,8 @@
 					<version>${maven.antrun.plugin}</version>
 				</plugin>
 			</plugins>
-		</pluginManagement>   
-		
-		<plugins>	
+		</pluginManagement>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -59,19 +58,19 @@
 						<goals>
 							<goal>copy</goal>
 						</goals>
-						<phase>generate-sources</phase>
+						<phase>prepare-package</phase>
 						<configuration>
 							<artifactItems>
 								<artifactItem>
-										<groupId>ca.uhn.hapi.fhir</groupId>
-										<artifactId>hapi-fhir-base</artifactId>
-										<version>${hapi-fhir-base.version}</version>
+									<groupId>org.apache.commons</groupId>
+									<artifactId>commons-lang3</artifactId>
+									<version>${commons-lang3.artifact.version}</version>
 									<classifier>sources</classifier>
 								</artifactItem>
 								<artifactItem>
-										<groupId>ca.uhn.hapi.fhir</groupId>
-										<artifactId>hapi-fhir-base</artifactId>
-										<version>${hapi-fhir-base.version}</version>
+									<groupId>org.apache.commons</groupId>
+									<artifactId>commons-lang3</artifactId>
+									<version>${commons-lang3.artifact.version}</version>
 									<classifier>javadoc</classifier>
 								</artifactItem>
 							</artifactItems>
@@ -86,21 +85,19 @@
 				<executions>
 					<execution>
 						<id>attach-artifacts</id>
-						<phase>prepare-package</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>attach-artifact</goal>
 						</goals>
 						<configuration>
 							<artifacts>
 								<artifact>
-									<file>
-										${project.build.directory}/dependency/hapi-fhir-base-${hapi-fhir-base.version}-sources.jar</file>
+									<file>${project.build.directory}/dependency/${project.artifactId}-${commons-lang3.artifact.version}-sources.jar</file>
 									<type>jar</type>
 									<classifier>sources</classifier>
 								</artifact>
 								<artifact>
-									<file>
-										${project.build.directory}/dependency/hapi-fhir-base-${hapi-fhir-base.version}-javadoc.jar</file>
+									<file>${project.build.directory}/dependency/${project.artifactId}-${commons-lang3.artifact.version}-javadoc.jar</file>
 									<type>jar</type>
 									<classifier>javadoc</classifier>
 								</artifact>
@@ -108,8 +105,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>			
-			
+			</plugin>
 			<plugin>
 				<groupId>org.moditect</groupId>
 				<artifactId>moditect-maven-plugin</artifactId>
@@ -126,41 +122,27 @@
 							<modules>
 								<module>
 									<artifact>
-										<groupId>ca.uhn.hapi.fhir</groupId>
-										<artifactId>hapi-fhir-base</artifactId>
-										<version>${hapi-fhir-base.version}</version>
+										<groupId>org.apache.commons</groupId>
+										<artifactId>commons-lang3</artifactId>
+										<version>${commons-lang3.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										module dev.ikm.jpms.hapi.fhir.base {
-
-											requires org.slf4j;
-											requires com.fasterxml.jackson.annotation;
-											requires com.fasterxml.jackson.core;
-											requires com.fasterxml.jackson.databind;
-											requires com.fasterxml.jackson.datatype.jsr310;
-											requires dev.ikm.jpms.commons.io;
-											requires dev.ikm.jpms.org.apache.commons.lang3;
-											requires dev.ikm.jpms.org.apache.commons.text;
-
-											exports ca.uhn.fhir.context;
-											exports ca.uhn.fhir.model.api;
-											exports ca.uhn.fhir.parser;
-											exports ca.uhn.fhir.rest.gclient;
-											exports ca.uhn.fhir.util;
-											exports org.hl7.fhir.instance.model.api;
-
-											uses ca.uhn.fhir.model.api.IElement;
-											uses org.hl7.fhir.instance.model.api.IAnyResource;
-											uses org.hl7.fhir.instance.model.api.IBase;
-											uses org.hl7.fhir.instance.model.api.IBaseBackboneElement;
-											uses org.hl7.fhir.instance.model.api.IBaseDatatype;
-											uses org.hl7.fhir.instance.model.api.IBaseElement;
-											uses org.hl7.fhir.instance.model.api.IBaseExtension;
-											uses org.hl7.fhir.instance.model.api.IBaseHasExtensions;
-											uses org.hl7.fhir.instance.model.api.IBaseHasModifierExtensions;
-											uses org.hl7.fhir.instance.model.api.IBaseMetaType;
-											uses org.hl7.fhir.instance.model.api.ICompositeType;
-											uses org.hl7.fhir.instance.model.api.IDomainResource;
+										open module dev.ikm.jpms.org.apache.commons.lang3 {
+<!--											exports org.apache.commons.arch;-->
+<!--											exports org.apache.commons.builder;-->
+<!--											exports org.apache.commons.compare;-->
+<!--											exports org.apache.commons.concurrent;-->
+<!--											exports org.apache.commons.event;-->
+<!--											exports org.apache.commons.exception;-->
+<!--											exports org.apache.commons.function;-->
+<!--											exports org.apache.commons.math;-->
+<!--											exports org.apache.commons.mutable;-->
+<!--											exports org.apache.commons.reflect;-->
+<!--											exports org.apache.commons.stream;-->
+<!--											exports org.apache.commons.text;-->
+<!--											exports org.apache.commons.time;-->
+<!--											exports org.apache.commons.tuple;-->
+<!--											exports org.apache.commons.util;-->
 										}
 									</moduleInfoSource>
 								</module>
@@ -173,7 +155,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
-
 					<execution>
 						<id>rename-sources</id>
 						<phase>package</phase>
@@ -183,8 +164,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming sources file" />
-								<copy file="${project.build.directory}/dependency/hapi-fhir-base-${hapi-fhir-base.version}-sources.jar"
-									  tofile="${project.build.directory}/hapi-fhir-base-${hapi-fhir-base.version}-${hapi-fhir-base.release}-sources.jar" />
+								<copy file="${project.build.directory}/dependency/${project.artifactId}-${commons-lang3.artifact.version}-sources.jar"
+									  tofile="${project.build.directory}/${project.artifactId}-${commons-lang3.artifact.version}-${commons-lang3.artifact.release}-sources.jar" />
 							</target>
 						</configuration>
 					</execution>
@@ -197,19 +178,18 @@
 						<configuration>
 							<target>
 								<echo message="renaming javadoc file" />
-								<copy file="${project.build.directory}/dependency/hapi-fhir-base-${hapi-fhir-base.version}-javadoc.jar"
-									  tofile="${project.build.directory}/hapi-fhir-base-${hapi-fhir-base.version}-${hapi-fhir-base.release}-javadoc.jar" />
+								<copy file="${project.build.directory}/dependency/${project.artifactId}-${commons-lang3.artifact.version}-javadoc.jar"
+									  tofile="${project.build.directory}/${project.artifactId}-${commons-lang3.artifact.version}-${commons-lang3.artifact.release}-javadoc.jar" />
 							</target>
 						</configuration>
-					</execution>						
-					
+					</execution>
 					<execution>
 						<phase>prepare-package</phase>
 						<configuration>
 							<target>
 								<echo message="unzipping files" />
 								<unzip
-									src="${project.build.directory}/moditect/${project.artifactId}-${hapi-fhir-base.version}.jar"
+									src="${project.build.directory}/moditect/${project.artifactId}-${commons-lang3.artifact.version}.jar"
 									dest="${project.build.directory}/classes/">
 									<patternset>
 										<exclude name="**/MANIFEST.MF" />
