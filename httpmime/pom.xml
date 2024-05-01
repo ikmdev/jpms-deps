@@ -14,7 +14,7 @@
 	<groupId>dev.ikm.jpms</groupId>
 	<artifactId>httpmime</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>${core.artifact.version}-${core.artifact.release}</version>
 
 	<properties>
 		<core.artifact.version>4.5.14</core.artifact.version>
@@ -23,6 +23,7 @@
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
 	</properties>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -30,11 +31,8 @@
 				<artifactId>httpcore</artifactId>
 				<version>1.0.0</version>
 			</dependency>
-			<!-- Thanks for using https://jar-download.com -->
 		</dependencies>
 	</dependencyManagement>
-
-	<!-- Has no dependencies in this artifact -->
 
 	<build>
 		<resources>
