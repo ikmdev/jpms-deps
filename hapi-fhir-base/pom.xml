@@ -141,6 +141,7 @@
 											requires org.apache.commons.io;
 											requires org.apache.commons.lang3;
 											requires org.apache.commons.text;
+										  	requires com.google.common;
 
 											exports ca.uhn.fhir.context;
 											exports ca.uhn.fhir.model.api;
