@@ -8,7 +8,6 @@
 		<groupId>dev.ikm.build</groupId>
 		<artifactId>java-parent</artifactId>
 		<version>1.44.0</version>
-		<relativePath></relativePath>
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
@@ -17,8 +16,8 @@
 	<version>${core.artifact.version}-${core.artifact.release}</version>
 
 	<properties>
-		<core.artifact.version>31.1-jre</core.artifact.version>
-		<core.artifact.release>r2</core.artifact.release>
+		<core.artifact.version>33.1.0-jre</core.artifact.version>
+		<core.artifact.release>r1</core.artifact.release>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
