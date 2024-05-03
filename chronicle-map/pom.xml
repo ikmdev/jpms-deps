@@ -575,12 +575,16 @@
                             <detectLinks>false</detectLinks>
                             <validateLinks>false</validateLinks>
                             <detectOfflineLinks>false</detectOfflineLinks>
-                            <compilerArgs>
-                                <arg>--add-exports=java.base/sun.nio.ch=ALL-UNNAMED</arg>
-                            </compilerArgs>
-                            <additionalJOptions>
-                                <additionalJOption>--add-exports sun.nio.ch</additionalJOption>
-                            </additionalJOptions>
+<!--                            <compilerArgs>-->
+<!--                                <arg>&#45;&#45;add-exports=java.base/sun.nio.ch=ALL-UNNAMED</arg>-->
+<!--                            </compilerArgs>-->
+<!--                            <additionalJOptions>-->
+<!--                                <additionalJOption>&#45;&#45;add-exports sun.nio.ch</additionalJOption>-->
+<!--                            </additionalJOptions>-->
+                            <additionalOptions>
+                                <additionalOption>-d</additionalOption>
+                                <additionalOption>--add-exports sun.nio.ch</additionalOption>
+                            </additionalOptions>
                         </configuration>
                     </execution>
                 </executions>
