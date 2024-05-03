@@ -248,6 +248,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -266,6 +267,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -284,6 +286,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -302,6 +305,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -320,6 +324,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -338,6 +343,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -356,6 +362,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -374,6 +381,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -392,6 +400,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -411,6 +420,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -429,6 +439,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -447,6 +458,7 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
@@ -464,12 +476,14 @@
                                         requires java.naming;
                                         requires java.management;
                                         requires jdk.unsupported;
+                                        requires com.sun.jna;
                                         exports net.openhft.chronicle.core.values;
                                         exports net.openhft.chronicle.map;
                                         exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
+
                             </modules>
                         </configuration>
                     </execution>
