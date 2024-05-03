@@ -543,8 +543,8 @@
                         </goals>
                         <phase>package</phase>
                         <configuration>
-                            <source>8</source>
-                            <target>8</target>
+                            <source>11</source>
+                            <target>11</target>
 
                             <sourcepath>${project.build.directory}/sources</sourcepath>
                             <doclint>none</doclint>
