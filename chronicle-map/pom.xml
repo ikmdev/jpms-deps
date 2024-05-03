@@ -544,6 +544,8 @@
                         <phase>package</phase>
                         <configuration>
                             <source>8</source>
+                            <target>8</target>
+
                             <sourcepath>${project.build.directory}/sources</sourcepath>
                             <doclint>none</doclint>
                             <!--Excludes that match each of the subproject excludes -->
@@ -576,8 +578,13 @@
                             <validateLinks>false</validateLinks>
                             <detectOfflineLinks>false</detectOfflineLinks>
                             <compilerArgs>
-                                <arg>-d --add-exports=java.base/sun.nio.ch=ALL-UNNAMED</arg>
+                                <arg>--add-exports=java.base/jdk.internal.ref=ALL-UNNAMED</arg>
+                                <arg>--add-exports=java.base/sun.nio.ch=ALL-UNNAMED</arg>
                             </compilerArgs>
+                            <excludes>
+                                <exclude>**/jdk8/**</exclude>
+                                <exclude>**/META-INF/services/**</exclude>
+                            </excludes>
 <!--                            <additionalJOptions>-->
 <!--                                <additionalJOption>&#45;&#45;add-exports sun.nio.ch</additionalJOption>-->
 <!--                            </additionalJOptions>-->
