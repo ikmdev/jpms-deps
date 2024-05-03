@@ -578,6 +578,9 @@
                             <compilerArgs>
                                 <arg>--add-exports=java.base/sun.nio.ch=ALL-UNNAMED</arg>
                             </compilerArgs>
+                            <additionalJOptions>
+                                <additionalJOption>--add-exports sun.nio.ch</additionalJOption>
+                            </additionalJOptions>
                         </configuration>
                     </execution>
                 </executions>
