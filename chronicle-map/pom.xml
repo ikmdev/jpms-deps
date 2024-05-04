@@ -570,6 +570,13 @@
                                 <sourceFileExclude>net/openhft/chronicle/values/CharSequences.java</sourceFileExclude>
                                 <sourceFileExclude>net/openhft/chronicle/values/PointersBytesStore.java</sourceFileExclude>
                                 <sourceFileExclude>net/openhft/chronicle/values/HeapByteable.java</sourceFileExclude>
+                                
+                                <sourceFileExclude>net/openhft/chronicle/algo/bytes/ByteBufferAccessor.java</sourceFileExclude>
+                                <sourceFileExclude>net/openhft/chronicle/core/cleaner/impl/jdk8/Jdk8ByteBufferCleanerService.java</sourceFileExclude>
+                                <sourceFileExclude>net/openhft/chronicle/core/cleaner/impl/reflect/ReflectionBasedByteBufferCleanerService.java</sourceFileExclude>
+                                <sourceFileExclude>net/openhft/chronicle/core/Jvm.java</sourceFileExclude>
+                                <sourceFileExclude>net/openhft/chronicle/core/OS.java</sourceFileExclude>
+                                
                                 <sourceFileExclude>**/Compiled*.java</sourceFileExclude>
                             </sourceFileExcludes>
                             <excludePackageNames>
@@ -582,17 +589,19 @@
                             <compilerVersion>8</compilerVersion>
                             <verbose>false</verbose>
         					<fork>true</fork>
+        					<sourceCompatibility>8</sourceCompatibility>
+        					<targetCompatibility>8</targetCompatibility>
                             
                             <compilerArgs>
                                 <arg>--add-exports=jdk.internal.opt/jdk.internal.joptsimple=ALL-UNNAMED</arg>
-                                <arg>--add-exports=java.base/sun.nio.ch=sun.nio.ch</arg>
+                                <arg>--add-exports=java.base/sun.nio.ch=ALL-UNNAMED</arg>
                                 <arg>--add-opens=java.base/java.lang.reflect=ALL-UNNAMED</arg>
                                 <arg>--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED</arg>
+                                <arg>--add-exports=java.base/sun.security.provider=ALL-UNNAMED</arg>
+                                <arg>--add-opens=java.base/sun.security.util=ALL-UNNAMED</arg>
+                                <arg>--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED</arg>
                             </compilerArgs>
-                            <excludes>
-                                <exclude>**/jdk8/**</exclude>
-                                <exclude>**/META-INF/services/**</exclude>
-                            </excludes>
+
 <!--                            <additionalJOptions>-->
 <!--                                <additionalJOption>&#45;&#45;add-exports sun.nio.ch</additionalJOption>-->
 <!--                            </additionalJOptions>-->
