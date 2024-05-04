@@ -545,7 +545,8 @@
                         <configuration>
                             <source>8</source>
                             <target>8</target>
-
+							<compilerArgument>-XDignore.symbol.file</compilerArgument>
+		
                             <sourcepath>${project.build.directory}/sources</sourcepath>
                             <doclint>none</doclint>
                             <!--Excludes that match each of the subproject excludes -->
