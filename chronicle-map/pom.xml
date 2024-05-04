@@ -585,7 +585,7 @@
                             
                             <compilerArgs>
                                 <arg>--add-exports=jdk.internal.opt/jdk.internal.joptsimple=ALL-UNNAMED</arg>
-                                <arg>--add-exports=java.base/sun.nio.ch=ALL-UNNAMED</arg>
+                                <arg>--add-exports=java.base/sun.nio.ch</arg>
                                 <arg>--add-opens=java.base/java.lang.reflect=ALL-UNNAMED</arg>
                                 <arg>--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED</arg>
                             </compilerArgs>
