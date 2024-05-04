@@ -210,8 +210,7 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
-                        <!--<phase>verify</phase>-->
-                        <phase>install</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
