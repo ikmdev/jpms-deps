@@ -571,12 +571,11 @@
                                 <sourceFileExclude>net/openhft/chronicle/values/PointersBytesStore.java</sourceFileExclude>
                                 <sourceFileExclude>net/openhft/chronicle/values/HeapByteable.java</sourceFileExclude>
 
-                                <sourceFileExclude>net/openhft/chronicle/core/cleaner/impl/reflect/ReflectionBasedByteBufferCleanerService.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/core/Jvm.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/core/OS.java</sourceFileExclude>                                
-                                <sourceFileExclude>net/openhft/chronicle/algo/bytes/ByteBufferAccessor.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/core/cleaner/impl/jdk8/Jdk8ByteBufferCleanerService.java</sourceFileExclude>
-
+                                <sourceFileExclude>net/openhft/chronicle/core/Jvm.*</sourceFileExclude>
+                                <sourceFileExclude>net/openhft/chronicle/core/OS.*</sourceFileExclude>                                
+                                <sourceFileExclude>net/openhft/chronicle/algo/bytes/ByteBufferAccessor.*</sourceFileExclude>
+                                <sourceFileExclude>net/openhft/chronicle/core/cleaner/impl/jdk8/Jdk8ByteBufferCleanerService.*</sourceFileExclude>
+								<sourceFileExclude>net/openhft/chronicle/core/cleaner/impl/reflect/ReflectionBasedByteBufferCleanerService.*</sourceFileExclude>
                                 
                                 <sourceFileExclude>**/Compiled*.java</sourceFileExclude>
                             </sourceFileExcludes>
