@@ -551,6 +551,12 @@
                             <doclint>none</doclint>
                             <!--Excludes that match each of the subproject excludes -->
                             <sourceFileExcludes>
+								                                <exclude>**/Jvm.java</exclude>
+                                <exclude>**/OS.java</exclude>                                
+                                <exclude>**/ByteBufferAccessor.java</exclude>
+                                <exclude>**/Jdk8ByteBufferCleanerService.java</exclude>
+								<exclude>**/ReflectionBasedByteBufferCleanerService.java</exclude>
+								
                                 <exclude>net/openhft/chronicle/threads/TimeoutPauser.java</exclude>
                                 <exclude>net/openhft/chronicle/threads/YieldingPauser.java</exclude>
                                 <exclude>net/openhft/chronicle/hash/ChronicleHashBuilderPrivateAPI.java</exclude>
@@ -570,12 +576,6 @@
                                 <exclude>net/openhft/chronicle/values/CharSequences.java</exclude>
                                 <exclude>net/openhft/chronicle/values/PointersBytesStore.java</exclude>
                                 <exclude>net/openhft/chronicle/values/HeapByteable.java</exclude>
-
-                                <exclude>**/Jvm.*</exclude>
-                                <exclude>**/OS.*</exclude>                                
-                                <exclude>**/ByteBufferAccessor.*</exclude>
-                                <exclude>**/Jdk8ByteBufferCleanerService.*</exclude>
-								<exclude>**/ReflectionBasedByteBufferCleanerService.*</exclude>
                                 
                                 <exclude>**/Compiled*.java</exclude>
                             </sourceFileExcludes>
