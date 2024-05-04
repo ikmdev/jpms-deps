@@ -213,7 +213,7 @@
                         <!--<phase>verify</phase>-->
                         <phase>install</phase>
                         <goals>
-                            <goal>jar-no-fork</goal>
+                            <goal>jar</goal>
                         </goals>
                         <configuration>
                             <includes>
