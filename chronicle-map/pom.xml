@@ -543,8 +543,8 @@
                         </goals>
                         <phase>package</phase>
                         <configuration>
-                            <source>11</source>
-                            <target>11</target>
+                            <source>8</source>
+                            <target>8</target>
 
                             <sourcepath>${project.build.directory}/sources</sourcepath>
                             <doclint>none</doclint>
@@ -578,7 +578,7 @@
                             <validateLinks>false</validateLinks>
                             <detectOfflineLinks>false</detectOfflineLinks>
                             <compilerArgs>
-                                <arg>--add-exports=java.base/jdk.internal.ref=ALL-UNNAMED</arg>
+                                <arg>--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED</arg>
                                 <arg>--add-exports=java.base/sun.nio.ch=ALL-UNNAMED</arg>
                             </compilerArgs>
                             <excludes>
