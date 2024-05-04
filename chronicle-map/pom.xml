@@ -551,33 +551,33 @@
                             <doclint>none</doclint>
                             <!--Excludes that match each of the subproject excludes -->
                             <sourceFileExcludes>
-                                <sourceFileExclude>net/openhft/chronicle/threads/TimeoutPauser.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/threads/YieldingPauser.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/hash/ChronicleHashBuilderPrivateAPI.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/hash/VanillaGlobalMutableState.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/hash/ReplicatedHashSegmentContext.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/hash/VanillaGlobalMutableState*Native.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/map/MapDiagnostics.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/map/VanillaChronicleMap.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/map/Replica.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/map/ReplicatedChronicleMap.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/map/ReplicatedGlobalMutableState*Native.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/map/ChronicleHashCorruptionImpl.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/set/DummyValueData.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/values/FieldModel.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/values/ArrayFieldModel.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/values/Enums.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/values/CharSequences.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/values/PointersBytesStore.java</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/values/HeapByteable.java</sourceFileExclude>
+                                <exclude>net/openhft/chronicle/threads/TimeoutPauser.java</exclude>
+                                <exclude>net/openhft/chronicle/threads/YieldingPauser.java</exclude>
+                                <exclude>net/openhft/chronicle/hash/ChronicleHashBuilderPrivateAPI.java</exclude>
+                                <exclude>net/openhft/chronicle/hash/VanillaGlobalMutableState.java</exclude>
+                                <exclude>net/openhft/chronicle/hash/ReplicatedHashSegmentContext.java</exclude>
+                                <exclude>net/openhft/chronicle/hash/VanillaGlobalMutableState*Native.java</exclude>
+                                <exclude>net/openhft/chronicle/map/MapDiagnostics.java</exclude>
+                                <exclude>net/openhft/chronicle/map/VanillaChronicleMap.java</exclude>
+                                <exclude>net/openhft/chronicle/map/Replica.java</exclude>
+                                <exclude>net/openhft/chronicle/map/ReplicatedChronicleMap.java</exclude>
+                                <exclude>net/openhft/chronicle/map/ReplicatedGlobalMutableState*Native.java</exclude>
+                                <exclude>net/openhft/chronicle/map/ChronicleHashCorruptionImpl.java</exclude>
+                                <exclude>net/openhft/chronicle/set/DummyValueData.java</exclude>
+                                <exclude>net/openhft/chronicle/values/FieldModel.java</exclude>
+                                <exclude>net/openhft/chronicle/values/ArrayFieldModel.java</exclude>
+                                <exclude>net/openhft/chronicle/values/Enums.java</exclude>
+                                <exclude>net/openhft/chronicle/values/CharSequences.java</exclude>
+                                <exclude>net/openhft/chronicle/values/PointersBytesStore.java</exclude>
+                                <exclude>net/openhft/chronicle/values/HeapByteable.java</exclude>
 
-                                <sourceFileExclude>net/openhft/chronicle/core/Jvm.*</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/core/OS.*</sourceFileExclude>                                
-                                <sourceFileExclude>net/openhft/chronicle/algo/bytes/ByteBufferAccessor.*</sourceFileExclude>
-                                <sourceFileExclude>net/openhft/chronicle/core/cleaner/impl/jdk8/Jdk8ByteBufferCleanerService.*</sourceFileExclude>
-								<sourceFileExclude>net/openhft/chronicle/core/cleaner/impl/reflect/ReflectionBasedByteBufferCleanerService.*</sourceFileExclude>
+                                <exclude>**/Jvm.*</exclude>
+                                <exclude>**/OS.*</exclude>                                
+                                <exclude>**/ByteBufferAccessor.*</exclude>
+                                <exclude>**/Jdk8ByteBufferCleanerService.*</exclude>
+								<exclude>**/ReflectionBasedByteBufferCleanerService.*</exclude>
                                 
-                                <sourceFileExclude>**/Compiled*.java</sourceFileExclude>
+                                <exclude>**/Compiled*.java</exclude>
                             </sourceFileExcludes>
                             <excludePackageNames>
                                 net.openhft.chronicle.hash.serialization.impl:net.openhft.chronicle.hash.impl:net.openhft.chronicle.map.impl:**.replication
