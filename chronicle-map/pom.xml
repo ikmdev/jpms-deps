@@ -536,7 +536,7 @@
                 <version>${maven-javadoc-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>aggregate</id>
+                        <id>aggregate-jar</id>
                         <inherited>false</inherited>
                         <goals>
                             <goal>jar</goal>
@@ -551,7 +551,7 @@
                             <doclint>none</doclint>
                             <!--Excludes that match each of the subproject excludes -->
                             <sourceFileExcludes>
-								                                <exclude>**/Jvm.java</exclude>
+								<exclude>**/Jvm.java</exclude>
                                 <exclude>**/OS.java</exclude>                                
                                 <exclude>**/ByteBufferAccessor.java</exclude>
                                 <exclude>**/Jdk8ByteBufferCleanerService.java</exclude>
