@@ -212,7 +212,7 @@
                         <id>attach-sources</id>
                         <phase>verify</phase>
                         <goals>
-                            <goal>jar-no-fork</goal>
+                            <goal>jar</goal>
                         </goals>
                         <configuration>
                             <includes>
@@ -539,7 +539,7 @@
                         <id>aggregate</id>
                         <inherited>false</inherited>
                         <goals>
-                            <goal>jar-no-fork</goal>
+                            <goal>jar</goal>
                         </goals>
                         <phase>package</phase>
                         <configuration>
@@ -589,7 +589,7 @@
                             
                             <compilerVersion>8</compilerVersion>
                             <verbose>false</verbose>
-        					<fork>true</fork>
+        					<fork>false</fork>
         					<sourceCompatibility>8</sourceCompatibility>
         					<targetCompatibility>8</targetCompatibility>
                             
