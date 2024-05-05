@@ -537,10 +537,10 @@
                 <version>3.0.1</version>
                 <executions>
                     <execution>
-                        <id>aggregate</id>
+                        <id>javadoc-aggregate-jar</id>
                         <inherited>false</inherited>
                         <goals>
-                            <goal>javadoc</goal>
+                            <goal>aggregate-jar</goal>
                         </goals>
                         <phase>package</phase>
                         <configuration>
