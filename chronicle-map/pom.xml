@@ -550,7 +550,7 @@
 							<compilerArgument>-XDignore.symbol.file</compilerArgument>
 		
                             <sourcepath>${project.build.directory}/sources</sourcepath>
-                            <doclint>none</doclint>
+                            <!--<doclint>none</doclint>-->
                             <!--Excludes that match each of the subproject excludes -->
                             <sourceFileExcludes>
 								<exclude>**/Jvm.java</exclude>
