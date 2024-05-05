@@ -540,7 +540,7 @@
                         <id>aggregate</id>
                         <inherited>false</inherited>
                         <goals>
-                            <goal>javadoc-no-fork</goal>
+                            <goal>javadoc</goal>
                         </goals>
                         <phase>package</phase>
                         <configuration>
