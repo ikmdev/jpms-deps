@@ -212,7 +212,7 @@
                         <id>attach-sources</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>test-jar-no-fork</goal>
+                            <goal>jar-no-fork</goal>
                         </goals>
                         <configuration>
                             <includes>
