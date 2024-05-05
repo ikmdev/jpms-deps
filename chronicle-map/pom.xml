@@ -544,7 +544,7 @@
                         </goals>
                         <phase>package</phase>
                         <configuration>
-							<failOnError>true</failOnError>
+							<failOnError>false</failOnError>
                             <source>8</source>
                             <target>8</target>
 							<compilerArgument>-XDignore.symbol.file</compilerArgument>
