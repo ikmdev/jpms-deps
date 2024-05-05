@@ -204,7 +204,7 @@
                 </executions>
             </plugin>
 
-<!--            <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <executions>
@@ -221,7 +221,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
 
             <plugin>
                 <groupId>org.moditect</groupId>
@@ -530,7 +530,7 @@
                 </executions>
             </plugin>
 
-            <plugin>
+<!--            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
@@ -550,7 +550,7 @@
 		
                             <sourcepath>${project.build.directory}/sources</sourcepath>
                             <doclint>none</doclint>
-                            <!--Excludes that match each of the subproject excludes -->
+                            Excludes that match each of the subproject excludes 
                             <sourceFileExcludes>
 								<exclude>**/Jvm.java</exclude>
                                 <exclude>**/OS.java</exclude>                                
@@ -603,17 +603,17 @@
                                 <arg>--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED</arg>
                             </compilerArgs>
 
-<!--                            <additionalJOptions>-->
-<!--                                <additionalJOption>&#45;&#45;add-exports sun.nio.ch</additionalJOption>-->
-<!--                            </additionalJOptions>-->
-<!--                            <additionalOptions>-->
-<!--                                <additionalOption>-d</additionalOption>-->
-<!--                                <additionalOption>&#45;&#45;add-exports sun.nio.ch</additionalOption>-->
-<!--                            </additionalOptions>-->
+                            <additionalJOptions>
+                                <additionalJOption>&#45;&#45;add-exports sun.nio.ch</additionalJOption>
+                            </additionalJOptions>
+                            <additionalOptions>
+                                <additionalOption>-d</additionalOption>
+                                <additionalOption>&#45;&#45;add-exports sun.nio.ch</additionalOption>
+                            </additionalOptions>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-        </plugins>
+-->        </plugins>
     </build>
 </project>
