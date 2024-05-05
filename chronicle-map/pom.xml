@@ -209,7 +209,7 @@
                 <artifactId>maven-source-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>attach-sources</id>
+                        <id>attach-sources-files</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
