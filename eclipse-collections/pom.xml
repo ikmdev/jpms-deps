@@ -31,6 +31,19 @@
         </dependency>
     </dependencies>
 
+    <licenses>
+        <license>
+            <name>Eclipse Public License - v 1.0</name>
+            <url>https://www.eclipse.org/legal/epl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Eclipse Distribution License - v 1.0</name>
+            <url>https://www.eclipse.org/licenses/edl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <build>
         <resources>
             <resource>

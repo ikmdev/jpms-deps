@@ -23,31 +23,22 @@
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
 	</properties>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>httpclient</artifactId>
-				<version>1.0.0</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>httpcore</artifactId>
-				<version>1.0.0</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>httpmime</artifactId>
-				<version>1.0.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.json</groupId>
-				<artifactId>json</artifactId>
-				<version>20240205</version>
-			</dependency>
-			<!-- Thanks for using https://jar-download.com -->
-		</dependencies>
-	</dependencyManagement>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://github.com/BugSplat-Git/bugsplat-java/blob/master/LICENSE</url>
+		</license>
+	</licenses>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.bugsplat</groupId>
+			<artifactId>bugsplat-java</artifactId>
+			<version>${core.artifact.version}</version>
+		</dependency>
+	</dependencies>
+
 
 	<!-- Has no dependencies in this artifact -->
 

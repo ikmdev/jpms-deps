@@ -15,6 +15,7 @@
     <artifactId>snorocket</artifactId>
     <version>${snorocket.version}-${snorocket.release}</version>
     <name>Snorocket</name>
+
     <properties>
         <snorocket.version>4.0.1</snorocket.version>
         <snorocket.release>r1</snorocket.release>
@@ -22,6 +23,22 @@
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
     </properties>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <dependencies>
+        <dependency>
+            <groupId>au.csiro</groupId>
+            <artifactId>snorocket-core</artifactId>
+            <version>${snorocket.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <resources>
@@ -141,7 +158,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-
                 <executions>
                     <execution>
                         <id>rename-sources</id>

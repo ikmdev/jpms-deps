@@ -22,7 +22,21 @@
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
     </properties>
 
-    <!-- Has no dependencies in this artifact -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.roaringbitmap</groupId>
+            <artifactId>RoaringBitmap</artifactId>
+            <version>${roaringbitmap.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <resources>

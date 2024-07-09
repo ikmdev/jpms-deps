@@ -23,7 +23,20 @@
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
 	</properties>
 
-	<!-- Has no dependencies in this artifact -->
+	<licenses>
+		<license>
+			<name>Apache Software License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<dependencies>
+		<dependency>
+			<groupId>ca.uhn.hapi.fhir</groupId>
+			<artifactId>org.hl7.fhir.r4</artifactId>
+			<version>${hapi-fhir.version}</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<resources>
