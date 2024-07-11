@@ -32,6 +32,7 @@ jobs:
 
           - name: Print Current Directory
             run: pwd
+            working-directory: ${{env.MODULE_DIR}}
 
           - name: Maven Build
             if: github.ref == 'refs/heads/main'
@@ -41,6 +42,7 @@ jobs:
                     --batch-mode \
                     -e \
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
+            working-directory: ${{env.MODULE_DIR}}       
 
           - name: Maven Build -- Feature Branch
             if: github.ref != 'refs/heads/main'
