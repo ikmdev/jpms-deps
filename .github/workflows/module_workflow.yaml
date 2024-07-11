@@ -1,0 +1,151 @@
+name: Build & Publish Module Workflow
+
+run-name: 'Build & Publish Module -- ${{github.event.inputs.module}}'
+
+on:
+    workflow_dispatch:
+        inputs:
+            module:
+                type: choice
+                description: Module
+                options:
+                    - --SELECT--
+                    - activej-bytebuf
+                    - activej-common
+                    - auto-service
+                    - bugsplat
+                    - chronicle-map
+                    - commons-io
+                    - commons-lang3
+                    - commons-text
+                    - directory-watcher
+                    - eclipse-collections
+                    - eclipse-collections-api
+                    - guava
+                    - hapi-fhir-base
+                    - hapi-fhir-r4
+                    - hapi-fhir-structures-r4
+                    - hapi-fhir-utilities
+                    - httpclient
+                    - httpcore
+                    - httpmime
+                    - javax-inject
+                    - jgit
+                    - jheaps
+                    - jsr305
+                    - mutiny
+                    - mvstore
+                    - ontology-model
+                    - protobuf-java
+                    - reactive-streams
+                    - record-builder-core
+                    - roaringbitmap
+                    - smallrye-common-annotation
+                    - snorocket
+                required: true
+
+env:
+    WORK_DIR: ${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
+    GITHUB_MODULE_DIR: /home/runner/work/$WORK_DIR
+    SELF_HOSTED_MODULE_DIR: /home/ec2-user/work/${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
+    MAVEN_SETTING: '/home/ec2-user/maven/.m2/settings.xml'
+
+  
+
+jobs:
+  initialize:
+    name: Initialize
+    
+    runs-on: ubuntu-latest
+    outputs:
+        POM_VERSION: ${{steps.getPOMVersion.outputs.POM_VERSION}}
+        IS_SNAPSHOT: ${{contains(steps.getPOMVersion.outputs.POM_VERSION, '-SNAPSHOT')}}
+    steps:
+          - name: Fail if --SELECT-- chosen
+            if: github.event.inputs.module == '--SELECT--'
+            run: |
+              echo "Please pick a valid module"
+              exit 1
+          - run: echo Directory - ${{env.GITHUB_MODULE_DIR}}
+
+          - name: Checkout Code Repository
+            uses: actions/checkout@v4
+
+          - name: Setup Java
+            uses: actions/setup-java@v4
+            with:
+              distribution: 'adopt'
+              java-version: '21'
+
+          - name: Get Current Version
+            id: getPOMVersion
+            run: echo "POM_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_OUTPUT
+            working-directory: ${{env.GITHUB_MODULE_DIR}}
+
+          - name: Print Version
+            run: echo "Current Version - ${{steps.getPOMVersion.outputs.POM_VERSION}}"
+
+      
+
+  build-and-publish-artifacts:
+     name: Build & Publish Artifacts
+     runs-on: ubuntu-latest
+     needs: initialize
+     env:
+        REPOSITORY_ID: maven-releases
+     steps: 
+          - name: Setup Maven Action
+            uses: s4u/setup-maven-action@v1.14.0
+            with:
+               checkout-fetch-depth: 0
+               java-version: 21
+               java-distribution: adopt
+               maven-version: 3.9.0   
+
+          - name: Maven Build
+            if: github.ref == 'refs/heads/main'
+            run: |
+              mvn clean install \
+                    -s ${{env.MAVEN_SETTING}} \
+                    -Dmaven.build.cache.enabled=false \
+                    --batch-mode \
+                    -e \
+                    -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
+            working-directory: ${{env.SELF_HOSTED_MODULE_DIR}}   
+            
+          - name: Publish to Nexus Repository Manager
+            run: |
+                mvn deploy \
+                    --batch-mode \
+                    -e \
+                    -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
+                    -Dmaven.build.cache.enabled=false \
+                    -DskipTests \
+                    -DskipITs \
+                    -Dmaven.main.skip \
+                    -Dmaven.test.skip \
+                    -s ${{env.MAVEN_SETTING}} \
+                    -DrepositoryId=${{env.REPOSITORY_ID}} \
+                    -Dmaven.source.skip=true  \
+                    -Dmaven.javadoc.skip=true \
+                    -Dgpg.passphrase=${{secrets.SELF_HOSTED_GPG_PASSPHRASE}}
+            working-directory: ${{env.SELF_HOSTED_MODULE_DIR}} 
+
+          - name: Publish to OSSRH Maven Central
+            if:  needs.initialize.outputs.IS_SNAPSHOT == false
+            run: |
+                mvn deploy \
+                    --batch-mode \
+                    -e \
+                    -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
+                    -DskipTests \
+                    -DskipITs \
+                    -Dmaven.main.skip \
+                    -Dmaven.test.skip \
+                    -s ${{env.MAVEN_SETTING}} \
+                    -DrepositoryId=${{env.REPOSITORY_ID}} \
+                    -DrepositoryIdOSSRH='true' \
+                    -Dmaven.source.skip=true  \
+                    -Dmaven.javadoc.skip=true \
+                    -Dgpg.passphrase=${{secrets.SELF_HOSTED_GPG_PASSPHRASE}}
+            working-directory: ${{env.SELF_HOSTED_MODULE_DIR}} 
