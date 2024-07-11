@@ -45,7 +45,8 @@ on:
                 required: true
 
 env:
-    GITHUB_MODULE_DIR: /home/runner/work/jpms-deps-poc/jpms-deps-poc/${{github.event.inputs.module}}
+    WORK_DIR: ${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
+    GITHUB_MODULE_DIR: /home/runner/work/$WORK_DIR
     SELF_HOSTED_MODULE_DIR: /home/ec2-user/work/${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
     MAVEN_SETTING: '/home/ec2-user/maven/.m2/settings.xml'
 
@@ -65,7 +66,7 @@ jobs:
             run: |
               echo "Please pick a valid module"
               exit 1
-              
+
           - name: Checkout Code Repository
             uses: actions/checkout@v4
 
@@ -83,10 +84,7 @@ jobs:
           - name: Print Version
             run: echo "Current Version - ${{steps.getPOMVersion.outputs.POM_VERSION}}"
 
-        #   - name: If SNAPSHOT get output 
-        #     id: isSnapshot
-        #     if: contains(steps.getPOMVersion.outputs.POM_VERSION, '-SNAPSHOT')
-        #     run: echo "IS_SNAPSHOT=true" >> $GITHUB_OUTPUT
+      
 
   build-and-publish-artifacts:
      name: Build & Publish Artifacts
