@@ -1,0 +1,51 @@
+name: Forked Build Workflow
+
+run-name: 'Forked Build Workflow -- ${{github.ref_name}}'
+
+on:
+    workflow_dispatch:
+        inputs:
+            module:
+                type: string
+                description: Module
+                required: true
+  
+
+jobs:
+  build-job:
+    name: Build Job
+    runs-on: ubuntu-latest
+    if: github.repository_owner != 'ikmdev' || github.event.repository.fork == 'true'
+    steps:
+          - name: Checkout Code Repository
+            uses: actions/checkout@v4
+          - name: Setup Java
+            uses: actions/setup-java@v4
+            with:
+              distribution: 'adopt'
+              java-version: '21'
+
+          - name: Change Directory
+            run: cd ${{github.event.inputs.module}}
+
+          - name: Print Current Directory
+            run: pwd
+
+          - name: Maven Build
+            if: github.ref == 'refs/heads/main'
+            run: |
+              mvn clean install \
+                    -Dmaven.build.cache.enabled=false \
+                    --batch-mode \
+                    -e \
+                    -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
+
+          - name: Maven Build -- Feature Branch
+            if: github.ref != 'refs/heads/main'
+            run: |
+              java --version
+              mvn clean install \
+                    -Dmaven.build.cache.enabled=false \
+                    --batch-mode \
+                    -e \
+                    -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
