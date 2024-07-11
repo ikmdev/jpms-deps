@@ -9,6 +9,7 @@ on:
                 type: choice
                 description: Module
                 options:
+                    - --SELECT--
                     - activej-bytebuf
                     - activej-common
                     - auto-service
@@ -53,11 +54,18 @@ env:
 jobs:
   initialize:
     name: Initialize
+    
     runs-on: ubuntu-latest
     outputs:
         POM_VERSION: ${{steps.getPOMVersion.outputs.POM_VERSION}}
         IS_SNAPSHOT: ${{contains(steps.getPOMVersion.outputs.POM_VERSION, '-SNAPSHOT')}}
     steps:
+          - name: Fail if --SELECT-- chosen
+            if: github.event.inputs.module == '--SELECT--'
+            run: |
+              echo "Please pick a valid module"
+              exit 1
+              
           - name: Checkout Code Repository
             uses: actions/checkout@v4
 
@@ -91,7 +99,7 @@ jobs:
             run: |
               echo ${{needs.initialize.outputs.IS_SNAPSHOT}}
               exit 1
-              
+
           - name: Setup Maven Action
             uses: s4u/setup-maven-action@v1.14.0
             with:

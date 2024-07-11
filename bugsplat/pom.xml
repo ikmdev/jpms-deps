@@ -14,7 +14,7 @@
 	<groupId>dev.ikm.jpms</groupId>
 	<artifactId>bugsplat-java</artifactId>
 	<packaging>jar</packaging>
-	<version>${core.artifact.version}-${core.artifact.release}</version>
+	<version>${core.artifact.version}-${core.artifact.release}-SNAPSHOT</version>
 
 	<properties>
 		<core.artifact.version>0.0.0</core.artifact.version>
