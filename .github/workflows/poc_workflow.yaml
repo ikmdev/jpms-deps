@@ -1,6 +1,6 @@
 name: POC Workflow
 
-run-name: 'POC -- ${{github.ref_name}}'
+run-name: 'POC -- ${{github.event.inputs.module}}'
 
 on:
     workflow_dispatch:
