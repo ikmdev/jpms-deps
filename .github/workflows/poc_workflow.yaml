@@ -1,6 +1,6 @@
-name: Forked Build Workflow
+name: POC Workflow
 
-run-name: 'Forked Build Workflow -- ${{github.ref_name}}'
+run-name: 'POC -- ${{github.ref_name}}'
 
 on:
     workflow_dispatch:
@@ -9,13 +9,15 @@ on:
                 type: string
                 description: Module
                 required: true
+
+env:
+    MODULE_DIR: /home/runner/work/jpms-deps-poc/jpms-deps-poc/${{github.event.inputs.module}}
   
 
 jobs:
   build-job:
     name: Build Job
     runs-on: ubuntu-latest
-    if: github.repository_owner != 'ikmdev' || github.event.repository.fork == 'true'
     steps:
           - name: Checkout Code Repository
             uses: actions/checkout@v4
@@ -26,7 +28,7 @@ jobs:
               java-version: '21'
 
           - name: Change Directory
-            run: cd ${{github.event.inputs.module}}
+            run: cd ${{env.MODULE_DIR}}
 
           - name: Print Current Directory
             run: pwd
