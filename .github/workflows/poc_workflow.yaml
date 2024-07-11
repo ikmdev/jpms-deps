@@ -1,6 +1,6 @@
-name: POC Workflow
+name: Build & Publish Module Workflow
 
-run-name: 'POC -- ${{github.event.inputs.module}}'
+run-name: 'Build & Publish Module -- ${{github.event.inputs.module}}'
 
 on:
     workflow_dispatch:
@@ -66,6 +66,7 @@ jobs:
             run: |
               echo "Please pick a valid module"
               exit 1
+          - run: echo Directory - ${{env.GITHUB_MODULE_DIR}}
 
           - name: Checkout Code Repository
             uses: actions/checkout@v4
@@ -93,11 +94,6 @@ jobs:
      env:
         REPOSITORY_ID: maven-releases
      steps: 
-          - name: Print Value
-            run: |
-              echo ${{needs.initialize.outputs.IS_SNAPSHOT}}
-              exit 1
-
           - name: Setup Maven Action
             uses: s4u/setup-maven-action@v1.14.0
             with:
