@@ -6,8 +6,18 @@ on:
     workflow_dispatch:
         inputs:
             module:
-                type: string
+                type: choice
                 description: Module
+                options:
+                    - activej-bytebuf
+                    - activej-common
+                    - auto-service
+                    - bugsplat
+                    - chronicle-map
+                    - commons-io
+                    - commons-lang3
+                    - commons-text
+                    - directory-watcher
                 required: true
 
 env:
