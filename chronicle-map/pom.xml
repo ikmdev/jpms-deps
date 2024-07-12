@@ -44,6 +44,13 @@
         <zero.cost.assertions>disabled</zero.cost.assertions>
     </properties>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
     <dependencies>
         <dependency>
             <groupId>net.openhft</groupId>
@@ -103,14 +110,6 @@
             <groupId>com.intellij</groupId>
             <artifactId>annotations</artifactId>
             <version>${intellij-annotations.version}</version>
-        </dependency>
-
-        <!-- provided dependencies to accomplish javadocs -->
-        <dependency>
-            <groupId>net.openhft</groupId>
-            <artifactId>stage-compiler</artifactId>
-            <version>${chronicle-stage-compiler.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

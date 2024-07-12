@@ -25,17 +25,19 @@
         <io.smallrye.reactive.version>2.1.0</io.smallrye.reactive.version>
     </properties>
 
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>reactive-streams</artifactId>
-            <version>${org.reactivestreams.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>smallrye-common-annotation</artifactId>
-            <version>${smallrye-common-annotation.version}</version>
+            <groupId>io.smallrye.reactive</groupId>
+            <artifactId>mutiny</artifactId>
+            <version>${io.smallrye.reactive.version}</version>
         </dependency>
     </dependencies>
 
@@ -62,7 +64,6 @@
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>${maven.antrun.plugin}</version>
                 </plugin>
-
             </plugins>
         </pluginManagement>
         

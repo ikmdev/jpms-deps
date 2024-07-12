@@ -15,6 +15,14 @@
     <name>Activej Common</name>
     <version>${activej.version}-${activej.release}</version>
 
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <properties>
         <activej.version>4.3</activej.version>
         <!-- change release here-->
@@ -24,7 +32,13 @@
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
     </properties>
 
-    <!-- Has no dependencies in this artifact -->
+    <dependencies>
+        <dependency>
+            <groupId>io.activej</groupId>
+            <artifactId>activej-common</artifactId>
+            <version>${activej.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <resources>
@@ -35,6 +49,7 @@
                 </includes>
             </resource>
         </resources>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -48,7 +63,6 @@
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>${maven.antrun.plugin}</version>
                 </plugin>
-
             </plugins>
         </pluginManagement>
         <plugins>
