@@ -45,8 +45,7 @@ on:
                 required: true
 
 env:
-    WORK_DIR: ${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
-    GITHUB_MODULE_DIR: /home/runner/work/$WORK_DIR
+    GITHUB_MODULE_DIR: /home/runner/work/${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
     SELF_HOSTED_MODULE_DIR: /home/ec2-user/work/${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
     MAVEN_SETTING: '/home/ec2-user/maven/.m2/settings.xml'
 
@@ -66,7 +65,6 @@ jobs:
             run: |
               echo "Please pick a valid module"
               exit 1
-          - run: echo Directory - ${{env.GITHUB_MODULE_DIR}}
 
           - name: Checkout Code Repository
             uses: actions/checkout@v4
@@ -89,7 +87,7 @@ jobs:
 
   build-and-publish-artifacts:
      name: Build & Publish Artifacts
-     runs-on: ubuntu-latest
+     runs-on: self-hosted
      needs: initialize
      env:
         REPOSITORY_ID: maven-releases
@@ -103,7 +101,6 @@ jobs:
                maven-version: 3.9.0   
 
           - name: Maven Build
-            if: github.ref == 'refs/heads/main'
             run: |
               mvn clean install \
                     -s ${{env.MAVEN_SETTING}} \
