@@ -46,7 +46,7 @@ on:
 
 env:
     GITHUB_MODULE_DIR: /home/runner/work/${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
-    SELF_HOSTED_MODULE_DIR: /home/ec2-user/work/${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
+    SELF_HOSTED_MODULE_DIR: /home/ec2-user/actions-runner/_work/${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
     MAVEN_SETTING: '/home/ec2-user/maven/.m2/settings.xml'
 
   
