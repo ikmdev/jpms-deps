@@ -13,7 +13,7 @@
     <artifactId>activej-bytebuf</artifactId>
     <packaging>jar</packaging>
     <name>Activej Bytebuf</name>
-    <version>${activej.version}-${activej.release}</version>
+    <version>${activej.version}-${activej.release}-SNAPSHOT</version>
 
     <properties>
         <activej.version>4.3</activej.version>
