@@ -16,7 +16,7 @@
 	<version>${commons-io.artifact.version}-${commons-io.artifact.release}</version>
 
 	<properties>
-		<commons-io.artifact.release>r1</commons-io.artifact.release>
+		<commons-io.artifact.release>r2</commons-io.artifact.release>
 		<commons-io.artifact.version>2.16.1</commons-io.artifact.version>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
