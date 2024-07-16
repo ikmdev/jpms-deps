@@ -19,7 +19,7 @@
     <properties>
         <directory-watcher.version>0.18.0</directory-watcher.version>
         <!-- change release here-->
-        <directory-watcher.release>r4</directory-watcher.release>
+        <directory-watcher.release>r5</directory-watcher.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
         <maven.compiler.source>21</maven.compiler.source>

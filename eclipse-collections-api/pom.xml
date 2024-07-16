@@ -17,7 +17,7 @@
 
     <properties>
         <eclipse-collections-api.version>11.1.0</eclipse-collections-api.version>
-        <eclipse-collections-api.release>r8</eclipse-collections-api.release>
+        <eclipse-collections-api.release>r9</eclipse-collections-api.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
