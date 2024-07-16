@@ -18,7 +18,7 @@
 
 	<properties>
 		<core.artifact.version>1</core.artifact.version>
-		<core.artifact.release>r2</core.artifact.release>
+		<core.artifact.release>r3</core.artifact.release>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.Final</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>

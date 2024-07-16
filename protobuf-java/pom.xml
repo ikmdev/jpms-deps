@@ -19,7 +19,7 @@
 
     <properties>
         <protobuf.java.version>3.22.0</protobuf.java.version>
-        <protobuf.java.release>r4</protobuf.java.release>
+        <protobuf.java.release>r5</protobuf.java.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>

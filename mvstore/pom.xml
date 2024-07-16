@@ -19,7 +19,7 @@
     <properties>
         <h2-mvstore.version>2.2.220</h2-mvstore.version>
         <!-- change release here-->
-        <h2-mvstore.release>r2</h2-mvstore.release>
+        <h2-mvstore.release>r3</h2-mvstore.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>

@@ -16,7 +16,7 @@
     <version>${snorocket.version}-${snorocket.release}</version>
 
     <properties>
-        <snorocket.release>r4</snorocket.release>
+        <snorocket.release>r5</snorocket.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>

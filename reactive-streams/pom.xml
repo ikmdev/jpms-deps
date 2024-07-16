@@ -17,7 +17,7 @@
 
     <properties>
         <reactivestreams.version>1.0.3</reactivestreams.version>
-        <reactivestreams.release>r4</reactivestreams.release>
+        <reactivestreams.release>r5</reactivestreams.release>
         <org.reactivestreams.version>1.0.3</org.reactivestreams.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
