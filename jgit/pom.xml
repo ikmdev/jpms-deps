@@ -15,8 +15,8 @@
     <version>${jgit.version}-${jgit.release}</version>
 
     <properties>
-        <jgit.version>6.7.0.202309050840-r</jgit.version>
-        <jgit.release>r2</jgit.release>
+        <jgit.version>6.7.0.202309050840</jgit.version>
+        <jgit.release>r3</jgit.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.Final</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>

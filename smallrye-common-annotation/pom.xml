@@ -16,7 +16,7 @@
     <version>${smallrye-common-annotation.version}-${smallrye-common-annotation.release}</version>
 
     <properties>
-		<smallrye-common-annotation.release>r3</smallrye-common-annotation.release>
+		<smallrye-common-annotation.release>r4</smallrye-common-annotation.release>
         <smallrye-common-annotation.version>1.8.0</smallrye-common-annotation.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>

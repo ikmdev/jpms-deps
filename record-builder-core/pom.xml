@@ -17,7 +17,7 @@
 
     <properties>
         <record-builder-core.version>36</record-builder-core.version>
-        <record-builder-core.release>r4</record-builder-core.release>
+        <record-builder-core.release>r5</record-builder-core.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
