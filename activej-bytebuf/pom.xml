@@ -27,7 +27,7 @@
         <activej.version>4.3</activej.version>
         <!-- change release here-->
         <activej.release>r6</activej.release>
-        <activej.common.version>4.3-r5</activej.common.version>
+        <activej.common.version>4.3-r6</activej.common.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
