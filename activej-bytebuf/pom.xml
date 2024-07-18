@@ -112,12 +112,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/activej-bytebuf-${activej.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/${project.artifactId}-${activej.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/activej-bytebuf-${activej.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/${project.artifactId}-${activej.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -173,8 +173,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/activej-bytebuf-${activej.version}-sources.jar"
-                                      tofile="${project.build.directory}/activej-bytebuf-${activej.version}-${activej.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${activej.version}-sources.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${activej.version}-${activej.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -187,8 +187,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/activej-bytebuf-${activej.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/activej-bytebuf-${activej.version}-${activej.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${activej.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${activej.version}-${activej.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -197,7 +197,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/activej-bytebuf-${activej.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/${project.artifactId}-${activej.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>
