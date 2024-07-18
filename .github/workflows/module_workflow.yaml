@@ -143,6 +143,6 @@ jobs:
                     -DrepositoryId=${{env.REPOSITORY_ID}} \
                     -DrepositoryIdOSSRH='true' \
                     -Dmaven.source.skip=true  \
-                    -Darguments="-Dmaven.javadoc.skip=true" \
+                    -Dmaven.javadoc.skip=true \
                     -PstageOSSRH -Dgpg.passphrase=${{secrets.SELF_HOSTED_GPG_PASSPHRASE}}
             working-directory: ${{env.SELF_HOSTED_MODULE_DIR}} 
