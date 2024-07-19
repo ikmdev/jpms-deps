@@ -131,7 +131,7 @@ jobs:
           - name: Publish to OSSRH Maven Central
             if:  needs.initialize.outputs.IS_SNAPSHOT == 'false'
             run: |
-                mvn clean deploy \
+                mvn deploy \
                     --batch-mode \
                     -e \
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
@@ -143,6 +143,6 @@ jobs:
                     -DrepositoryId=${{env.REPOSITORY_ID}} \
                     -DrepositoryIdOSSRH='true' \
                     -Dmaven.source.skip=true  \
-                    -Dmaven.javadoc.skip='true' \
+                    -Dmaven.javadoc.skip=true \
                     -PstageOSSRH -Dgpg.passphrase=${{secrets.SELF_HOSTED_GPG_PASSPHRASE}}
             working-directory: ${{env.SELF_HOSTED_MODULE_DIR}} 
