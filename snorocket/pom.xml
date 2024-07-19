@@ -102,7 +102,7 @@
                 <executions>
                     <execution>
                         <id>attach-artifacts</id>
-                        <phase>prepare-package</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>attach-artifact</goal>
                         </goals>
