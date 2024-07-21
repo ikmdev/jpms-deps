@@ -129,7 +129,7 @@ jobs:
             working-directory: ${{env.SELF_HOSTED_MODULE_DIR}} 
 
           - name: Publish to OSSRH Maven Central
-            if:  needs.initialize.outputs.IS_SNAPSHOT == 'false'
+            if:  needs.initialize.outputs.IS_SNAPSHOT == 'false' && github.event.inputs.module != 'chronicle-map'
             run: |
                 mvn deploy \
                     --batch-mode \
