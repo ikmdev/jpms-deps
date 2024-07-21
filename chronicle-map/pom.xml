@@ -541,7 +541,7 @@
                         <goals>
                             <goal>aggregate-jar</goal>
                         </goals>
-                        <phase>prepare-package</phase>
+                        <phase>package</phase>
                         <configuration>
 							<failOnError>false</failOnError>
                             <source>8</source>
