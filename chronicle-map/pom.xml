@@ -235,7 +235,7 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/target/chronicle-map-${chronicle-map.version}-sources.jar</file>
+                                    <file>${project.build.directory}/target/chronicle-map-${core.artifact.version}-${core.artifact.release}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
