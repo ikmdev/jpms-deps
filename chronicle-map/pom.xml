@@ -6,7 +6,7 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>java-parent</artifactId>
-        <version>1.47.0</version>
+        <version>1.44.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -18,7 +18,7 @@
 
     <properties>
         <core.artifact.version>1.0.15</core.artifact.version>
-        <core.artifact.release>r4</core.artifact.release>
+        <core.artifact.release>r3</core.artifact.release>
 
         <chronicle-map.version>3.20.84</chronicle-map.version>
         <chronicle-values.version>2.20.80</chronicle-values.version>
@@ -229,7 +229,7 @@
                 <executions>
                     <execution>
                         <id>add-module-infos</id>
-                        <phase>package</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>add-module-info</goal>
                         </goals>
