@@ -111,15 +111,6 @@
             <artifactId>annotations</artifactId>
             <version>${intellij-annotations.version}</version>
         </dependency>
-
-        <!-- provided dependencies to accomplish javadocs -->
-        <dependency>
-            <groupId>net.openhft</groupId>
-            <artifactId>stage-compiler</artifactId>
-            <version>${chronicle-stage-compiler.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -227,6 +218,28 @@
                             <includes>
                                 <include>${project.build.directory}/sources/**</include>
                             </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/sources</file>
+                                    <type>jar</type>
+                                    <classifier>sources</classifier>
+                                </artifact>
+                            </artifacts>
                         </configuration>
                     </execution>
                 </executions>
