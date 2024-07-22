@@ -210,7 +210,7 @@
                 <executions>
                     <execution>
                         <id>attach-sources-files</id>
-                        <phase>generate-sources</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
@@ -542,7 +542,7 @@
                         <goals>
                             <goal>aggregate-jar</goal>
                         </goals>
-                        <phase>prepare-package</phase>
+                        <phase>package</phase>
                         <configuration>
 							<failOnError>false</failOnError>
                             <source>8</source>
