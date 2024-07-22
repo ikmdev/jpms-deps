@@ -93,6 +93,7 @@ jobs:
         REPOSITORY_ID: maven-releases
      steps: 
           - name: Setup Maven Action
+            if: github.event.inputs.module != 'chronicle-map'
             uses: s4u/setup-maven-action@v1.14.0
             with:
                checkout-fetch-depth: 0
@@ -100,14 +101,14 @@ jobs:
                java-distribution: adopt
                maven-version: 3.9.0 
           
-          # - name: Setup Maven Action -- (Chronicle Map)
-          #   if: github.event.inputs.module == 'chronicle-map'
-          #   uses: s4u/setup-maven-action@v1.14.0
-          #   with:
-          #       checkout-fetch-depth: 0
-          #       java-version: 8
-          #       java-distribution: adopt
-          #       maven-version: 3.9.0 
+          - name: Setup Maven Action -- (Chronicle Map)
+            if: github.event.inputs.module == 'chronicle-map'
+            uses: s4u/setup-maven-action@v1.14.0
+            with:
+                checkout-fetch-depth: 0
+                java-version: 8
+                java-distribution: adopt
+                maven-version: 3.9.0 
 
           - name: Maven Build
             run: |
