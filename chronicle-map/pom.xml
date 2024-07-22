@@ -210,7 +210,7 @@
                 <executions>
                     <execution>
                         <id>attach-sources-files</id>
-                        <phase>package</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
