@@ -111,6 +111,15 @@
             <artifactId>annotations</artifactId>
             <version>${intellij-annotations.version}</version>
         </dependency>
+
+        <!-- provided dependencies to accomplish javadocs -->
+        <dependency>
+            <groupId>net.openhft</groupId>
+            <artifactId>stage-compiler</artifactId>
+            <version>${chronicle-stage-compiler.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -210,7 +219,7 @@
                 <executions>
                     <execution>
                         <id>attach-sources-files</id>
-                        <phase>package</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
