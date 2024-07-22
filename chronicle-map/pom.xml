@@ -496,7 +496,7 @@
                 <executions>
                     <execution>
                         <id>unzip-sources-javadoc</id>
-                        <phase>prepare-package</phase>
+                        <phase>package</phase>
                         <configuration>
                             <target>
                                 <echo message="unzipping source files" />
@@ -513,7 +513,7 @@
                     </execution>
 
                     <execution>
-                        <phase>prepare-package</phase>
+                        <phase>package</phase>
                         <configuration>
                             <target>
                                 <echo message="unzipping class files" />
