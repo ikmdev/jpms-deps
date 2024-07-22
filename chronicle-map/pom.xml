@@ -229,7 +229,7 @@
                 <executions>
                     <execution>
                         <id>add-module-infos</id>
-                        <phase>prepare-package</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>add-module-info</goal>
                         </goals>
@@ -542,7 +542,7 @@
                         <goals>
                             <goal>aggregate-jar</goal>
                         </goals>
-                        <phase>prepare-package</phase>
+                        <phase>package</phase>
                         <configuration>
 							<failOnError>false</failOnError>
                             <source>8</source>
