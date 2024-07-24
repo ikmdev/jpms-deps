@@ -15,8 +15,8 @@
     <version>${jgit.version}-${jgit.release}</version>
 
     <properties>
-        <jgit.version>6.7.0.202309050840-r</jgit.version>
-        <jgit.release>r3</jgit.release>
+        <jgit.version>6.10.0.202406032230-r</jgit.version>
+        <jgit.release>r4</jgit.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.Final</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -230,6 +230,9 @@
                                             exports org.eclipse.jgit.util.io;
                                             exports org.eclipse.jgit.util.sha1;
                                             exports org.eclipse.jgit.util.time;
+
+                                            requires org.slf4j;
+
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -277,6 +280,21 @@
                                 <echo message="unzipping file"/>
                                 <unzip src="${project.build.directory}/moditect/org.eclipse.jgit-${jgit.version}.jar"
                                        dest="${project.build.directory}/classes/"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <id>remove-signature</id>
+                        <configuration>
+                            <target>
+                                <echo message="Deleting .RSA and .SF files"/>
+                                <delete>
+                                    <fileset dir="${project.build.outputDirectory}/META-INF" includes="ECLIPSE_*" />
+                                </delete>
                             </target>
                         </configuration>
                         <goals>
