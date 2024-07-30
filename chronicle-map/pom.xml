@@ -128,6 +128,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>sources</id>
@@ -136,7 +137,6 @@
                         </goals>
                         <phase>prepare-package</phase>
                         <configuration>
-							<echo message=">>> maven-dependency-plugin"/>
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>net.openhft</groupId>
@@ -268,6 +268,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.0</version>
                 <executions>
                     <execution>
                         <id>attach-artifacts</id>
@@ -276,7 +277,6 @@
                             <goal>attach-artifact</goal>
                         </goals>
                         <configuration>
-							<echo message=">>> build-helper-maven-plugin"/>
                             <artifacts>
                                 <artifact>
                                     <file>
@@ -301,6 +301,7 @@
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
+                <version>1.1.0</version>
                 <executions>
                     <execution>
                         <id>add-module-infos</id>
@@ -309,7 +310,6 @@
                             <goal>add-module-info</goal>
                         </goals>
                         <configuration>
-							<echo message=">>> moditect-maven-plugin"/>
                             <outputDirectory>${project.build.directory}/moditect</outputDirectory>
                             <overwriteExistingFiles>true</overwriteExistingFiles>
                             <modules>
@@ -569,6 +569,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>rename-sources</id>
@@ -578,7 +579,6 @@
                         </goals>
                         <configuration>
                             <target>
-                                <echo message=">>> renaming sources file" />
                                 <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar"
                                       tofile="${project.build.directory}/chronicle-map-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
@@ -598,45 +598,6 @@
                                       tofile="${project.build.directory}/chronicle-map-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
-                    </execution>
-
-                    <execution>
-                        <phase>prepare-package</phase>
-                        <configuration>
-							<echo message=">>> prepare-package"/>
-                            <target>
-                                <echo message=">>> unzipping file" />
-                                <unzip src="${project.build.directory}/moditect/chronicle-map-3.20.84.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/chronicle-values-2.20.80.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/chronicle-core-2.20.122.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/annotations-12.0.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/chronicle-bytes-2.20.80.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/chronicle-threads-2.20.104.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/javapoet-1.12.1.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/slf4j-api-1.7.30.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/chronicle-wire-2.20.111.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/compiler-2.4.0.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/chronicle-algorithms-2.20.80.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/jna-5.5.0.jar"
-                                       dest="${project.build.directory}/classes/" />
-                                <unzip src="${project.build.directory}/moditect/jna-platform-5.5.0.jar"
-                                       dest="${project.build.directory}/classes/" />
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
