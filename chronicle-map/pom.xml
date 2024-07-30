@@ -223,13 +223,13 @@
                 </executions>
             </plugin>
             
-            <plugin>
+<!--            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>attach-artifacts</id>
-                        <phase>prepare-package</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>attach-artifact</goal>
                         </goals>
@@ -244,8 +244,8 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-
+            </plugin>-->
+		
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
