@@ -139,7 +139,7 @@ jobs:
           - name: Publish to OSSRH Maven Central
             if:  needs.initialize.outputs.IS_SNAPSHOT == 'false' && github.event.inputs.module != 'chronicle-map'
             run: |
-                mvn deploy -X \
+                mvn deploy \
                     --batch-mode \
                     -e \
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
@@ -156,7 +156,7 @@ jobs:
           - name: Publish to OSSRH Maven Central (Chronicle Map)
             if:  needs.initialize.outputs.IS_SNAPSHOT == 'false' && github.event.inputs.module == 'chronicle-map'
             run: |
-                mvn deploy -X \
+                mvn deploy \
                     --batch-mode \
                     -e \
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
