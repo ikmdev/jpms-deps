@@ -18,7 +18,7 @@
 
     <properties>
         <core.artifact.version>1.0.15</core.artifact.version>
-        <core.artifact.release>r4</core.artifact.release>
+        <core.artifact.release>r3</core.artifact.release>
 
         <chronicle-map.version>3.20.84</chronicle-map.version>
         <chronicle-values.version>2.20.80</chronicle-values.version>
@@ -28,10 +28,6 @@
         <chronicle-wire.version>2.20.111</chronicle-wire.version>
         <chronicle-compiler.version>2.4.0</chronicle-compiler.version>
         <chronicle-algorithms.version>2.20.80</chronicle-algorithms.version>
-        <chronicle-stage-compiler.version>1.11</chronicle-stage-compiler.version>
-        <intellij-annotations.version>12.0</intellij-annotations.version>
-        <jetbrains-annotations.version>19.0.0</jetbrains-annotations.version>
-        <java-jna.version>5.5.0</java-jna.version>
 
         <chronicle-map.release>r1</chronicle-map.release>
         <chronicle-values.release>r1</chronicle-values.release>
@@ -41,15 +37,11 @@
         <chronicle-wire.release>r1</chronicle-wire.release>
         <chronicle-compiler.release>r1</chronicle-compiler.release>
         <chronicle-algorithms.release>r1</chronicle-algorithms.release>
-        <zero.cost.assertions>disabled</zero.cost.assertions>
-    </properties>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-        </license>
-    </licenses>
+        <chronicle-stage-compiler.version>1.11</chronicle-stage-compiler.version>
+        <intellij-annotations.version>12.0</intellij-annotations.version>
+        <jetbrains-annotations.version>19.0.0</jetbrains-annotations.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -111,6 +103,14 @@
             <artifactId>annotations</artifactId>
             <version>${intellij-annotations.version}</version>
         </dependency>
+
+        <!-- provided dependencies to accomplish javadocs -->
+        <dependency>
+            <groupId>net.openhft</groupId>
+            <artifactId>stage-compiler</artifactId>
+            <version>${chronicle-stage-compiler.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -122,7 +122,9 @@
                 </includes>
             </resource>
         </resources>
+
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -134,9 +136,8 @@
                         </goals>
                         <phase>prepare-package</phase>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/sourcejars</outputDirectory>
+							<echo message=">>> maven-dependency-plugin"/>
                             <artifactItems>
-                                <!-- sources-->
                                 <artifactItem>
                                     <groupId>net.openhft</groupId>
                                     <artifactId>chronicle-map</artifactId>
@@ -197,56 +198,106 @@
                                     <version>${intellij-annotations.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
+
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-map</artifactId>
+                                    <version>${chronicle-map.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-values</artifactId>
+                                    <version>${chronicle-values.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-core</artifactId>
+                                    <version>${chronicle-core.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-bytes</artifactId>
+                                    <version>${chronicle-bytes.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-threads</artifactId>
+                                    <version>${chronicle-threads.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-wire</artifactId>
+                                    <version>${chronicle-wire.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>compiler</artifactId>
+                                    <version>${chronicle-compiler.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>net.openhft</groupId>
+                                    <artifactId>chronicle-algorithms</artifactId>
+                                    <version>${chronicle-algorithms.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jetbrains</groupId>
+                                    <artifactId>annotations</artifactId>
+                                    <version>${jetbrains-annotations.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.intellij</groupId>
+                                    <artifactId>annotations</artifactId>
+                                    <version>${intellij-annotations.version}</version>
+                                    <classifier>javadoc</classifier>
+                                </artifactItem>                                
                             </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
-<!--		
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-		<version>3.2.1</version>    
-                <executions>
-                    <execution>
-                        <id>attach-sources-files</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>${project.build.directory}/sources/**</include>
-                            </includes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>attach-artifacts</id>
-                        <phase>package</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>attach-artifact</goal>
                         </goals>
                         <configuration>
+							<echo message=">>> build-helper-maven-plugin"/>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/chronicle-map-${core.artifact.version}-${core.artifact.release}-sources.jar</file>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar
+                                    </file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
+<!--                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar
+                                    </file>
+                                    <type>jar</type>
+                                    <classifier>javadoc</classifier>
+                                </artifact>-->
                             </artifacts>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
-		
+            </plugin>
+
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
@@ -258,7 +309,8 @@
                             <goal>add-module-info</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/classjars</outputDirectory>
+							<echo message=">>> moditect-maven-plugin"/>
+                            <outputDirectory>${project.build.directory}/moditect</outputDirectory>
                             <overwriteExistingFiles>true</overwriteExistingFiles>
                             <modules>
                                 <module>
@@ -513,39 +565,73 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.1.0</version>
                 <executions>
                     <execution>
-                        <id>unzip-sources-javadoc</id>
-                        <phase>prepare-package</phase>
-                        <configuration>
-                            <target>
-                                <echo message="unzipping source files" />
-                                <unzip dest="${project.build.directory}/sources/">
-                                    <fileset dir="${project.build.directory}/sourcejars/">
-                                        <include name="*.jar" />
-                                    </fileset>
-                                </unzip>
-                            </target>
-                        </configuration>
+                        <id>rename-sources</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
+                        <configuration>
+                            <target>
+                                <echo message=">>> renaming sources file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-sources.jar"
+                                      tofile="${project.build.directory}/chronicle-map-${core.artifact.version}-${core.artifact.release}-sources.jar" />
+                            </target>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>rename-javadoc</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message=">>> renaming javadoc file" />
+                                <copy file="${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/chronicle-map-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
+                            </target>
+                        </configuration>
                     </execution>
 
                     <execution>
                         <phase>prepare-package</phase>
                         <configuration>
+							<echo message=">>> prepare-package"/>
                             <target>
-                                <echo message="unzipping class files" />
-                                <unzip dest="${project.build.directory}/classes/">
-                                    <fileset dir="${project.build.directory}/classjars/">
-                                        <include name="*.jar" />
-                                    </fileset>
-                                </unzip>
+                                <echo message=">>> unzipping file" />
+                                <unzip src="${project.build.directory}/moditect/chronicle-map-3.20.84.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/chronicle-values-2.20.80.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/chronicle-core-2.20.122.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/annotations-12.0.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/chronicle-bytes-2.20.80.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/chronicle-threads-2.20.104.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/javapoet-1.12.1.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/slf4j-api-1.7.30.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/chronicle-wire-2.20.111.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/compiler-2.4.0.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/chronicle-algorithms-2.20.80.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/jna-5.5.0.jar"
+                                       dest="${project.build.directory}/classes/" />
+                                <unzip src="${project.build.directory}/moditect/jna-platform-5.5.0.jar"
+                                       dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>
                         <goals>
@@ -568,13 +654,14 @@
                         </goals>
                         <phase>package</phase>
                         <configuration>
+							<echo message=">>> javadoc-aggregate-jar"/>
 							<failOnError>false</failOnError>
                             <source>8</source>
                             <target>8</target>
 							<compilerArgument>-XDignore.symbol.file</compilerArgument>
 		
                             <sourcepath>${project.build.directory}/sources</sourcepath>
-                            <!--<doclint>none</doclint>-->
+                            
                             <excludePackageNames>
                                 net.openhft.chronicle.hash.serialization.impl:net.openhft.chronicle.hash.impl:net.openhft.chronicle.map.impl:**.replication
                             </excludePackageNames>
@@ -592,5 +679,7 @@
                 </executions>
             </plugin>
         </plugins>
+
     </build>
+
 </project>
