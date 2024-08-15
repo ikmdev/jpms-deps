@@ -16,7 +16,7 @@
     <version>${roaringbitmap.version}-${roaringbitmap.release}</version>
     <properties>
         <roaringbitmap.version>0.9.31</roaringbitmap.version>
-        <roaringbitmap.release>r5</roaringbitmap.release>
+        <roaringbitmap.release>r6</roaringbitmap.release>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -35,6 +35,7 @@
             <groupId>org.roaringbitmap</groupId>
             <artifactId>RoaringBitmap</artifactId>
             <version>${roaringbitmap.version}</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
