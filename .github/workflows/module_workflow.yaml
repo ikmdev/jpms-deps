@@ -52,9 +52,8 @@ env:
   
 
 jobs:
-  initialize:
-    name: Initialize
-    if: github.event.repository.owner == 'ikmdev'
+  build-publish:
+    name: Build & Publish
     runs-on: ubuntu-20.04
     env:
         JAVA_VERSION: '21'
