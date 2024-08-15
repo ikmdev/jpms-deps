@@ -72,7 +72,7 @@ jobs:
           - name: Setup Java
             uses: actions/setup-java@v4
             with:
-              distribution: 'adopt'
+              distribution: 'zulu'
               java-version: '21'
 
           - name: Get Current Version
@@ -91,24 +91,18 @@ jobs:
      needs: initialize
      env:
         REPOSITORY_ID: maven-releases
+        JAVA_VERSION: '21'
      steps: 
-          - name: Setup Maven Action
-            if: github.event.inputs.module != 'chronicle-map'
-            uses: s4u/setup-maven-action@v1.14.0
-            with:
-               checkout-fetch-depth: 0
-               java-version: 21
-               java-distribution: adopt
-               maven-version: 3.9.0 
-          
-          - name: Setup Maven Action -- (Chronicle Map)
+
+          - name: Change Java Version (Chronicle Map)
             if: github.event.inputs.module == 'chronicle-map'
-            uses: s4u/setup-maven-action@v1.14.0
+            run: echo "JAVA_VERSION=8" >> $GITHUB_ENV
+
+          - name: Setup Java
+            uses: actions/setup-java@v4
             with:
-                checkout-fetch-depth: 0
-                java-version: 8
-                java-distribution: adopt
-                maven-version: 3.9.0 
+              distribution: 'zulu'
+              java-version: ${{env.JAVA_VERSION}}
 
           - name: Maven Build
             run: |
