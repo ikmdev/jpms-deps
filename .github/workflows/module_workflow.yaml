@@ -54,11 +54,10 @@ env:
 jobs:
   initialize:
     name: Initialize
-    
-    runs-on: ubuntu-latest
-    outputs:
-        POM_VERSION: ${{steps.getPOMVersion.outputs.POM_VERSION}}
-        IS_SNAPSHOT: ${{contains(steps.getPOMVersion.outputs.POM_VERSION, '-SNAPSHOT')}}
+    if: github.event.repository.owner == 'ikmdev'
+    runs-on: ubuntu-20.04
+    env:
+        JAVA_VERSION: '21'
     steps:
           - name: Fail if --SELECT-- chosen
             if: github.event.inputs.module == '--SELECT--'
@@ -69,11 +68,20 @@ jobs:
           - name: Checkout Code Repository
             uses: actions/checkout@v4
 
+          - name: Change Java Version Env If Chronicle-Map
+            if: github.event.inputs.module == 'chronicle-map'
+            run: echo "JAVA_VERSION=8" >> $GITHUB_ENV
+
           - name: Setup Java
             uses: actions/setup-java@v4
             with:
               distribution: 'zulu'
-              java-version: '21'
+              java-version: ${{env.JAVA_VERSION}}
+              server-id: ossrh
+              server-username: MAVEN_USERNAME
+              server-password: MAVEN_CENTRAL_TOKEN
+              gpg-private-key: ${{secrets.GPG_KEY}}
+              gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
           - name: Get Current Version
             id: getPOMVersion
@@ -83,55 +91,16 @@ jobs:
           - name: Print Version
             run: echo "Current Version - ${{steps.getPOMVersion.outputs.POM_VERSION}}"
 
-      
-
-  build-and-publish-artifacts:
-     name: Build & Publish Artifacts
-     runs-on: self-hosted
-     needs: initialize
-     env:
-        REPOSITORY_ID: maven-releases
-        JAVA_VERSION: '21'
-     steps: 
-
-          - name: Change Java Version (Chronicle Map)
-            if: github.event.inputs.module == 'chronicle-map'
-            run: echo "JAVA_VERSION=8" >> $GITHUB_ENV
-
-          - name: Setup Java
-            uses: actions/setup-java@v4
-            with:
-              distribution: 'zulu'
-              java-version: ${{env.JAVA_VERSION}}
-
           - name: Maven Build
             run: |
               mvn clean install \
-                    -s ${{env.MAVEN_SETTING}} \
                     -Dmaven.build.cache.enabled=false \
                     --batch-mode \
                     -e \
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
-            working-directory: ${{env.SELF_HOSTED_MODULE_DIR}}   
-            
-          - name: Publish to Nexus Repository Manager
-            run: |
-                mvn deploy \
-                    --batch-mode \
-                    -e \
-                    -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
-                    -Dmaven.build.cache.enabled=false \
-                    -DskipTests \
-                    -DskipITs \
-                    -s ${{env.MAVEN_SETTING}} \
-                    -DrepositoryId=${{env.REPOSITORY_ID}} \
-                    -Dmaven.source.skip=true  \
-                    -Dmaven.javadoc.skip=true \
-                    -Dgpg.passphrase=${{secrets.SELF_HOSTED_GPG_PASSPHRASE}}
-            working-directory: ${{env.SELF_HOSTED_MODULE_DIR}} 
 
           - name: Publish to OSSRH Maven Central
-            if:  needs.initialize.outputs.IS_SNAPSHOT == 'false' && github.event.inputs.module != 'chronicle-map'
+            if:   github.event.inputs.module != 'chronicle-map'
             run: |
                 mvn deploy \
                     --batch-mode \
@@ -139,16 +108,19 @@ jobs:
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
                     -DskipTests \
                     -DskipITs \
-                    -s ${{env.MAVEN_SETTING}} \
-                    -DrepositoryId=${{env.REPOSITORY_ID}} \
+                    -DrepositoryId='maven-releases' \
                     -DrepositoryIdOSSRH='true' \
                     -Dmaven.source.skip=true  \
                     -Dmaven.javadoc.skip=true \
-                    -PstageOSSRH -Dgpg.passphrase=${{secrets.SELF_HOSTED_GPG_PASSPHRASE}}
-            working-directory: ${{env.SELF_HOSTED_MODULE_DIR}}
+                    -PstageOSSRH
+            working-directory: ${{env.GITHUB_MODULE_DIR}}
+            env:
+              MAVEN_USERNAME: ${{secrets.OSSRH_TOKEN_USER}}
+              MAVEN_CENTRAL_TOKEN: ${{secrets.OSSRH_TOKEN_PASS}}
+              MAVEN_GPG_PASSPHRASE: ${{secrets.GPG_PASSPHRASE}}
 
           - name: Publish to OSSRH Maven Central (Chronicle Map)
-            if:  needs.initialize.outputs.IS_SNAPSHOT == 'false' && github.event.inputs.module == 'chronicle-map'
+            if:   github.event.inputs.module == 'chronicle-map'
             run: |
                 mvn deploy \
                     --batch-mode \
@@ -156,10 +128,14 @@ jobs:
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
                     -DskipTests \
                     -DskipITs \
-                    -s ${{env.MAVEN_SETTING}} \
-                    -DrepositoryId=${{env.REPOSITORY_ID}} \
+                    -DrepositoryId='maven-releases' \
                     -DrepositoryIdOSSRH='true' \
-                    -PstageOSSRH -Dgpg.passphrase=${{secrets.SELF_HOSTED_GPG_PASSPHRASE}}
-            working-directory: ${{env.SELF_HOSTED_MODULE_DIR}}
+                    -PstageOSSRH
+            working-directory: ${{env.GITHUB_MODULE_DIR}}
+            env:
+              MAVEN_USERNAME: ${{secrets.OSSRH_TOKEN_USER}}
+              MAVEN_CENTRAL_TOKEN: ${{secrets.OSSRH_TOKEN_PASS}}
+              MAVEN_GPG_PASSPHRASE: ${{secrets.GPG_PASSPHRASE}}
+        
 
 
