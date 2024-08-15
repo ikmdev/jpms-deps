@@ -97,6 +97,7 @@ jobs:
                     --batch-mode \
                     -e \
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
+            working-directory: ${{env.GITHUB_MODULE_DIR}}
 
           - name: Publish to OSSRH Maven Central
             if:   github.event.inputs.module != 'chronicle-map'
