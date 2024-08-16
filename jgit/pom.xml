@@ -17,7 +17,7 @@
     <properties>
         <!-- change release here-->
         <core.artifact.version>6.10.0.202406032230-r</core.artifact.version>
-        <core.artifact.release>r4</core.artifact.release>
+        <core.artifact.release>r5</core.artifact.release>
 
         <!-- transitive dependency versions -->
         <JavaEWAH.version>1.2.3</JavaEWAH.version>
