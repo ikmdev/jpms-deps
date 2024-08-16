@@ -24,8 +24,10 @@ exec_mvn_build commons-lang3
 exec_mvn_build commons-text
 
 exec_mvn_build directory-watcher
-exec_mvn_build eclipse-collections
+
+# Required for Eclipse collections
 exec_mvn_build eclipse-collections-api
+exec_mvn_build eclipse-collections
 
 # Required for Guava and Hapi projects
 exec_mvn_build jsr305

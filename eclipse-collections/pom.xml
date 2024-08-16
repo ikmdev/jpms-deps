@@ -23,7 +23,10 @@
         <!-- change release here-->
         <core.artifact.version>11.1.0</core.artifact.version>
         <core.artifact.release>r10</core.artifact.release>
-        
+
+        <!-- transitive dependency versions -->
+        <eclipse-collections-api.version>11.1.0-r10</eclipse-collections-api.version>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -34,7 +37,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>eclipse-collections-api</artifactId>
-            <version>${project.version}</version>
+            <version>${eclipse-collections-api.version}</version>
         </dependency>
     </dependencies>
 
