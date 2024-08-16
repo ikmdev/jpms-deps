@@ -82,14 +82,6 @@ jobs:
               gpg-private-key: ${{secrets.GPG_KEY}}
               gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
-          - name: Get Current Version
-            id: getPOMVersion
-            run: echo "POM_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_OUTPUT
-            working-directory: ${{env.GITHUB_MODULE_DIR}}
-
-          - name: Print Version
-            run: echo "Current Version - ${{steps.getPOMVersion.outputs.POM_VERSION}}"
-
           - name: Maven Build
             run: |
               mvn clean install \
