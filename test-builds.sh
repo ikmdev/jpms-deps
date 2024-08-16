@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+## Script useful in testing order of releases
+
 function exec_mvn_build() {
   cd $1
   mvn clean install
