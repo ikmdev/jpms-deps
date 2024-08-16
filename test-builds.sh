@@ -16,8 +16,6 @@ exec_mvn_build activej-common
 exec_mvn_build activej-bytebuf
 exec_mvn_build auto-service
 exec_mvn_build bugsplat
-
-# TODO
 exec_mvn_build chronicle-map
 
 # Commons Required for hapi projects
