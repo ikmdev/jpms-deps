@@ -22,7 +22,7 @@
         <!-- transitive dependency versions -->
         <JavaEWAH.version>1.2.3</JavaEWAH.version>
         <slf4j-api.version>1.7.36</slf4j-api.version>
-        <commons-codec.version>1.17.0</commons-code.version>
+        <commons-codec.version>1.17.0</commons-codec.version>
 
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.Final</maven.moditect.plugin>
