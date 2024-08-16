@@ -8,16 +8,27 @@
 		<groupId>dev.ikm.build</groupId>
 		<artifactId>java-parent</artifactId>
 		<version>1.47.0</version>
+		<relativePath></relativePath>
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
 	<artifactId>org.hl7.fhir.r4</artifactId>
 	<packaging>jar</packaging>
-	<version>${hapi-fhir.version}-${hapi-fhir.release}</version>
+	<version>${core.artifact.version}-${core.artifact.release}</version>
+	<description>
+		Builds the hapi fhir r4.  Requires hapi-fhir-base and hapi-fhir-utilities be built first and be
+		excluded from any other poms requiring it.
+	</description>
 
 	<properties>
-		<hapi-fhir.version>6.3.3</hapi-fhir.version>
-		<hapi-fhir.release>r7</hapi-fhir.release>
+		<!-- change release here-->
+		<core.artifact.version>6.3.3</core.artifact.version>
+		<core.artifact.release>r8</core.artifact.release>
+
+		<!-- transitive dependency versions -->
+		<hapi-fhir-base.version>7.0.2-r8</hapi-fhir-base.version>
+		<hapi-fhir-utilities.version>6.3.3-r7</hapi-fhir-utilities.version>
+
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -30,13 +41,21 @@
 		</license>
 	</licenses>
 
+	<!-- transitive dependencies of the repackaged artifact -->
 	<dependencies>
 		<dependency>
-			<groupId>ca.uhn.hapi.fhir</groupId>
-			<artifactId>org.hl7.fhir.r4</artifactId>
-			<version>${hapi-fhir.version}</version>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>org.hl7.fhir.utilities</artifactId>
+			<version>${hapi-fhir-utilities.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>hapi-fhir-base</artifactId>
+			<version>${hapi-fhir-base.version}</version>
 		</dependency>
 	</dependencies>
+
 
 	<build>
 		<resources>
@@ -77,13 +96,13 @@
 								<artifactItem>
 									<groupId>ca.uhn.hapi.fhir</groupId>
 									<artifactId>org.hl7.fhir.r4</artifactId>
-									<version>${hapi-fhir.version}</version>
+									<version>${core.artifact.version}</version>
 									<classifier>sources</classifier>
 								</artifactItem>
 								<artifactItem>
 									<groupId>ca.uhn.hapi.fhir</groupId>
 									<artifactId>org.hl7.fhir.r4</artifactId>
-									<version>${hapi-fhir.version}</version>
+									<version>${core.artifact.version}</version>
 									<classifier>javadoc</classifier>
 								</artifactItem>
 							</artifactItems>
@@ -105,12 +124,12 @@
 						<configuration>
 							<artifacts>
 								<artifact>
-									<file>${project.build.directory}/dependency/${project.artifactId}-${hapi-fhir.version}-sources.jar</file>
+									<file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar</file>
 									<type>jar</type>
 									<classifier>sources</classifier>
 								</artifact>
 								<artifact>
-									<file>${project.build.directory}/dependency/${project.artifactId}-${hapi-fhir.version}-javadoc.jar</file>
+									<file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar</file>
 									<type>jar</type>
 									<classifier>javadoc</classifier>
 								</artifact>
@@ -137,7 +156,7 @@
 									<artifact>
 										<groupId>ca.uhn.hapi.fhir</groupId>
 										<artifactId>org.hl7.fhir.r4</artifactId>
-										<version>${hapi-fhir.version}</version>
+										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
 										module dev.ikm.jpms.org.hl7.fhir.r4 {
@@ -167,8 +186,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming sources file" />
-								<copy file="${project.build.directory}/dependency/${project.artifactId}-${hapi-fhir.version}-sources.jar"
-									  tofile="${project.build.directory}/${project.artifactId}-${hapi-fhir.version}-${hapi-fhir.release}-sources.jar" />
+								<copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar"
+									  tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-sources.jar" />
 							</target>
 						</configuration>
 					</execution>
@@ -181,8 +200,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming javadoc file" />
-								<copy file="${project.build.directory}/dependency/${project.artifactId}-${hapi-fhir.version}-javadoc.jar"
-									  tofile="${project.build.directory}/${project.artifactId}-${hapi-fhir.version}-${hapi-fhir.release}-javadoc.jar" />
+								<copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar"
+									  tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
 							</target>
 						</configuration>
 					</execution>
@@ -192,7 +211,7 @@
 							<target>
 								<echo message="unzipping files" />
 								<unzip
-									src="${project.build.directory}/moditect/${project.artifactId}-${hapi-fhir.version}.jar"
+									src="${project.build.directory}/moditect/${project.artifactId}-${core.artifact.version}.jar"
 									dest="${project.build.directory}/classes/">
 									<patternset>
 										<exclude name="**/MANIFEST.MF" />

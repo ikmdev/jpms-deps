@@ -13,11 +13,13 @@
     <artifactId>eclipse-collections-api</artifactId>
     <packaging>jar</packaging>
     <name>Eclipse collections API</name>
-    <version>${eclipse-collections-api.version}-${eclipse-collections-api.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
 
     <properties>
-        <eclipse-collections-api.version>11.1.0</eclipse-collections-api.version>
-        <eclipse-collections-api.release>r9</eclipse-collections-api.release>
+        <!-- change release here-->
+        <core.artifact.version>11.1.0</core.artifact.version>
+        <core.artifact.release>r10</core.artifact.release>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -37,11 +39,7 @@
     </licenses>
 
     <dependencies>
-        <dependency>
-            <groupId>org.eclipse.collections</groupId>
-            <artifactId>eclipse-collections-api</artifactId>
-            <version>${eclipse-collections-api.version}</version>
-        </dependency>
+        <!-- Has no transitive dependencies in this artifact -->
     </dependencies>
 
     <build>
@@ -68,9 +66,9 @@
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>${maven.antrun.plugin}</version>
                 </plugin>
-
             </plugins>
         </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -87,13 +85,13 @@
                                 <artifactItem>
                                     <groupId>org.eclipse.collections</groupId>
                                     <artifactId>eclipse-collections-api</artifactId>
-                                    <version>${eclipse-collections-api.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.eclipse.collections</groupId>
                                     <artifactId>eclipse-collections-api</artifactId>
-                                    <version>${eclipse-collections-api.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -114,12 +112,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/eclipse-collections-api-${eclipse-collections-api.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/eclipse-collections-api-${core.artifact.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/eclipse-collections-api-${eclipse-collections-api.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/eclipse-collections-api-${core.artifact.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -146,7 +144,7 @@
                                     <artifact>
                                         <groupId>org.eclipse.collections</groupId>
                                         <artifactId>eclipse-collections-api</artifactId>
-                                        <version>${eclipse-collections-api.version}</version>
+                                        <version>${core.artifact.version}</version>
                                      </artifact>
                                     <moduleInfoSource>
                                         open module org.eclipse.collections.api {
@@ -292,8 +290,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/eclipse-collections-api-${eclipse-collections-api.version}-sources.jar"
-                                      tofile="${project.build.directory}/eclipse-collections-api-${eclipse-collections-api.version}-${eclipse-collections-api.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/eclipse-collections-api-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/eclipse-collections-api-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -306,8 +304,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/eclipse-collections-api-${eclipse-collections-api.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/eclipse-collections-api-${eclipse-collections-api.version}-${eclipse-collections-api.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/eclipse-collections-api-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/eclipse-collections-api-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -316,7 +314,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/eclipse-collections-api-${eclipse-collections-api.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/eclipse-collections-api-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" >
                                     <patternset>
                                         <exclude name="**/ECLIPSE_.RSA"/>

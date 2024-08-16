@@ -13,16 +13,25 @@
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>mutiny</artifactId>
     <name>Mutiny</name>
-    <version>${io.smallrye.reactive.version}-${mutiny.release}</version>
-    
+    <version>${core.artifact.version}-${core.artifact.release}</version>
+    <description>
+        Builds the httpmime.  Requires the smallrye-common-annotation be built first and be excluded
+        from any other poms requiring it.
+    </description>
+
     <properties>
-		<mutiny.release>r5</mutiny.release>
+        <!-- change release here-->
+        <core.artifact.version>2.1.0</core.artifact.version>
+        <core.artifact.release>r6</core.artifact.release>
+
+        <!-- transitive dependency versions -->
+        <smallrye-common-annotation.version>1.8.0-r4</smallrye-common-annotation.version>
+        <org.reactivestreams.version>1.3.1-r2</org.reactivestreams.version>
+        <smallrye-common-annotation.version>2.0.0</smallrye-common-annotation.version>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
-        <smallrye-common-annotation.version>1.8.0-r4</smallrye-common-annotation.version>
-        <org.reactivestreams.version>1.3.1-r2</org.reactivestreams.version>
-        <io.smallrye.reactive.version>2.1.0</io.smallrye.reactive.version>
     </properties>
 
     <licenses>
@@ -33,11 +42,12 @@
         </license>
     </licenses>
 
+    <!-- transitive dependencies of the repackaged artifact -->
     <dependencies>
         <dependency>
-            <groupId>io.smallrye.reactive</groupId>
-            <artifactId>mutiny</artifactId>
-            <version>${io.smallrye.reactive.version}</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>smallrye-common-annotation</artifactId>
+            <version>${smallrye-common-annotation.version}</version>
         </dependency>
     </dependencies>
 
@@ -83,13 +93,13 @@
 								<artifactItem>
 									<groupId>io.smallrye.reactive</groupId>
 									<artifactId>mutiny</artifactId>
-									<version>${io.smallrye.reactive.version}</version>
+									<version>${core.artifact.version}</version>
 									<classifier>sources</classifier>
 								</artifactItem>
 								<artifactItem>
 									<groupId>io.smallrye.reactive</groupId>
 									<artifactId>mutiny</artifactId>
-									<version>${io.smallrye.reactive.version}</version>
+									<version>${core.artifact.version}</version>
 									<classifier>javadoc</classifier>
 								</artifactItem>
 							</artifactItems>
@@ -112,13 +122,13 @@
 							<artifacts>
 								<artifact>
 									<file>
-										${project.build.directory}/dependency/mutiny-${io.smallrye.reactive.version}-sources.jar</file>
+										${project.build.directory}/dependency/mutiny-${core.artifact.version}-sources.jar</file>
 									<type>jar</type>
 									<classifier>sources</classifier>
 								</artifact>
 								<artifact>
 									<file>
-										${project.build.directory}/dependency/mutiny-${io.smallrye.reactive.version}-javadoc.jar</file>
+										${project.build.directory}/dependency/mutiny-${core.artifact.version}-javadoc.jar</file>
 									<type>jar</type>
 									<classifier>javadoc</classifier>
 								</artifact>
@@ -146,7 +156,7 @@
                                     <artifact>
                                         <groupId>io.smallrye.reactive</groupId>
                                         <artifactId>mutiny</artifactId>
-                                        <version>${io.smallrye.reactive.version}</version>
+                                        <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
                                         module io.smallrye.reactive.mutiny {
@@ -199,8 +209,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming sources file" />
-								<copy file="${project.build.directory}/dependency/mutiny-${io.smallrye.reactive.version}-sources.jar"
-									  tofile="${project.build.directory}/mutiny-${io.smallrye.reactive.version}-${mutiny.release}-sources.jar" />
+								<copy file="${project.build.directory}/dependency/mutiny-${core.artifact.version}-sources.jar"
+									  tofile="${project.build.directory}/mutiny-${core.artifact.version}-${core.artifact.release}-sources.jar" />
 							</target>
 						</configuration>
 					</execution>
@@ -213,8 +223,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming javadoc file" />
-								<copy file="${project.build.directory}/dependency/mutiny-${io.smallrye.reactive.version}-javadoc.jar"
-									  tofile="${project.build.directory}/mutiny-${io.smallrye.reactive.version}-${mutiny.release}-javadoc.jar" />
+								<copy file="${project.build.directory}/dependency/mutiny-${core.artifact.version}-javadoc.jar"
+									  tofile="${project.build.directory}/mutiny-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
 							</target>
 						</configuration>
 					</execution>					
@@ -223,7 +233,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/mutiny-${io.smallrye.reactive.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/mutiny-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" >
                                     <patternset>
                                         <exclude name="**/ECLIPSE_.RSA"/>

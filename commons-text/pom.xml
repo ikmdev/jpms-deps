@@ -8,16 +8,26 @@
 		<groupId>dev.ikm.build</groupId>
 		<artifactId>java-parent</artifactId>
 		<version>1.47.0</version>
+		<relativePath></relativePath>
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
 	<artifactId>commons-text</artifactId>
 	<packaging>jar</packaging>
-	<version>${commons-text.artifact.version}-${commons-text.artifact.release}</version>
+	<version>${core.artifact.version}-${core.artifact.release}</version>
+	<description>
+		Builds the commons-text.  Requires common-lang be built first and be excluded from
+		any other poms requiring it.
+	</description>
 
 	<properties>
-		<commons-text.artifact.release>r2</commons-text.artifact.release>
-		<commons-text.artifact.version>1.12.0</commons-text.artifact.version>
+		<!-- change release here-->
+		<core.artifact.version>1.12.0</core.artifact.version>
+		<core.artifact.release>r3</core.artifact.release>
+
+		<!-- transitive dependency versions -->
+		<apache-commons.version>3.14.0-r3</apache-commons.version>
+
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -31,11 +41,12 @@
 		</license>
 	</licenses>
 
+	<!-- transitive dependencies of the repackaged artifact -->
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-text</artifactId>
-			<version>${commons-text.artifact.version}</version>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${apache-commons.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -78,13 +89,13 @@
 								<artifactItem>
 									<groupId>org.apache.commons</groupId>
 									<artifactId>commons-text</artifactId>
-									<version>${commons-text.artifact.version}</version>
+									<version>${core.artifact.version}</version>
 									<classifier>sources</classifier>
 								</artifactItem>
 								<artifactItem>
 									<groupId>org.apache.commons</groupId>
 									<artifactId>commons-text</artifactId>
-									<version>${commons-text.artifact.version}</version>
+									<version>${core.artifact.version}</version>
 									<classifier>javadoc</classifier>
 								</artifactItem>
 							</artifactItems>
@@ -106,12 +117,12 @@
 						<configuration>
 							<artifacts>
 								<artifact>
-									<file>${project.build.directory}/dependency/${project.artifactId}-${commons-text.artifact.version}-sources.jar</file>
+									<file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar</file>
 									<type>jar</type>
 									<classifier>sources</classifier>
 								</artifact>
 								<artifact>
-									<file>${project.build.directory}/dependency/${project.artifactId}-${commons-text.artifact.version}-javadoc.jar</file>
+									<file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar</file>
 									<type>jar</type>
 									<classifier>javadoc</classifier>
 								</artifact>
@@ -138,7 +149,7 @@
 									<artifact>
 										<groupId>org.apache.commons</groupId>
 										<artifactId>commons-text</artifactId>
-										<version>${commons-text.artifact.version}</version>
+										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
 										open module dev.ikm.jpms.org.apache.commons.text {
@@ -164,8 +175,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming sources file" />
-								<copy file="${project.build.directory}/dependency/${project.artifactId}-${commons-text.artifact.version}-sources.jar"
-									  tofile="${project.build.directory}/${project.artifactId}-${commons-text.artifact.version}-${commons-text.artifact.release}-sources.jar" />
+								<copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar"
+									  tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-sources.jar" />
 							</target>
 						</configuration>
 					</execution>
@@ -178,8 +189,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming javadoc file" />
-								<copy file="${project.build.directory}/dependency/${project.artifactId}-${commons-text.artifact.version}-javadoc.jar"
-									  tofile="${project.build.directory}/${project.artifactId}-${commons-text.artifact.version}-${commons-text.artifact.release}-javadoc.jar" />
+								<copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar"
+									  tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
 							</target>
 						</configuration>
 					</execution>
@@ -189,7 +200,7 @@
 							<target>
 								<echo message="unzipping files" />
 								<unzip
-									src="${project.build.directory}/moditect/${project.artifactId}-${commons-text.artifact.version}.jar"
+									src="${project.build.directory}/moditect/${project.artifactId}-${core.artifact.version}.jar"
 									dest="${project.build.directory}/classes/">
 									<patternset>
 										<exclude name="**/MANIFEST.MF" />

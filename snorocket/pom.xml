@@ -13,12 +13,21 @@
 
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>snorocket</artifactId>
-    <version>${snorocket.version}-${snorocket.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
     <name>Snorocket</name>
+    <description>
+        Builds the httpmime.  Requires the ontology-model be built first and be excluded
+        from any other poms requiring it.
+    </description>
 
     <properties>
-        <snorocket.version>4.0.1</snorocket.version>
-        <snorocket.release>r2</snorocket.release>
+        <!-- change release here-->
+        <core.artifact.version>4.0.1</core.artifact.version>
+        <core.artifact.release>r3</core.artifact.release>
+
+        <!-- transitive dependency versions -->
+        <ontology-core.version>4.0.1-r6</ontology-core.version>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -34,9 +43,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>au.csiro</groupId>
-            <artifactId>snorocket-core</artifactId>
-            <version>${snorocket.version}</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>ontology-model</artifactId>
+            <version>${ontology-core.version}</version>
         </dependency>
     </dependencies>
 
@@ -81,13 +90,13 @@
                                 <artifactItem>
                                     <groupId>au.csiro</groupId>
                                     <artifactId>snorocket-core</artifactId>
-                                    <version>${snorocket.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>au.csiro</groupId>
                                     <artifactId>snorocket-core</artifactId>
-                                    <version>${snorocket.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -109,12 +118,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/snorocket-core-${snorocket.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/snorocket-core-${core.artifact.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/snorocket-core-${snorocket.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/snorocket-core-${core.artifact.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -142,7 +151,7 @@
                                     <artifact>
                                         <groupId>au.csiro</groupId>
                                         <artifactId>snorocket-core</artifactId>
-                                        <version>${snorocket.version}</version>
+                                        <version>${core.artifact.version}</version>
                                     </artifact>
                                         <moduleInfoSource>
                                         open module org.hl7.tinkar.snorocket {
@@ -168,8 +177,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/snorocket-core-${snorocket.version}-sources.jar"
-                                      tofile="${project.build.directory}/snorocket-core-${snorocket.version}-${snorocket.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/snorocket-core-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/snorocket-core-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -182,8 +191,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/snorocket-core-${snorocket.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/snorocket-core-${snorocket.version}-${snorocket.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/snorocket-core-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/snorocket-core-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -192,7 +201,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/snorocket-core-${snorocket.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/snorocket-core-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>

@@ -12,14 +12,16 @@
 
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>protobuf-java</artifactId>
-    <version>${protobuf.java.version}-${protobuf.java.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
     <packaging>jar</packaging>
     <name>Tinkar Protobuf Java</name>
     <url>https://github.com/HL7/tinkar-proto</url>
 
     <properties>
-        <protobuf.java.version>3.22.0</protobuf.java.version>
-        <protobuf.java.release>r5</protobuf.java.release>
+        <!-- change release here-->
+        <core.artifact.version>3.22.0</core.artifact.version>
+        <core.artifact.release>r6</core.artifact.release>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -34,11 +36,7 @@
     </licenses>
 
     <dependencies>
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>${protobuf.java.version}</version>
-        </dependency>
+        <!-- Has no transitive dependencies in this artifact -->
     </dependencies>
 
     <build>
@@ -83,13 +81,13 @@
                                 <artifactItem>
                                     <groupId>com.google.protobuf</groupId>
                                     <artifactId>protobuf-java</artifactId>
-                                    <version>${protobuf.java.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>com.google.protobuf</groupId>
                                     <artifactId>protobuf-java</artifactId>
-                                    <version>${protobuf.java.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -111,12 +109,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/protobuf-java-${protobuf.java.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/protobuf-java-${core.artifact.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/protobuf-java-${protobuf.java.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/protobuf-java-${core.artifact.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -144,7 +142,7 @@
                                     <artifact>
                                         <groupId>com.google.protobuf</groupId>
                                         <artifactId>protobuf-java</artifactId>
-                                        <version>${protobuf.java.version}</version>
+                                        <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
                                         module com.google.protobuf {
@@ -171,8 +169,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/protobuf-java-${protobuf.java.version}-sources.jar"
-                                      tofile="${project.build.directory}/protobuf-java-${protobuf.java.version}-${protobuf.java.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/protobuf-java-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/protobuf-java-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -185,8 +183,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/protobuf-java-${protobuf.java.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/protobuf-java-${protobuf.java.version}-${protobuf.java.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/protobuf-java-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/protobuf-java-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -195,7 +193,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping file"/>
-                                <unzip src="${project.build.directory}/moditect/protobuf-java-${protobuf.java.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/protobuf-java-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/"/>
                             </target>
                         </configuration>

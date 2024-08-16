@@ -14,9 +14,12 @@
     <packaging>jar</packaging>
     <name>Roaring</name>
     <version>${roaringbitmap.version}-${roaringbitmap.release}</version>
+
     <properties>
+        <!-- change release here-->
         <roaringbitmap.version>0.9.31</roaringbitmap.version>
         <roaringbitmap.release>r7</roaringbitmap.release>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -29,6 +32,10 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <dependencies>
+        <!-- Has no transitive dependencies in this artifact -->
+    </dependencies>
 
     <build>
         <resources>
