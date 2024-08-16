@@ -25,7 +25,7 @@
 		<core.artifact.release>r3</core.artifact.release>
 
 		<!-- transitive dependency versions -->
-		<httpclient.version>4.4.16-r3</httpclient.version>
+		<httpclient.version>4.5.14-r3</httpclient.version>
 
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
