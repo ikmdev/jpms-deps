@@ -17,8 +17,10 @@
 	<version>${core.artifact.version}-${core.artifact.release}</version>
 
 	<properties>
+		<!-- change release here-->
 		<core.artifact.version>1</core.artifact.version>
-		<core.artifact.release>r3</core.artifact.release>
+		<core.artifact.release>r4</core.artifact.release>
+
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.Final</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -32,11 +34,7 @@
 	</licenses>
 
 	<dependencies>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>${core.artifact.version}</version>
-		</dependency>
+		<!-- Has no transitive dependencies in this artifact -->
 	</dependencies>
 
 	<build>

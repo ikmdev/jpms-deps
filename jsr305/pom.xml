@@ -16,8 +16,10 @@
 	<version>${core.artifact.version}-${core.artifact.release}</version>
 
 	<properties>
+		<!-- change release here-->
 		<core.artifact.version>3.0.2</core.artifact.version>
-		<core.artifact.release>r4</core.artifact.release>
+		<core.artifact.release>r5</core.artifact.release>
+
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -31,6 +33,7 @@
 		</license>
 	</licenses>
 
+	<!-- transitive dependencies of the repackaged artifact -->
 	<dependencies>
 		<dependency>
 			<groupId>com.google.code.findbugs</groupId>

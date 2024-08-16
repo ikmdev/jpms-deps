@@ -13,12 +13,13 @@
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>reactive-streams</artifactId>
     <name>Reactive Streams</name>
-    <version>${reactivestreams.version}-${reactivestreams.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
 
     <properties>
-        <reactivestreams.version>1.0.3</reactivestreams.version>
-        <reactivestreams.release>r5</reactivestreams.release>
-        <org.reactivestreams.version>1.0.3</org.reactivestreams.version>
+        <!-- change release here-->
+        <core.artifact.version>1.0.3</core.artifact.version>
+        <core.artifact.release>r6</core.artifact.release>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -33,11 +34,7 @@
     </licenses>
 
     <dependencies>
-        <dependency>
-            <groupId>org.reactivestreams</groupId>
-            <artifactId>reactive-streams</artifactId>
-            <version>${reactivestreams.version}</version>
-        </dependency>
+        <!-- Has no transitive dependencies in this artifact -->
     </dependencies>
 
     <build>
@@ -82,13 +79,13 @@
                                 <artifactItem>
                                     <groupId>org.reactivestreams</groupId>
                                     <artifactId>reactive-streams</artifactId>
-                                    <version>${reactivestreams.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.reactivestreams</groupId>
                                     <artifactId>reactive-streams</artifactId>
-                                    <version>${reactivestreams.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -110,12 +107,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/reactive-streams-${reactivestreams.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/reactive-streams-${core.artifact.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/reactive-streams-${reactivestreams.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/reactive-streams-${core.artifact.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -143,7 +140,7 @@
                                     <artifact>
                                         <groupId>org.reactivestreams</groupId>
                                         <artifactId>reactive-streams</artifactId>
-                                        <version>${reactivestreams.version}</version>
+                                        <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
                                         module org.reactivestreams {
@@ -174,8 +171,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/reactive-streams-${reactivestreams.version}-sources.jar"
-                                      tofile="${project.build.directory}/reactive-streams-${reactivestreams.version}-${reactivestreams.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/reactive-streams-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/reactive-streams-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -188,8 +185,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/reactive-streams-${reactivestreams.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/reactive-streams-${reactivestreams.version}-${reactivestreams.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/reactive-streams-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/reactive-streams-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -198,7 +195,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/reactive-streams-${reactivestreams.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/reactive-streams-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" >
                                     <patternset>
                                         <exclude name="**/ECLIPSE_.RSA"/>

@@ -13,7 +13,7 @@
     <artifactId>activej-bytebuf</artifactId>
     <packaging>jar</packaging>
     <name>Activej Bytebuf</name>
-    <version>${activej.version}-${activej.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
 
     <licenses>
         <license>
@@ -24,21 +24,24 @@
     </licenses>
 
     <properties>
-        <activej.version>4.3</activej.version>
         <!-- change release here-->
-        <activej.release>r6</activej.release>
+        <core.artifact.version>4.3</core.artifact.version>
+        <core.artifact.release>r7</core.artifact.release>
+
+        <!-- transitive dependency versions -->
         <activej.common.version>4.3-r6</activej.common.version>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
     </properties>
 
+    <!-- transitive dependencies of the repackaged artifact -->
     <dependencies>
-        <!-- Include Transitive dependencies to project -->
         <dependency>
-            <groupId>io.activej</groupId>
-            <artifactId>activej-bytebuf</artifactId>
-            <version>${activej.version}</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>activej-common</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -94,13 +97,13 @@
                                 <artifactItem>
                                     <groupId>io.activej</groupId>
                                     <artifactId>activej-bytebuf</artifactId>
-                                    <version>${activej.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>io.activej</groupId>
                                     <artifactId>activej-bytebuf</artifactId>
-                                    <version>${activej.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -122,12 +125,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/${project.artifactId}-${activej.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/${project.artifactId}-${activej.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -155,7 +158,7 @@
                                     <artifact>
                                         <groupId>io.activej</groupId>
                                         <artifactId>activej-bytebuf</artifactId>
-                                        <version>${activej.version}</version>
+                                        <version>${core.artifact.version}</version>
                                      </artifact>
                                     <moduleInfoSource>
                                         open module io.activej.bytebuf {
@@ -183,8 +186,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${activej.version}-sources.jar"
-                                      tofile="${project.build.directory}/${project.artifactId}-${activej.version}-${activej.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -197,8 +200,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${activej.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/${project.artifactId}-${activej.version}-${activej.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -207,7 +210,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/${project.artifactId}-${activej.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/${project.artifactId}-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>

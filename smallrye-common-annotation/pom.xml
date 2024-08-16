@@ -13,11 +13,13 @@
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>smallrye-common-annotation</artifactId>
     <name>SmallRye Common Annotations</name>
-    <version>${smallrye-common-annotation.version}-${smallrye-common-annotation.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
 
     <properties>
-		<smallrye-common-annotation.release>r4</smallrye-common-annotation.release>
-        <smallrye-common-annotation.version>1.8.0</smallrye-common-annotation.version>
+        <!-- change release here-->
+        <core.artifact.version>1.8.0</core.artifact.version>
+        <core.artifact.release>r5</core.artifact.release>
+        
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -32,11 +34,7 @@
     </licenses>
 
     <dependencies>
-        <dependency>
-            <groupId>io.smallrye.common</groupId>
-            <artifactId>smallrye-common-annotation</artifactId>
-            <version>${smallrye-common-annotation.version}</version>
-        </dependency>
+        <!-- Has no transitive dependencies in this artifact -->
     </dependencies>
 
     <build>
@@ -81,13 +79,13 @@
 								<artifactItem>
                                     <groupId>io.smallrye.common</groupId>
                                     <artifactId>smallrye-common-annotation</artifactId>
-                                    <version>${smallrye-common-annotation.version}</version>
+                                    <version>${core.artifact.version}</version>
 									<classifier>sources</classifier>
 								</artifactItem>
 								<artifactItem>
                                     <groupId>io.smallrye.common</groupId>
                                     <artifactId>smallrye-common-annotation</artifactId>
-                                    <version>${smallrye-common-annotation.version}</version>
+                                    <version>${core.artifact.version}</version>
 									<classifier>javadoc</classifier>
 								</artifactItem>
 							</artifactItems>
@@ -110,13 +108,13 @@
 							<artifacts>
 								<artifact>
 									<file>
-										${project.build.directory}/dependency/smallrye-common-annotation-${smallrye-common-annotation.version}-sources.jar</file>
+										${project.build.directory}/dependency/smallrye-common-annotation-${core.artifact.version}-sources.jar</file>
 									<type>jar</type>
 									<classifier>sources</classifier>
 								</artifact>
 								<artifact>
 									<file>
-										${project.build.directory}/dependency/smallrye-common-annotation-${smallrye-common-annotation.version}-javadoc.jar</file>
+										${project.build.directory}/dependency/smallrye-common-annotation-${core.artifact.version}-javadoc.jar</file>
 									<type>jar</type>
 									<classifier>javadoc</classifier>
 								</artifact>
@@ -144,7 +142,7 @@
                                     <artifact>
                                         <groupId>io.smallrye.common</groupId>
                                         <artifactId>smallrye-common-annotation</artifactId>
-                                        <version>${smallrye-common-annotation.version}</version>
+                                        <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
                                         module io.smallrye.common.annotation {
@@ -170,8 +168,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming sources file" />
-								<copy file="${project.build.directory}/dependency/smallrye-common-annotation-${smallrye-common-annotation.version}-sources.jar"
-									  tofile="${project.build.directory}/smallrye-common-annotation-${smallrye-common-annotation.version}-${smallrye-common-annotation.release}-sources.jar" />
+								<copy file="${project.build.directory}/dependency/smallrye-common-annotation-${core.artifact.version}-sources.jar"
+									  tofile="${project.build.directory}/smallrye-common-annotation-${core.artifact.version}-${core.artifact.release}-sources.jar" />
 							</target>
 						</configuration>
 					</execution>
@@ -184,8 +182,8 @@
 						<configuration>
 							<target>
 								<echo message="renaming javadoc file" />
-								<copy file="${project.build.directory}/dependency/smallrye-common-annotation-${smallrye-common-annotation.version}-javadoc.jar"
-									  tofile="${project.build.directory}/smallrye-common-annotation-${smallrye-common-annotation.version}-${smallrye-common-annotation.release}-javadoc.jar" />
+								<copy file="${project.build.directory}/dependency/smallrye-common-annotation-${core.artifact.version}-javadoc.jar"
+									  tofile="${project.build.directory}/smallrye-common-annotation-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
 							</target>
 						</configuration>
 					</execution>					
@@ -195,7 +193,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/smallrye-common-annotation-${smallrye-common-annotation.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/smallrye-common-annotation-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" >
                                     <patternset>
                                         <exclude name="**/ECLIPSE_.RSA"/>

@@ -13,14 +13,19 @@
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>ontology-model</artifactId>
     <name>Snorocket</name>
-    <version>${snorocket.version}-${snorocket.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
 
     <properties>
-        <snorocket.release>r5</snorocket.release>
+        <!-- change release here-->
+        <core.artifact.version>4.1.0</core.artifact.version>
+        <core.artifact.release>r6</core.artifact.release>
+
+        <!-- transitive dependency versions -->
+        <jersey-media-moxy.version>2.27</jersey-media-moxy.version>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
-        <snorocket.version>4.1.0</snorocket.version>
     </properties>
 
     <licenses>
@@ -31,11 +36,12 @@
         </license>
     </licenses>
 
+    <!-- transitive dependencies of the repackaged artifact -->
     <dependencies>
         <dependency>
-            <groupId>au.csiro</groupId>
-            <artifactId>ontology-model</artifactId>
-            <version>${snorocket.version}</version>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-moxy</artifactId>
+            <version>${jersey-media-moxy.version}</version>
         </dependency>
     </dependencies>
 
@@ -80,13 +86,13 @@
                                 <artifactItem>
                                     <groupId>au.csiro</groupId>
                                     <artifactId>ontology-model</artifactId>
-                                    <version>${snorocket.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>au.csiro</groupId>
                                     <artifactId>ontology-model</artifactId>
-                                    <version>${snorocket.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -108,12 +114,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/ontology-model-${snorocket.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/ontology-model-${core.artifact.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/ontology-model-${snorocket.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/ontology-model-${core.artifact.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -142,7 +148,7 @@
                                     <artifact>
                                         <groupId>au.csiro</groupId>
                                         <artifactId>ontology-model</artifactId>
-                                        <version>${snorocket.version}</version>
+                                        <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
                                         open module org.hl7.tinkar.snorocket {
@@ -171,8 +177,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/ontology-model-${snorocket.version}-sources.jar"
-                                      tofile="${project.build.directory}/ontology-model-${snorocket.version}-${snorocket.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/ontology-model-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/ontology-model-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -185,8 +191,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/ontology-model-${snorocket.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/ontology-model-${snorocket.version}-${snorocket.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/ontology-model-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/ontology-model-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -196,7 +202,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/ontology-model-${snorocket.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/ontology-model-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>

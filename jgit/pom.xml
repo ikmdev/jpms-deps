@@ -12,15 +12,21 @@
 
     <groupId>dev.ikm.jpms</groupId>
     <artifactId>jgit</artifactId>
-    <version>${jgit.version}-${jgit.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
 
     <properties>
-        <jgit.version>6.10.0.202406032230-r</jgit.version>
-        <jgit.release>r4</jgit.release>
+        <!-- change release here-->
+        <core.artifact.version>6.10.0.202406032230-r</core.artifact.version>
+        <core.artifact.release>r5</core.artifact.release>
+
+        <!-- transitive dependency versions -->
+        <JavaEWAH.version>1.2.3</JavaEWAH.version>
+        <slf4j-api.version>1.7.36</slf4j-api.version>
+        <commons-code.version>1.17.0</commons-code.version>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.Final</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <licenses>
@@ -63,11 +69,24 @@
         </license>
     </licenses>
 
+    <!-- transitive dependencies of the repackaged artifact -->
     <dependencies>
         <dependency>
-            <groupId>org.eclipse.jgit</groupId>
-            <artifactId>org.eclipse.jgit</artifactId>
-            <version>${jgit.version}</version>
+            <groupId>com.googlecode.javaewah</groupId>
+            <artifactId>JavaEWAH</artifactId>
+            <version>${JavaEWAH.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
         </dependency>
     </dependencies>
 
@@ -111,13 +130,13 @@
                                 <artifactItem>
                                     <groupId>org.eclipse.jgit</groupId>
                                     <artifactId>org.eclipse.jgit</artifactId>
-                                    <version>${jgit.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.eclipse.jgit</groupId>
                                     <artifactId>org.eclipse.jgit</artifactId>
-                                    <version>${jgit.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -139,12 +158,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/org.eclipse.jgit-${core.artifact.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/org.eclipse.jgit-${core.artifact.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -171,7 +190,7 @@
                                     <artifact>
                                         <groupId>org.eclipse.jgit</groupId>
                                         <artifactId>org.eclipse.jgit</artifactId>
-                                        <version>${jgit.version}</version>
+                                        <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
                                         module org.eclipse.jgit {
@@ -254,8 +273,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-sources.jar"
-                                      tofile="${project.build.directory}/${project.artifactId}-${jgit.version}-${jgit.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/org.eclipse.jgit-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -268,8 +287,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/org.eclipse.jgit-${jgit.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/${project.artifactId}-${jgit.version}-${jgit.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/org.eclipse.jgit-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -278,7 +297,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping file"/>
-                                <unzip src="${project.build.directory}/moditect/org.eclipse.jgit-${jgit.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/org.eclipse.jgit-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/"/>
                             </target>
                         </configuration>

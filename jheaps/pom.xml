@@ -13,10 +13,13 @@
     <artifactId>jheaps</artifactId>
     <packaging>jar</packaging>
     <name>JHeaps</name>
-    <version>${jheaps.version}-${jheaps.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
+
     <properties>
-        <jheaps.version>0.14</jheaps.version>
-        <jheaps.release>r5</jheaps.release>
+        <!-- change release here-->
+        <core.artifact.version>0.14</core.artifact.version>
+        <core.artifact.release>r6</core.artifact.release>
+        
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -30,11 +33,7 @@
     </licenses>
 
     <dependencies>
-        <dependency>
-            <groupId>org.jheaps</groupId>
-            <artifactId>jheaps</artifactId>
-            <version>${jheaps.version}</version>
-        </dependency>
+        <!-- Has no transitive dependencies in this artifact -->
     </dependencies>
 
     <build>
@@ -78,13 +77,13 @@
                                 <artifactItem>
                                     <groupId>org.jheaps</groupId>
                                     <artifactId>jheaps</artifactId>
-                                    <version>${jheaps.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jheaps</groupId>
                                     <artifactId>jheaps</artifactId>
-                                    <version>${jheaps.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -106,12 +105,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/${project.artifactId}-${jheaps.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/${project.artifactId}-${jheaps.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -138,7 +137,7 @@
                                     <artifact>
                                         <groupId>org.jheaps</groupId>
                                         <artifactId>jheaps</artifactId>
-                                        <version>${jheaps.version}</version>
+                                        <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
                                         module org.jheaps {
@@ -169,8 +168,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${jheaps.version}-sources.jar"
-                                      tofile="${project.build.directory}/${project.artifactId}-${jheaps.version}-${jheaps.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -183,8 +182,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${jheaps.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/${project.artifactId}-${jheaps.version}-${jheaps.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -193,7 +192,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping file" />
-                                <unzip src="${project.build.directory}/moditect/jheaps-${jheaps.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/jheaps-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>

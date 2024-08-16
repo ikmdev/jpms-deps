@@ -14,10 +14,19 @@
 	<artifactId>httpmime</artifactId>
 	<packaging>jar</packaging>
 	<version>${core.artifact.version}-${core.artifact.release}</version>
+	<description>
+		Builds the httpmime.  Requires the httpclient be built first and be excluded
+		from any other poms requiring it.
+	</description>
 
 	<properties>
+		<!-- change release here-->
 		<core.artifact.version>4.5.14</core.artifact.version>
-		<core.artifact.release>r2</core.artifact.release>
+		<core.artifact.release>r3</core.artifact.release>
+
+		<!-- transitive dependency versions -->
+		<httpclient.version>4.4.16-r3</httpclient.version>
+
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -30,15 +39,14 @@
 		</license>
 	</licenses>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpmime</artifactId>
-				<version>${core.artifact.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+	<!-- transitive dependencies of the repackaged artifact -->
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<resources>

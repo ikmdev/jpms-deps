@@ -14,18 +14,21 @@
     <artifactId>directory-watcher</artifactId>
     <packaging>jar</packaging>
     <name>directory watcher</name>
-    <version>${directory-watcher.version}-${directory-watcher.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
 
     <properties>
-        <directory-watcher.version>0.18.0</directory-watcher.version>
         <!-- change release here-->
-        <directory-watcher.release>r5</directory-watcher.release>
+        <core.artifact.version>0.18.0</core.artifact.version>
+        <core.artifact.release>r6</core.artifact.release>
+
+        <!-- transitive dependency versions -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jna.version>5.12.1</jna.version>
+        <slf4j.version>1.7.36</slf4j.version>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
         <maven.moditect.plugin>1.0.0.Final</maven.moditect.plugin>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <licenses>
@@ -36,11 +39,24 @@
         </license>
     </licenses>
 
+    <!-- transitive dependencies of the repackaged artifact -->
     <dependencies>
         <dependency>
-            <groupId>io.methvin</groupId>
-            <artifactId>directory-watcher</artifactId>
-            <version>${directory-watcher.version}</version>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>${jna.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ca.uhn.hapi.fhir</groupId>
+            <artifactId>hapi-fhir-structures-r4</artifactId>
+            <version>7.0.2</version>
         </dependency>
     </dependencies>
 
@@ -85,13 +101,13 @@
                                 <artifactItem>
                                     <groupId>io.methvin</groupId>
                                     <artifactId>directory-watcher</artifactId>
-                                    <version>${directory-watcher.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>sources</classifier>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>io.methvin</groupId>
                                     <artifactId>directory-watcher</artifactId>
-                                    <version>${directory-watcher.version}</version>
+                                    <version>${core.artifact.version}</version>
                                     <classifier>javadoc</classifier>
                                 </artifactItem>
                             </artifactItems>
@@ -113,12 +129,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/directory-watcher-${directory-watcher.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/directory-watcher-${core.artifact.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/directory-watcher-${directory-watcher.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/directory-watcher-${core.artifact.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -146,7 +162,7 @@
                                     <artifact>
                                         <groupId>io.methvin</groupId>
                                         <artifactId>directory-watcher</artifactId>
-                                        <version>${directory-watcher.version}</version>
+                                        <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
                                         module dev.ikm.jpms.directory.watcher {
@@ -179,8 +195,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/directory-watcher-${directory-watcher.version}-sources.jar"
-                                      tofile="${project.build.directory}/directory-watcher-${directory-watcher.version}-${directory-watcher.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/directory-watcher-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/directory-watcher-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -193,8 +209,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/directory-watcher-${directory-watcher.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/directory-watcher-${directory-watcher.version}-${directory-watcher.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/directory-watcher-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/directory-watcher-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -203,7 +219,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/directory-watcher-${directory-watcher.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/directory-watcher-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>

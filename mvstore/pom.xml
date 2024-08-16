@@ -14,12 +14,13 @@
     <artifactId>mvstore</artifactId>
     <packaging>jar</packaging>
     <name>MVStore</name>
-    <version>${h2-mvstore.version}-${h2-mvstore.release}</version>
+    <version>${core.artifact.version}-${core.artifact.release}</version>
 
     <properties>
-        <h2-mvstore.version>2.2.220</h2-mvstore.version>
         <!-- change release here-->
-        <h2-mvstore.release>r3</h2-mvstore.release>
+        <core.artifact.version>2.2.220</core.artifact.version>
+        <core.artifact.release>r4</core.artifact.release>
+
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
         <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -32,14 +33,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2-mvstore</artifactId>
-            <version>${h2-mvstore.version}</version>
-        </dependency>
-    </dependencies>
 
     <build>
         <resources>
@@ -83,13 +76,13 @@
 								<artifactItem>
 									<groupId>com.h2database</groupId>
 									<artifactId>h2-mvstore</artifactId>
-									<version>${h2-mvstore.version}</version>
+									<version>${core.artifact.version}</version>
 									<classifier>sources</classifier>
 								</artifactItem>
 								<artifactItem>
 									<groupId>com.h2database</groupId>
 									<artifactId>h2-mvstore</artifactId>
-									<version>${h2-mvstore.version}</version>
+									<version>${core.artifact.version}</version>
 									<classifier>javadoc</classifier>
 								</artifactItem>
 							</artifactItems>
@@ -112,13 +105,13 @@
 							<artifacts>
 								<artifact>
 									<file>
-										${project.build.directory}/dependency/h2-mvstore-${h2-mvstore.version}-sources.jar</file>
+										${project.build.directory}/dependency/h2-mvstore-${core.artifact.version}-sources.jar</file>
 									<type>jar</type>
 									<classifier>sources</classifier>
 								</artifact>
 								<artifact>
 									<file>
-										${project.build.directory}/dependency/h2-mvstore-${h2-mvstore.version}-javadoc.jar</file>
+										${project.build.directory}/dependency/h2-mvstore-${core.artifact.version}-javadoc.jar</file>
 									<type>jar</type>
 									<classifier>javadoc</classifier>
 								</artifact>
@@ -146,7 +139,7 @@
                                     <artifact>
                                         <groupId>com.h2database</groupId>
                                         <artifactId>h2-mvstore</artifactId>
-                                        <version>${h2-mvstore.version}</version>
+                                        <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
                                         open module org.h2.mvstore {
@@ -172,8 +165,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/h2-mvstore-${h2-mvstore.version}-sources.jar"
-                                      tofile="${project.build.directory}/h2-mvstore-${h2-mvstore.version}-${h2-mvstore.release}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/h2-mvstore-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/h2-mvstore-${core.artifact.version}-${core.artifact.release}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -186,8 +179,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/h2-mvstore-${h2-mvstore.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/h2-mvstore-${h2-mvstore.version}-${h2-mvstore.release}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/h2-mvstore-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/h2-mvstore-${core.artifact.version}-${core.artifact.release}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -196,7 +189,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping file" />
-                                <unzip src="${project.build.directory}/moditect/h2-mvstore-${h2-mvstore.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/h2-mvstore-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                                 <move file="${project.build.directory}/classes/META-INF/versions/9/org/h2/util/Bits.class"
                                       tofile="${project.build.directory}/classes/org/h2/util/Bits.class"/>
