@@ -2,6 +2,9 @@
 
 jpms-deps is an internal JPMS-compliant library which makes non-JPMS compliant modules accessible to Komet and Tinkar Core.
 
+### Team Ownership - Product Owner
+Automation Team
+
 ## Getting Started
 
 Follow the instructions below to set up the local environment for `jpms-deps`:
