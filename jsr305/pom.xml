@@ -18,7 +18,7 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>3.0.2</core.artifact.version>
-		<core.artifact.release>r5</core.artifact.release>
+		<core.artifact.release>r6</core.artifact.release>
 
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
@@ -35,11 +35,7 @@
 
 	<!-- transitive dependencies of the repackaged artifact -->
 	<dependencies>
-		<dependency>
-			<groupId>com.google.code.findbugs</groupId>
-			<artifactId>${project.artifactId}</artifactId>
-			<version>${core.artifact.version}</version>
-		</dependency>
+	<!-- None -->
 	</dependencies>
 
 	<build>
