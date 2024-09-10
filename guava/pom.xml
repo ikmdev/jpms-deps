@@ -19,15 +19,15 @@
 
 	<properties>
 		<!-- change release here-->
-		<core.artifact.version>33.1.0-jre</core.artifact.version>
-		<core.artifact.release>r3</core.artifact.release>
+		<core.artifact.version>33.3.0-jre</core.artifact.version>
+		<core.artifact.release>r1</core.artifact.release>
 
 		<!-- transitive dependency versions -->
 		<guava-failureaccess.version>1.0.2</guava-failureaccess.version>
 		<guava-lisstenablefuture.version>9999.0-empty-to-avoid-conflict-with-guava</guava-lisstenablefuture.version>
-		<jsr305.version>3.0.2-r4</jsr305.version>
-		<checkerqual.version>3.42.0</checkerqual.version>
-		<google.errorprone.version>2.26.1</google.errorprone.version>
+		<jsr305.version>3.0.2-r6</jsr305.version>
+		<checkerqual.version>3.47.0</checkerqual.version>
+		<google.errorprone.version>2.28.0</google.errorprone.version>
 		<j2objc-annotations.version>3.0.0</j2objc-annotations.version>
 
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
@@ -186,10 +186,28 @@
 									</artifact>
 									<moduleInfoSource>
 										open module com.google.common {
-										requires java.logging;
-										exports com.google.common.base;
-										exports com.google.common.collect;
-										exports com.google.common.primitives;
+											requires jdk.unsupported;
+											requires java.logging;
+											requires static com.google.common.util.concurrent.internal;
+											requires static org.checkerframework.checker.qual;
+											requires static com.google.errorprone.annotations;
+
+											exports com.google.common.annotations;
+											exports com.google.common.base;
+											exports com.google.common.cache;
+											exports com.google.common.collect;
+											exports com.google.common.escape;
+											exports com.google.common.eventbus;
+											exports com.google.common.graph;
+											exports com.google.common.hash;
+											exports com.google.common.html;
+											exports com.google.common.io;
+											exports com.google.common.math;
+											exports com.google.common.net;
+											exports com.google.common.primitives;
+											exports com.google.common.reflect;
+											exports com.google.common.util.concurrent;
+											exports com.google.common.xml;
 										}
 									</moduleInfoSource>
 								</module>
