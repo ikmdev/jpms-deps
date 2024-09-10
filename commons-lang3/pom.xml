@@ -18,8 +18,8 @@
 
 	<properties>
 		<!-- change release here-->
-		<core.artifact.release>r3</core.artifact.release>
-		<core.artifact.version>3.14.0</core.artifact.version>
+		<core.artifact.release>r4</core.artifact.release>
+		<core.artifact.version>3.17.0</core.artifact.version>
 
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
@@ -140,22 +140,25 @@
 										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										open module dev.ikm.jpms.org.apache.commons.lang3 {
-<!--											exports org.apache.commons.arch;-->
-<!--											exports org.apache.commons.builder;-->
-<!--											exports org.apache.commons.compare;-->
-<!--											exports org.apache.commons.concurrent;-->
-<!--											exports org.apache.commons.event;-->
-<!--											exports org.apache.commons.exception;-->
-<!--											exports org.apache.commons.function;-->
-<!--											exports org.apache.commons.math;-->
-<!--											exports org.apache.commons.mutable;-->
-<!--											exports org.apache.commons.reflect;-->
-<!--											exports org.apache.commons.stream;-->
-<!--											exports org.apache.commons.text;-->
-<!--											exports org.apache.commons.time;-->
-<!--											exports org.apache.commons.tuple;-->
-<!--											exports org.apache.commons.util;-->
+										open module org.apache.commons.lang3 {
+											exports org.apache.commons.lang3;
+											exports org.apache.commons.lang3.arch;
+											exports org.apache.commons.lang3.builder;
+											exports org.apache.commons.lang3.compare;
+											exports org.apache.commons.lang3.concurrent;
+											exports org.apache.commons.lang3.concurrent.locks;
+											exports org.apache.commons.lang3.event;
+											exports org.apache.commons.lang3.exception;
+											exports org.apache.commons.lang3.function;
+											exports org.apache.commons.lang3.math;
+											exports org.apache.commons.lang3.mutable;
+											exports org.apache.commons.lang3.reflect;
+											exports org.apache.commons.lang3.stream;
+											exports org.apache.commons.lang3.text;
+											exports org.apache.commons.lang3.text.translate;
+											exports org.apache.commons.lang3.time;
+											exports org.apache.commons.lang3.tuple;
+											exports org.apache.commons.lang3.util;
 										}
 									</moduleInfoSource>
 								</module>
