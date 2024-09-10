@@ -67,6 +67,12 @@
 			<groupId>ca.uhn.hapi.fhir</groupId>
 			<artifactId>hapi-fhir-caching-api</artifactId>
 			<version>${hapi-fhir-caching-api.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>ca.uhn.hapi.fhir</groupId>
+					<artifactId>hapi-fhir-base</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 
