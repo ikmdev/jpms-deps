@@ -18,7 +18,7 @@
 
 	<properties>
 		<!-- change release here-->
-		<core.artifact.release>r4</core.artifact.release>
+		<core.artifact.release>r1</core.artifact.release>
 		<core.artifact.version>3.17.0</core.artifact.version>
 
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
@@ -140,7 +140,7 @@
 										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										open module org.apache.commons.lang3 {
+										open module dev.ikm.jpms.commons.lang3 {
 											exports org.apache.commons.lang3;
 											exports org.apache.commons.lang3.arch;
 											exports org.apache.commons.lang3.builder;

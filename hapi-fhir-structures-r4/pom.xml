@@ -28,9 +28,11 @@
 		<!-- transitive dependency versions -->
 		<hapi-fhir-utilities.version>6.3.3-r7</hapi-fhir-utilities.version>
 		<hapi-fhir-r4.version>6.3.3-r8</hapi-fhir-r4.version>
-		<hapi-fhir-base.version>7.0.2-r9</hapi-fhir-base.version>
-		<hapi-fhir-caching-api.version>7.0.2</hapi-fhir-caching-api.version>
 
+		<hapi-fhir-base.version>7.0.2-r9</hapi-fhir-base.version>
+		<!-- should match fhir-base core version (not revision number) -->
+		<hapi-fhir-caching-api.version>7.0.2-r1</hapi-fhir-caching-api.version>
+		<org.hl7.fhir.r4>6.3.3-r9</org.hl7.fhir.r4>
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
@@ -64,15 +66,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>ca.uhn.hapi.fhir</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>hapi-fhir-caching-api</artifactId>
 			<version>${hapi-fhir-caching-api.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>ca.uhn.hapi.fhir</groupId>
-					<artifactId>hapi-fhir-base</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 
@@ -180,7 +176,8 @@
 									<moduleInfoSource>
 										module dev.ikm.jpms.hapi.fhir.structures.r4 {
 											requires dev.ikm.jpms.hapi.fhir.base;
-											requires dev.ikm.jpms.org.hl7.fhir.r4;
+											requires dev.ikm.jpms.fhir.r4;
+											requires dev.ikm.jpms.hapi.fhir.caching.api;
 
 											exports org.hl7.fhir.r4.hapi.ctx;
 										}

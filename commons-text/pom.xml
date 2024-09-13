@@ -152,8 +152,8 @@
 										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										open module org.apache.commons.text {
-											requires org.apache.commons.lang3;
+										open module dev.ikm.jpms.commons.text {
+											requires dev.ikm.jpms.commons.lang3;
 
 											exports org.apache.commons.text;
 											exports org.apache.commons.text.diff;
