@@ -159,7 +159,7 @@
 										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										module dev.ikm.jpms.fhir.r4 {
+										module dev.ikm.jpms.org.hl7.fhir.r4 {
 											requires dev.ikm.jpms.commons.lang3;
 											requires dev.ikm.jpms.hapi.fhir.base;
 											requires dev.ikm.jpms.org.hl7.fhir.utilities;
