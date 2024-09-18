@@ -12,31 +12,42 @@
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
-	<artifactId>commons-io</artifactId>
+	<artifactId>hapi-fhir-caching-api</artifactId>
 	<packaging>jar</packaging>
 	<version>${core.artifact.version}-${core.artifact.release}</version>
+	<description>
+		Builds the hapi fhir caching api.  Requires hapi-fhir-base be built first and be
+		excluded from any other poms requiring it.
+	</description>
 
 	<properties>
 		<!-- change release here-->
+		<core.artifact.version>7.0.2</core.artifact.version>
 		<core.artifact.release>r1</core.artifact.release>
-		<core.artifact.version>2.16.1</core.artifact.version>
+
+		<!-- transitive dependency versions -->
+		<hapi-fhir-base.version>7.0.2-r9</hapi-fhir-base.version>
 
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
 		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
 	</properties>
 
-	<dependencies>
-		<!-- Has no transitive dependencies in this artifact -->
-	</dependencies>
-
 	<licenses>
 		<license>
-			<name>Apache-2.0</name>
+			<name>Apache Software License 2.0</name>
 			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
+	<!-- transitive dependencies of the repackaged artifact -->
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>hapi-fhir-base</artifactId>
+			<version>${hapi-fhir-base.version}</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<resources>
@@ -75,14 +86,14 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
-									<groupId>commons-io</groupId>
-									<artifactId>commons-io</artifactId>
+									<groupId>ca.uhn.hapi.fhir</groupId>
+									<artifactId>hapi-fhir-caching-api</artifactId>
 									<version>${core.artifact.version}</version>
 									<classifier>sources</classifier>
 								</artifactItem>
 								<artifactItem>
-									<groupId>commons-io</groupId>
-									<artifactId>commons-io</artifactId>
+									<groupId>ca.uhn.hapi.fhir</groupId>
+									<artifactId>hapi-fhir-caching-api</artifactId>
 									<version>${core.artifact.version}</version>
 									<classifier>javadoc</classifier>
 								</artifactItem>
@@ -135,13 +146,15 @@
 							<modules>
 								<module>
 									<artifact>
-										<groupId>commons-io</groupId>
-										<artifactId>commons-io</artifactId>
+										<groupId>ca.uhn.hapi.fhir</groupId>
+										<artifactId>hapi-fhir-caching-api</artifactId>
 										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										open module dev.ikm.jpms.commons.io {
-											exports org.apache.commons.io;
+										module dev.ikm.jpms.hapi.fhir.caching.api {
+											requires dev.ikm.jpms.hapi.fhir.base;
+
+											exports ca.uhn.fhir.sl.cache;
 										}
 									</moduleInfoSource>
 								</module>

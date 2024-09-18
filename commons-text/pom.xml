@@ -26,7 +26,7 @@
 		<core.artifact.release>r4</core.artifact.release>
 
 		<!-- transitive dependency versions -->
-		<apache-commons.version>3.14.0-r3</apache-commons.version>
+		<apache-commons.version>3.17.0-r1</apache-commons.version>
 
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
@@ -152,8 +152,8 @@
 										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										open module org.apache.commons.text {
-											requires org.apache.commons.lang3;
+										open module dev.ikm.jpms.commons.text {
+											requires dev.ikm.jpms.commons.lang3;
 
 											exports org.apache.commons.text;
 											exports org.apache.commons.text.diff;

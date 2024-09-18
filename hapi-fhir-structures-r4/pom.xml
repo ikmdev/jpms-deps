@@ -16,7 +16,7 @@
 	<packaging>jar</packaging>
 	<version>${core.artifact.version}-${core.artifact.release}</version>
 	<description>
-		Builds the hapi fhir r4.  Requires hapi-fhir-base, hapi-fhir-utilities
+		Builds the hapi fhir structures r4.  Requires hapi-fhir-base, hapi-fhir-caching-api, hapi-fhir-utilities
 		and hapi-fhir-r4 be built first and be excluded from any other poms requiring it.
 	</description>
 
@@ -26,10 +26,10 @@
 		<core.artifact.release>r8</core.artifact.release>
 
 		<!-- transitive dependency versions -->
-		<hapi-fhir-utilities.version>6.3.3-r7</hapi-fhir-utilities.version>
-		<hapi-fhir-r4.version>6.3.3-r8</hapi-fhir-r4.version>
 		<hapi-fhir-base.version>7.0.2-r9</hapi-fhir-base.version>
-		<hapi-fhir-caching-api.version>7.0.2</hapi-fhir-caching-api.version>
+		<hapi-fhir-caching-api.version>7.0.2-r1</hapi-fhir-caching-api.version>
+		<hapi-fhir-utilities.version>6.3.3-r8</hapi-fhir-utilities.version>
+		<hapi-fhir-r4.version>6.3.3-r9</hapi-fhir-r4.version>
 
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
@@ -53,6 +53,12 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
+			<artifactId>hapi-fhir-caching-api</artifactId>
+			<version>${hapi-fhir-caching-api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>org.hl7.fhir.utilities</artifactId>
 			<version>${hapi-fhir-utilities.version}</version>
 		</dependency>
@@ -63,17 +69,6 @@
 			<version>${hapi-fhir-r4.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>ca.uhn.hapi.fhir</groupId>
-			<artifactId>hapi-fhir-caching-api</artifactId>
-			<version>${hapi-fhir-caching-api.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>ca.uhn.hapi.fhir</groupId>
-					<artifactId>hapi-fhir-base</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -180,7 +175,9 @@
 									<moduleInfoSource>
 										module dev.ikm.jpms.hapi.fhir.structures.r4 {
 											requires dev.ikm.jpms.hapi.fhir.base;
+											requires dev.ikm.jpms.hapi.fhir.caching.api;
 											requires dev.ikm.jpms.org.hl7.fhir.r4;
+											requires dev.ikm.jpms.org.hl7.fhir.utilities;
 
 											exports org.hl7.fhir.r4.hapi.ctx;
 										}
