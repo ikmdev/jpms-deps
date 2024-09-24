@@ -23,6 +23,7 @@ on:
                     - eclipse-collections-api
                     - guava
                     - hapi-fhir-base
+                    - hapi-fhir-caching-api
                     - hapi-fhir-r4
                     - hapi-fhir-structures-r4
                     - hapi-fhir-utilities

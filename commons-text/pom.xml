@@ -23,10 +23,10 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>1.12.0</core.artifact.version>
-		<core.artifact.release>r3</core.artifact.release>
+		<core.artifact.release>r4</core.artifact.release>
 
 		<!-- transitive dependency versions -->
-		<apache-commons.version>3.14.0-r3</apache-commons.version>
+		<apache-commons.version>3.17.0-r1</apache-commons.version>
 
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
@@ -152,8 +152,17 @@
 										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										open module dev.ikm.jpms.org.apache.commons.text {
-											requires dev.ikm.jpms.org.apache.commons.lang3;
+										open module dev.ikm.jpms.commons.text {
+											requires dev.ikm.jpms.commons.lang3;
+
+											exports org.apache.commons.text;
+											exports org.apache.commons.text.diff;
+											exports org.apache.commons.text.io;
+											exports org.apache.commons.text.lookup;
+											exports org.apache.commons.text.matcher;
+											exports org.apache.commons.text.numbers;
+											exports org.apache.commons.text.similarity;
+											exports org.apache.commons.text.translate;
 										}
 									</moduleInfoSource>
 								</module>
