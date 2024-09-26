@@ -6,8 +6,8 @@
 
     <parent>
         <groupId>dev.ikm.build</groupId>
-        <artifactId>java-parent</artifactId>
-        <version>1.47.0</version>
+        <artifactId>parent</artifactId>
+        <version>1.50.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -28,9 +28,7 @@
         <!-- transitive dependency versions -->
         <ontology-core.version>4.1.0-r6</ontology-core.version>
 
-        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
-        <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+        <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
 
     <licenses>
@@ -65,13 +63,6 @@
                     <artifactId>moditect-maven-plugin</artifactId>
                     <version>${maven.moditect.plugin}</version>
                 </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <version>${maven.antrun.plugin}</version>
-                </plugin>
-
             </plugins>
         </pluginManagement>
         <plugins>
@@ -153,11 +144,14 @@
                                         <artifactId>snorocket-core</artifactId>
                                         <version>${core.artifact.version}</version>
                                     </artifact>
-                                        <moduleInfoSource>
-                                        open module org.hl7.tinkar.snorocket {
-                                            exports au.csiro.snorocket.core;
-                                        }
-                                    </moduleInfoSource>
+                                    <moduleInfo>
+                                        <name>example.com</name>
+                                    </moduleInfo>
+<!--                                        <moduleInfoSource>-->
+<!--                                        open module dev.ikm.jpms.hl7.tinkar.snorocket {-->
+<!--                                            exports au.csiro.snorocket.core;-->
+<!--                                        }-->
+<!--                                    </moduleInfoSource>-->
                                 </module>
                             </modules>
                         </configuration>

@@ -5,8 +5,8 @@
 
     <parent>
         <groupId>dev.ikm.build</groupId>
-        <artifactId>java-parent</artifactId>
-        <version>1.47.0</version>
+        <artifactId>parent</artifactId>
+        <version>1.50.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -41,6 +41,8 @@
         <chronicle-stage-compiler.version>1.11</chronicle-stage-compiler.version>
         <intellij-annotations.version>12.0</intellij-annotations.version>
         <jetbrains-annotations.version>19.0.0</jetbrains-annotations.version>
+
+        <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
 
     <dependencies>
@@ -128,7 +130,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>sources</id>
@@ -285,13 +286,6 @@
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
-<!--                                <artifact>
-                                    <file>
-                                        ${project.build.directory}/dependency/chronicle-map-${chronicle-map.version}-javadoc.jar
-                                    </file>
-                                    <type>jar</type>
-                                    <classifier>javadoc</classifier>
-                                </artifact>-->
                             </artifacts>
                         </configuration>
                     </execution>
@@ -301,7 +295,6 @@
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
-                <version>1.1.0</version>
                 <executions>
                     <execution>
                         <id>add-module-infos</id>
@@ -319,15 +312,16 @@
                                         <artifactId>chronicle-map</artifactId>
                                         <version>${chronicle-map.version}</version>
                                     </artifact>
+
                                     <moduleInfoSource>
-                                        open module net.openhft.chronicle {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chronicle {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -339,14 +333,14 @@
                                         <version>${chronicle-values.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module net.openhft.chronicle {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chronicle {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -358,14 +352,14 @@
                                         <version>${chronicle-core.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module net.openhft.chronicle {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -377,14 +371,14 @@
                                         <version>${chronicle-bytes.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -396,14 +390,14 @@
                                         <version>${chronicle-threads.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -415,14 +409,14 @@
                                         <version>${chronicle-wire.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -434,14 +428,14 @@
                                         <version>${chronicle-compiler.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -453,14 +447,14 @@
                                         <version>${chronicle-algorithms.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -472,14 +466,14 @@
                                         <version>${java-jna.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -492,14 +486,14 @@
                                         <version>${java-jna.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -511,14 +505,14 @@
                                         <version>${intellij-annotations.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -530,14 +524,14 @@
                                         <version>1.12.1</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>
@@ -548,14 +542,14 @@
                                         <version>1.7.30</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.hl7.tinkar.chroniclemap {
-                                        requires java.naming;
-                                        requires java.management;
-                                        requires jdk.unsupported;
-                                        requires com.sun.jna;
-                                        exports net.openhft.chronicle.core.values;
-                                        exports net.openhft.chronicle.map;
-                                        exports net.openhft.chronicle.values;
+                                        open module dev.ikm.jpms.chroniclemap {
+                                            requires java.naming;
+                                            requires java.management;
+                                            requires jdk.unsupported;
+                                            requires com.sun.jna;
+                                            exports net.openhft.chronicle.core.values;
+                                            exports net.openhft.chronicle.map;
+                                            exports net.openhft.chronicle.values;
                                         }
                                     </moduleInfoSource>
                                 </module>

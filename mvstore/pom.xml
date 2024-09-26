@@ -5,8 +5,8 @@
 
     <parent>
         <groupId>dev.ikm.build</groupId>
-        <artifactId>java-parent</artifactId>
-        <version>1.47.0</version>
+        <artifactId>parent</artifactId>
+        <version>1.50.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -18,12 +18,11 @@
 
     <properties>
         <!-- change release here-->
-        <core.artifact.version>2.2.220</core.artifact.version>
-        <core.artifact.release>r4</core.artifact.release>
+        <core.artifact.version>2.3.232</core.artifact.version>
+        <core.artifact.release>r1</core.artifact.release>
 
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
-        <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+        <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
 
     <licenses>
@@ -50,13 +49,6 @@
                     <artifactId>moditect-maven-plugin</artifactId>
                     <version>${maven.moditect.plugin}</version>
                 </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <version>${maven.antrun.plugin}</version>
-                </plugin>
-
             </plugins>
         </pluginManagement>
         
@@ -141,9 +133,31 @@
                                         <artifactId>h2-mvstore</artifactId>
                                         <version>${core.artifact.version}</version>
                                     </artifact>
+                                    <moduleInfo>
+                                        <name>example.com</name>
+                                    </moduleInfo>
                                     <moduleInfoSource>
-                                        open module org.h2.mvstore {
+                                        module dev.ikm.jpms.h2.mvstore {
+                                            requires java.management;
+
+                                            requires transitive java.sql;
+
+                                            exports org.h2.api;
+                                            exports org.h2.compress;
+                                            exports org.h2.engine;
+                                            exports org.h2.jdbc;
+                                            exports org.h2.message;
                                             exports org.h2.mvstore;
+                                            exports org.h2.mvstore.cache;
+                                            exports org.h2.mvstore.rtree;
+                                            exports org.h2.mvstore.tx;
+                                            exports org.h2.mvstore.type;
+                                            exports org.h2.security;
+                                            exports org.h2.store.fs;
+                                            exports org.h2.store.fs.disk;
+                                            exports org.h2.store.fs.encrypt;
+                                            exports org.h2.util;
+                                            exports org.h2.value;
                                         }
                                     </moduleInfoSource>
                                 </module>

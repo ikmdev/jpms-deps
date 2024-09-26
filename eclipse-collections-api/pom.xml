@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>dev.ikm.build</groupId>
-        <artifactId>java-parent</artifactId>
-        <version>1.47.0</version>
+        <artifactId>parent</artifactId>
+        <version>1.50.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -20,9 +20,7 @@
         <core.artifact.version>11.1.0</core.artifact.version>
         <core.artifact.release>r10</core.artifact.release>
 
-        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
-        <maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+        <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
 
     <licenses>
@@ -59,12 +57,6 @@
                     <groupId>org.moditect</groupId>
                     <artifactId>moditect-maven-plugin</artifactId>
                     <version>${maven.moditect.plugin}</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <version>${maven.antrun.plugin}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -147,7 +139,7 @@
                                         <version>${core.artifact.version}</version>
                                      </artifact>
                                     <moduleInfoSource>
-                                        open module org.eclipse.collections.api {
+                                        open module dev.ikm.jpms.eclipse.collections.api {
 
                                             uses org.eclipse.collections.api.factory.bag.ImmutableBagFactory;
                                             uses org.eclipse.collections.api.factory.bag.MultiReaderBagFactory;
@@ -238,16 +230,14 @@
                                             exports org.eclipse.collections.api.factory.map.strategy;
                                             exports org.eclipse.collections.api.factory.primitive;
                                             exports org.eclipse.collections.api.factory.set;
-                                            exports org.eclipse.collections.api.factory.set.sorted;
                                             exports org.eclipse.collections.api.factory.set.primitive;
+                                            exports org.eclipse.collections.api.factory.set.sorted;
+                                            exports org.eclipse.collections.api.factory.set.strategy;
                                             exports org.eclipse.collections.api.factory.stack;
                                             exports org.eclipse.collections.api.factory.stack.primitive;
                                             exports org.eclipse.collections.api.iterator;
                                             exports org.eclipse.collections.api.list;
                                             exports org.eclipse.collections.api.list.primitive;
-                                            exports org.eclipse.collections.api.set;
-                                            exports org.eclipse.collections.api.set.primitive;
-                                            exports org.eclipse.collections.api.set.sorted;
                                             exports org.eclipse.collections.api.map;
                                             exports org.eclipse.collections.api.map.primitive;
                                             exports org.eclipse.collections.api.map.sorted;
@@ -262,11 +252,17 @@
                                             exports org.eclipse.collections.api.ordered.primitive;
                                             exports org.eclipse.collections.api.partition;
                                             exports org.eclipse.collections.api.partition.bag;
+                                            exports org.eclipse.collections.api.partition.bag.sorted;
                                             exports org.eclipse.collections.api.partition.list;
                                             exports org.eclipse.collections.api.partition.ordered;
                                             exports org.eclipse.collections.api.partition.set;
+                                            exports org.eclipse.collections.api.partition.set.sorted;
                                             exports org.eclipse.collections.api.partition.stack;
+                                            exports org.eclipse.collections.api.set;
+                                            exports org.eclipse.collections.api.set.primitive;
+                                            exports org.eclipse.collections.api.set.sorted;
                                             exports org.eclipse.collections.api.stack;
+                                            exports org.eclipse.collections.api.stack.primitive;
                                             exports org.eclipse.collections.api.tuple;
                                             exports org.eclipse.collections.api.tuple.primitive;
                                         }

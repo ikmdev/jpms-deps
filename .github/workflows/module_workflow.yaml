@@ -15,9 +15,6 @@ on:
                     - auto-service
                     - bugsplat
                     - chronicle-map
-                    - commons-io
-                    - commons-lang3
-                    - commons-text
                     - directory-watcher
                     - eclipse-collections
                     - eclipse-collections-api
@@ -34,14 +31,12 @@ on:
                     - jgit
                     - jheaps
                     - jsr305
-                    - mutiny
                     - mvstore
                     - ontology-model
                     - protobuf-java
                     - reactive-streams
                     - record-builder-core
                     - roaringbitmap
-                    - smallrye-common-annotation
                     - snorocket
                 required: true
 
