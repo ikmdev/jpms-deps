@@ -144,14 +144,11 @@
                                         <artifactId>snorocket-core</artifactId>
                                         <version>${core.artifact.version}</version>
                                     </artifact>
-                                    <moduleInfo>
-                                        <name>example.com</name>
-                                    </moduleInfo>
-<!--                                        <moduleInfoSource>-->
-<!--                                        open module dev.ikm.jpms.hl7.tinkar.snorocket {-->
-<!--                                            exports au.csiro.snorocket.core;-->
-<!--                                        }-->
-<!--                                    </moduleInfoSource>-->
+                                    <moduleInfoSource>
+                                        open module dev.ikm.jpms.hl7.tinkar.snorocket {
+                                            exports au.csiro.snorocket.core;
+                                        }
+                                    </moduleInfoSource>
                                 </module>
                             </modules>
                         </configuration>
