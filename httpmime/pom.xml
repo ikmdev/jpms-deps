@@ -146,10 +146,6 @@
 										<artifactId>httpmime</artifactId>
 										<version>${core.artifact.version}</version>
 									</artifact>
-									<moduleInfo>
-										<name>example.com</name>
-									</moduleInfo>
-
 									<moduleInfoSource>
 										open module dev.ikm.jpms.httpcomponents.mime.ikm {
 											requires dev.ikm.jpms.httpcomponents.httpcore;
