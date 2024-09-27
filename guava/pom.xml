@@ -6,8 +6,8 @@
 
 	<parent>
 		<groupId>dev.ikm.build</groupId>
-		<artifactId>java-parent</artifactId>
-		<version>1.47.0</version>
+		<artifactId>parent</artifactId>
+		<version>1.50.0</version>
 		<relativePath></relativePath>
 	</parent>
 
@@ -30,9 +30,7 @@
 		<google.errorprone.version>2.28.0</google.errorprone.version>
 		<j2objc-annotations.version>3.0.0</j2objc-annotations.version>
 
-		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
-		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+		<maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
 	</properties>
 
 	<licenses>
@@ -97,11 +95,6 @@
 					<groupId>org.moditect</groupId>
 					<artifactId>moditect-maven-plugin</artifactId>
 					<version>${maven.moditect.plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-antrun-plugin</artifactId>
-					<version>${maven.antrun.plugin}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -185,7 +178,7 @@
 										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										open module com.google.common {
+										module dev.ikm.jpms.google.common {
 											requires jdk.unsupported;
 											requires java.logging;
 											requires static com.google.common.util.concurrent.internal;

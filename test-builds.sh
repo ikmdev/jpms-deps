@@ -16,12 +16,6 @@ exec_mvn_build activej-common
 exec_mvn_build activej-bytebuf
 exec_mvn_build auto-service
 exec_mvn_build bugsplat
-exec_mvn_build chronicle-map
-
-# Commons Required for hapi projects
-exec_mvn_build commons-io
-exec_mvn_build commons-lang3
-exec_mvn_build commons-text
 
 exec_mvn_build directory-watcher
 
@@ -32,15 +26,13 @@ exec_mvn_build eclipse-collections
 # Required for Guava and Hapi projects
 exec_mvn_build jsr305
 
-# Required for mutiny and guava
-exec_mvn_build smallrye-common-annotation
-
 exec_mvn_build guava
 
 # hapi fhir have to be built in this order
 exec_mvn_build hapi-fhir-base
 exec_mvn_build hapi-fhir-utilities
 exec_mvn_build hapi-fhir-r4
+exec_mvn_build hapi-fhir-caching-api
 exec_mvn_build hapi-fhir-structures-r4
 
 # Required for httpmime
@@ -55,7 +47,6 @@ exec_mvn_build jheaps
 # Required for snorocket
 exec_mvn_build ontology-model
 
-exec_mvn_build mutiny
 exec_mvn_build mvstore
 exec_mvn_build protobuf-java
 exec_mvn_build reactive-streams

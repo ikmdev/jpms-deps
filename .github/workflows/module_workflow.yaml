@@ -14,10 +14,6 @@ on:
                     - activej-common
                     - auto-service
                     - bugsplat
-                    - chronicle-map
-                    - commons-io
-                    - commons-lang3
-                    - commons-text
                     - directory-watcher
                     - eclipse-collections
                     - eclipse-collections-api
@@ -34,14 +30,12 @@ on:
                     - jgit
                     - jheaps
                     - jsr305
-                    - mutiny
                     - mvstore
                     - ontology-model
                     - protobuf-java
                     - reactive-streams
                     - record-builder-core
                     - roaringbitmap
-                    - smallrye-common-annotation
                     - snorocket
                 required: true
 
@@ -67,10 +61,6 @@ jobs:
 
           - name: Checkout Code Repository
             uses: actions/checkout@v4
-
-          - name: Change Java Version Env If Chronicle-Map
-            if: github.event.inputs.module == 'chronicle-map'
-            run: echo "JAVA_VERSION=8" >> $GITHUB_ENV
 
           - name: Setup Java
             uses: actions/setup-java@v4
@@ -101,7 +91,6 @@ jobs:
                 working_directory: ${{env.GITHUB_MODULE_DIR}}
 
           - name: Publish to OSSRH Maven Central
-            if:   github.event.inputs.module != 'chronicle-map'
             run: |
                 mvn deploy \
                     --batch-mode \
@@ -119,24 +108,3 @@ jobs:
               MAVEN_USERNAME: ${{secrets.OSSRH_TOKEN_USER}}
               MAVEN_CENTRAL_TOKEN: ${{secrets.OSSRH_TOKEN_PASS}}
               MAVEN_GPG_PASSPHRASE: ${{secrets.GPG_PASSPHRASE}}
-
-          - name: Publish to OSSRH Maven Central (Chronicle Map)
-            if:   github.event.inputs.module == 'chronicle-map'
-            run: |
-                mvn deploy \
-                    --batch-mode \
-                    -e \
-                    -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
-                    -DskipTests \
-                    -DskipITs \
-                    -DrepositoryId='maven-releases' \
-                    -DrepositoryIdOSSRH='true' \
-                    -PstageOSSRH
-            working-directory: ${{env.GITHUB_MODULE_DIR}}
-            env:
-              MAVEN_USERNAME: ${{secrets.OSSRH_TOKEN_USER}}
-              MAVEN_CENTRAL_TOKEN: ${{secrets.OSSRH_TOKEN_PASS}}
-              MAVEN_GPG_PASSPHRASE: ${{secrets.GPG_PASSPHRASE}}
-        
-
-

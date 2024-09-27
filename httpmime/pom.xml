@@ -6,8 +6,8 @@
 
 	<parent>
 		<groupId>dev.ikm.build</groupId>
-		<artifactId>java-parent</artifactId>
-		<version>1.47.0</version>
+		<artifactId>parent</artifactId>
+		<version>1.50.0</version>
 	</parent>
 
 	<groupId>dev.ikm.jpms</groupId>
@@ -22,14 +22,12 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>4.5.14</core.artifact.version>
-		<core.artifact.release>r3</core.artifact.release>
+		<core.artifact.release>r4</core.artifact.release>
 
 		<!-- transitive dependency versions -->
 		<httpclient.version>4.5.14-r3</httpclient.version>
 
-		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
-		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+		<maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
 	</properties>
 
 	<licenses>
@@ -63,11 +61,6 @@
 					<groupId>org.moditect</groupId>
 					<artifactId>moditect-maven-plugin</artifactId>
 					<version>${maven.moditect.plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-antrun-plugin</artifactId>
-					<version>${maven.antrun.plugin}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -153,9 +146,16 @@
 										<artifactId>httpmime</artifactId>
 										<version>${core.artifact.version}</version>
 									</artifact>
+									<moduleInfo>
+										<name>example.com</name>
+									</moduleInfo>
+
 									<moduleInfoSource>
-										open module org.apache.httpcomponents.mime.ikm {
-											requires transitive org.apache.httpcomponents.httpcore.ikm;
+										open module dev.ikm.jpms.httpcomponents.mime.ikm {
+											requires dev.ikm.jpms.httpcomponents.httpcore;
+
+											exports org.apache.http.entity.mime;
+											exports org.apache.http.entity.mime.content;
 										}
 									</moduleInfoSource>
 								</module>

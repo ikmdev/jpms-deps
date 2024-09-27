@@ -6,8 +6,8 @@
 
 	<parent>
 		<groupId>dev.ikm.build</groupId>
-		<artifactId>java-parent</artifactId>
-		<version>1.47.0</version>
+		<artifactId>parent</artifactId>
+		<version>1.50.0</version>
 		<relativePath></relativePath>
 	</parent>
 
@@ -23,16 +23,14 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>4.5.14</core.artifact.version>
-		<core.artifact.release>r3</core.artifact.release>
+		<core.artifact.release>r4</core.artifact.release>
 
 		<!-- transitive dependency versions -->
 		<httpcore.version>4.4.16</httpcore.version>
 		<commons-logging.version>1.2</commons-logging.version>
 		<commons-codec.version>1.11</commons-codec.version>
 
-		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-		<maven.moditect.plugin>1.0.0.RC2</maven.moditect.plugin>
-		<maven.antrun.plugin>3.1.0</maven.antrun.plugin>
+		<maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
 	</properties>
 
 	<licenses>
@@ -79,11 +77,6 @@
 					<groupId>org.moditect</groupId>
 					<artifactId>moditect-maven-plugin</artifactId>
 					<version>${maven.moditect.plugin}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-antrun-plugin</artifactId>
-					<version>${maven.antrun.plugin}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -170,13 +163,37 @@
 										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										open module org.apache.httpcomponents.ikm {
+										module dev.ikm.jpms.httpcomponents {
+											requires java.naming;
+											requires org.apache.commons.codec;
+											requires commons.logging;
+											requires java.security.jgss;
+											requires org.apache.httpcomponents.httpcore;
+
 											exports org.apache.http.auth;
-										    exports org.apache.http.client;
-										    exports org.apache.http.conn;
-										    exports org.apache.http.cookie;
-											requires transitive org.apache.httpcomponents.httpcore.ikm;
-											requires transitive org.apache.commons.logging;
+											exports org.apache.http.auth.params;
+											exports org.apache.http.client;
+											exports org.apache.http.client.config;
+											exports org.apache.http.client.entity;
+											exports org.apache.http.client.methods;
+											exports org.apache.http.client.params;
+											exports org.apache.http.client.protocol;
+											exports org.apache.http.client.utils;
+											exports org.apache.http.conn;
+											exports org.apache.http.conn.params;
+											exports org.apache.http.conn.routing;
+											exports org.apache.http.conn.scheme;
+											exports org.apache.http.conn.socket;
+											exports org.apache.http.conn.ssl;
+											exports org.apache.http.conn.util;
+											exports org.apache.http.cookie;
+											exports org.apache.http.cookie.params;
+											exports org.apache.http.impl.auth;
+											exports org.apache.http.impl.client;
+											exports org.apache.http.impl.conn;
+											exports org.apache.http.impl.conn.tsccm;
+											exports org.apache.http.impl.cookie;
+											exports org.apache.http.impl.execchain;
 										}
 									</moduleInfoSource>
 								</module>
