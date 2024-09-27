@@ -19,7 +19,7 @@
     <properties>
         <!-- change release here-->
         <core.artifact.version>0.18.0</core.artifact.version>
-        <core.artifact.release>r6</core.artifact.release>
+        <core.artifact.release>r7</core.artifact.release>
 
         <!-- transitive dependency versions -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

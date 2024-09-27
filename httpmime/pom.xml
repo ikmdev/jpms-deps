@@ -22,7 +22,7 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>4.5.14</core.artifact.version>
-		<core.artifact.release>r3</core.artifact.release>
+		<core.artifact.release>r4</core.artifact.release>
 
 		<!-- transitive dependency versions -->
 		<httpclient.version>4.5.14-r3</httpclient.version>

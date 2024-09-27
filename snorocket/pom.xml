@@ -23,7 +23,7 @@
     <properties>
         <!-- change release here-->
         <core.artifact.version>4.0.1</core.artifact.version>
-        <core.artifact.release>r3</core.artifact.release>
+        <core.artifact.release>r4</core.artifact.release>
 
         <!-- transitive dependency versions -->
         <ontology-core.version>4.1.0-r6</ontology-core.version>

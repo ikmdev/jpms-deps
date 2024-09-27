@@ -16,7 +16,6 @@ exec_mvn_build activej-common
 exec_mvn_build activej-bytebuf
 exec_mvn_build auto-service
 exec_mvn_build bugsplat
-exec_mvn_build chronicle-map
 
 exec_mvn_build directory-watcher
 

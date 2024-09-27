@@ -18,7 +18,7 @@
     <properties>
         <!-- change release here-->
         <record-builder-core.version>36</record-builder-core.version>
-        <record-builder-core.release>r6</record-builder-core.release>
+        <record-builder-core.release>r7</record-builder-core.release>
 
         <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>

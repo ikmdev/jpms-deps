@@ -19,7 +19,7 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>4.4.16</core.artifact.version>
-		<core.artifact.release>r4</core.artifact.release>
+		<core.artifact.release>r5</core.artifact.release>
 
 		<maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
 	</properties>

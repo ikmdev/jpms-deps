@@ -20,7 +20,7 @@
     <properties>
         <!-- change release here-->
         <core.artifact.version>3.22.0</core.artifact.version>
-        <core.artifact.release>r6</core.artifact.release>
+        <core.artifact.release>r7</core.artifact.release>
 
         <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
