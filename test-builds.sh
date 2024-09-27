@@ -26,13 +26,21 @@ exec_mvn_build eclipse-collections
 # Required for Guava and Hapi projects
 exec_mvn_build jsr305
 
+# Required by hapi-fhir-base
 exec_mvn_build guava
 
-# hapi fhir have to be built in this order
+# required by all hapi-fhir projects
 exec_mvn_build hapi-fhir-base
+
+# Required by hapi-fhir-structures-r4
 exec_mvn_build hapi-fhir-utilities
+
+# Required by hapi-fhir-structures-r4
 exec_mvn_build hapi-fhir-r4
+
+# Required by hapi-fhir-structures-r4
 exec_mvn_build hapi-fhir-caching-api
+
 exec_mvn_build hapi-fhir-structures-r4
 
 # Required for httpmime
@@ -49,7 +57,6 @@ exec_mvn_build ontology-model
 
 exec_mvn_build mvstore
 exec_mvn_build protobuf-java
-exec_mvn_build reactive-streams
 exec_mvn_build record-builder-core
 exec_mvn_build roaringbitmap
 exec_mvn_build snorocket

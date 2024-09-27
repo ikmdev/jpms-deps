@@ -133,9 +133,6 @@
                                         <artifactId>h2-mvstore</artifactId>
                                         <version>${core.artifact.version}</version>
                                     </artifact>
-                                    <moduleInfo>
-                                        <name>example.com</name>
-                                    </moduleInfo>
                                     <moduleInfoSource>
                                         module dev.ikm.jpms.h2.mvstore {
                                             requires java.management;
