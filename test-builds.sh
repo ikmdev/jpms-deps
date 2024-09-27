@@ -55,7 +55,6 @@ exec_mvn_build jheaps
 # Required for snorocket
 exec_mvn_build ontology-model
 
-exec_mvn_build mvstore
 exec_mvn_build protobuf-java
 exec_mvn_build record-builder-core
 exec_mvn_build roaringbitmap
