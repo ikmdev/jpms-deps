@@ -219,8 +219,8 @@
                                         <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module dev.ikm.jpms.eclipse.collections {
-                                            requires org.eclipse.collections.api;
+                                        module dev.ikm.jpms.eclipse.collections {
+                                            requires dev.ikm.jpms.eclipse.collections.api;
 
                                             exports org.eclipse.collections.impl;
                                             exports org.eclipse.collections.impl.bag;
