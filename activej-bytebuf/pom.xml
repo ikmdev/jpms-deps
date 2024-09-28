@@ -39,7 +39,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>activej-common</artifactId>
-            <version>${project.version}</version>
+            <version>${activej.common.version}</version>
         </dependency>
     </dependencies>
 
