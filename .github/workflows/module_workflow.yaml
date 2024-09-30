@@ -81,6 +81,17 @@ jobs:
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
             working-directory: ${{env.GITHUB_MODULE_DIR}}
 
+          - name: Get jar count
+            id: set-jar-count
+            run: |
+              size=$(find ./target -depth 1 -type f -name '*[!-javadoc][!-sources].jar' -exec jar tf {} \; | grep "dev.ikm.jpms" | wc -l)
+
+          - name: The demo step has failed
+            env:
+              MIN_ALLOWED_ENTRIES: 1
+            if: ${{ set-jar-count.size |  xargs >= fromJSON(env.MIN_ALLOWED_ENTRIES) }}
+            run: exit 1
+
           - name: Deploy Artifacts To Nexus
             uses: ikmdev/maven-nexus-deploy-action@jpms-deps
             with:
