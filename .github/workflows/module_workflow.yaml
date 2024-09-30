@@ -86,6 +86,7 @@ jobs:
             id: set-jar-count
             run: |
               size=$(find ./target -maxdepth 1 -type f -name '*[!-javadoc][!-sources].jar' -exec jar tf  {} \; | grep -c 'dev.ikm.jpms' | xargs )
+            working-directory: ${{env.GITHUB_MODULE_DIR}}
 
           - name: The demo step has failed
             env:
