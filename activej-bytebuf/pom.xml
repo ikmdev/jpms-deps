@@ -197,7 +197,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <phase>package</phase>
+                        <phase>prepare-package</phase>
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
