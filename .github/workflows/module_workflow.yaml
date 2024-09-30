@@ -95,13 +95,13 @@ jobs:
             if: ${{ steps.set-jar-count.size >= fromJSON(env.MIN_ALLOWED_ENTRIES) }}
             run: exit 1
 
-          - name: Deploy Artifacts To Nexus
-            uses: ikmdev/maven-nexus-deploy-action@jpms-deps
-            with:
-                nexus_repo_password: ${{secrets.EC2_NEXUS_PASSWORD}}
-                repo_name: ${{github.event.workflow_run.head_repository.full_name}}
-                branch_name: ${{github.event.workflow_run.head_branch}}
-                working_directory: ${{env.GITHUB_MODULE_DIR}}
+          # - name: Deploy Artifacts To Nexus
+          #   uses: ikmdev/maven-nexus-deploy-action@jpms-deps
+          #   with:
+          #       nexus_repo_password: ${{secrets.EC2_NEXUS_PASSWORD}}
+          #       repo_name: ${{github.event.workflow_run.head_repository.full_name}}
+          #       branch_name: ${{github.event.workflow_run.head_branch}}
+          #       working_directory: ${{env.GITHUB_MODULE_DIR}}
 
 
           - name: Publish to OSSRH Maven Central
