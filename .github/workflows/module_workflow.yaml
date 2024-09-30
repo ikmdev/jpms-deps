@@ -42,6 +42,7 @@ env:
     GITHUB_MODULE_DIR: /home/runner/work/${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
     SELF_HOSTED_MODULE_DIR: /home/ec2-user/actions-runner/_work/${{github.event.repository.name}}/${{github.event.repository.name}}/${{github.event.inputs.module}}
     MAVEN_SETTING: '/home/ec2-user/maven/.m2/settings.xml'
+    PUBLISH_OWNER: 'ikmdev'
 
   
 
@@ -81,6 +82,17 @@ jobs:
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
             working-directory: ${{env.GITHUB_MODULE_DIR}}
 
+          - name: Get jar count
+            id: set-jar-count
+            run: |
+              size=$(find ./target -maxdepth 1 -type f -name '*[!-javadoc][!-sources].jar' -exec jar tf  {} \; | grep -c 'dev.ikm.jpms' | xargs )
+
+          - name: The demo step has failed
+            env:
+              MIN_ALLOWED_ENTRIES: 1
+            if: ${{ set-jar-count.size |  xargs >= fromJSON(env.MIN_ALLOWED_ENTRIES) }}
+            run: exit 1
+
           - name: Deploy Artifacts To Nexus
             uses: ikmdev/maven-nexus-deploy-action@jpms-deps
             with:
@@ -88,6 +100,7 @@ jobs:
                 repo_name: ${{github.event.workflow_run.head_repository.full_name}}
                 branch_name: ${{github.event.workflow_run.head_branch}}
                 working_directory: ${{env.GITHUB_MODULE_DIR}}
+
 
           - name: Publish to OSSRH Maven Central
             run: |

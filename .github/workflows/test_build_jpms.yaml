@@ -1,0 +1,31 @@
+name: General Build Workflow
+
+run-name: 'Test Build -- PR ${{github.event.number}}'
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  build-publish:
+    name: Build & Publish
+    runs-on: ubuntu-20.04
+    env:
+      JAVA_VERSION: '21'
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: ${{env.JAVA_VERSION}}
+
+      - name: Maven Build
+        run: |
+          ./test-builds.sh
