@@ -1,6 +1,6 @@
 name: Build & Publish Module Workflow
 
-run-name: 'Test Build -- ${{github.event.inputs.module}}'
+run-name: 'Test Build -- ${{github.event.number}}'
 
 on:
   pull_request:
@@ -29,4 +29,3 @@ jobs:
                 --batch-mode \
                 -e \
                 -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
-        working-directory: ${{env.GITHUB_MODULE_DIR}}
