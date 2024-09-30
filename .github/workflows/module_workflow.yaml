@@ -82,13 +82,6 @@ jobs:
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
             working-directory: ${{env.GITHUB_MODULE_DIR}}
 
-          - name: List Jars
-            run: |
-               cd target
-               jar tf activej-bytebuf-4.3-r10.jar
-               exit 1
-            working-directory: ${{env.GITHUB_MODULE_DIR}}
-
           - name: Get jar count
             id: set-jar-count
             run: |
@@ -102,13 +95,13 @@ jobs:
             if: ${{ steps.set-jar-count.size >= fromJSON(env.MIN_ALLOWED_ENTRIES) }}
             run: exit 1
 
-          # - name: Deploy Artifacts To Nexus
-          #   uses: ikmdev/maven-nexus-deploy-action@jpms-deps
-          #   with:
-          #       nexus_repo_password: ${{secrets.EC2_NEXUS_PASSWORD}}
-          #       repo_name: ${{github.event.workflow_run.head_repository.full_name}}
-          #       branch_name: ${{github.event.workflow_run.head_branch}}
-          #       working_directory: ${{env.GITHUB_MODULE_DIR}}
+          - name: Deploy Artifacts To Nexus
+            uses: ikmdev/maven-nexus-deploy-action@jpms-deps
+            with:
+                nexus_repo_password: ${{secrets.EC2_NEXUS_PASSWORD}}
+                repo_name: ${{github.event.workflow_run.head_repository.full_name}}
+                branch_name: ${{github.event.workflow_run.head_branch}}
+                working_directory: ${{env.GITHUB_MODULE_DIR}}
 
 
           - name: Publish to OSSRH Maven Central
