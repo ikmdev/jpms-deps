@@ -9,7 +9,7 @@ function exec_mvn_build() {
       -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 
   ls
-  find ./target -depth 1 -type f -name '*[!-javadoc][!-sources].jar'
+  find ./target -maxdepth 1 -type f -name '*[!-javadoc][!-sources].jar'
   #size=$(find './target' -depth 1 -type f -name '*[!-javadoc][!-sources].jar' -exec sh -c 'jar tf {}\' ';' | grep "dev.ikm.jpms" | wc -l)
   #if [ "$size" -lt "2" ]; then
   #  echo "ERROR: jar does not contain ikmdev packages"
