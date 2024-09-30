@@ -1,0 +1,32 @@
+name: Build & Publish Module Workflow
+
+run-name: 'Test Build -- ${{github.event.inputs.module}}'
+
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-publish:
+    name: Build & Publish
+    runs-on: ubuntu-20.04
+    env:
+      JAVA_VERSION: '21'
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: ${{env.JAVA_VERSION}}
+
+      - name: Maven Build
+        run: |
+          mvn clean install \
+                -Dmaven.build.cache.enabled=false \
+                --batch-mode \
+                -e \
+                -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+        working-directory: ${{env.GITHUB_MODULE_DIR}}

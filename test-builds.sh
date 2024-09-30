@@ -5,7 +5,8 @@ set -euxo pipefail
 
 function exec_mvn_build() {
   cd $1
-  mvn clean install
+  mvn clean install -Dmaven.build.cache.enabled=false --batch-mode -e \
+      -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
   cd ..
 }
 
