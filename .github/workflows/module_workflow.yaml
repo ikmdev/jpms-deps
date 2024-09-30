@@ -87,6 +87,7 @@ jobs:
                cd target
                jar tf activej-bytebuf-4.3-r10.jar
                exit 1
+            working-directory: ${{env.GITHUB_MODULE_DIR}}
 
           - name: Get jar count
             id: set-jar-count
