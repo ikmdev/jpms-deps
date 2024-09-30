@@ -82,6 +82,12 @@ jobs:
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
             working-directory: ${{env.GITHUB_MODULE_DIR}}
 
+          - name: List Jars
+            run: |
+               cd target
+               jar tf activej-bytebuf-4.3-r10.jar
+               exit 1
+
           - name: Get jar count
             id: set-jar-count
             run: |
