@@ -7,6 +7,8 @@ function exec_mvn_build() {
   cd $1
   mvn clean install -Dmaven.build.cache.enabled=false --batch-mode -e \
       -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+
+  find './target' -depth 1 -type f -name '*[!-javadoc][!-sources].jar' -exec sh -c 'jar tf {}\' ';'
   size=$(find './target' -depth 1 -type f -name '*[!-javadoc][!-sources].jar' -exec sh -c 'jar tf {}\' ';' | grep "dev.ikm.jpms" | wc -l)
   if [ "$size" -lt "2" ]; then
     echo "ERROR: jar does not contain ikmdev packages"

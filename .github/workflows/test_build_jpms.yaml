@@ -1,4 +1,4 @@
-name: Build & Publish Module Workflow
+name: General Build Workflow
 
 run-name: 'Test Build -- PR ${{github.event.number}}'
 
@@ -6,6 +6,10 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
+
 jobs:
   build-publish:
     name: Build & Publish
