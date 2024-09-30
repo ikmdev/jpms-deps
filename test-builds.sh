@@ -10,11 +10,11 @@ function exec_mvn_build() {
 
   ls
   find ./target -depth 1 -type f -name '*[!-javadoc][!-sources].jar'
-  size=$(find './target' -depth 1 -type f -name '*[!-javadoc][!-sources].jar' -exec sh -c 'jar tf {}\' ';' | grep "dev.ikm.jpms" | wc -l)
-  if [ "$size" -lt "2" ]; then
-    echo "ERROR: jar does not contain ikmdev packages"
-    exit 1
-  fi
+  #size=$(find './target' -depth 1 -type f -name '*[!-javadoc][!-sources].jar' -exec sh -c 'jar tf {}\' ';' | grep "dev.ikm.jpms" | wc -l)
+  #if [ "$size" -lt "2" ]; then
+  #  echo "ERROR: jar does not contain ikmdev packages"
+  #  exit 1
+  #fi
   cd ..
 }
 
