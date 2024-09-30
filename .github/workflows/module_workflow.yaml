@@ -90,7 +90,7 @@ jobs:
           - name: The demo step has failed
             env:
               MIN_ALLOWED_ENTRIES: 1
-            if: ${{ steps.set-jar-count.size |  xargs >= fromJSON(env.MIN_ALLOWED_ENTRIES) }}
+            if: ${{ steps.set-jar-count.size  >= fromJSON(env.MIN_ALLOWED_ENTRIES) }}
             run: exit 1
 
           - name: Deploy Artifacts To Nexus
