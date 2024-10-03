@@ -58,6 +58,7 @@ exec_mvn_build httpmime
 exec_mvn_build javax-inject
 exec_mvn_build jgit
 exec_mvn_build jheaps
+exec_mvn_build mvstore
 
 # Required for snorocket
 exec_mvn_build ontology-model
