@@ -30,6 +30,7 @@ on:
                     - jgit
                     - jheaps
                     - jsr305
+                    - mvstore
                     - ontology-model
                     - protobuf-java
                     - reactive-streams
