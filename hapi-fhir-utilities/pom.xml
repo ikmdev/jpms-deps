@@ -23,7 +23,7 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>6.3.3</core.artifact.version>
-		<core.artifact.release>r8</core.artifact.release>
+		<core.artifact.release>r9</core.artifact.release>
 
 		<!-- transitive dependency versions -->
 		<hapi-fhir-base.version>7.0.2-r9</hapi-fhir-base.version>
@@ -142,8 +142,6 @@
 				</executions>
 			</plugin>			
 
-
-
 			<plugin>
 				<groupId>org.moditect</groupId>
 				<artifactId>moditect-maven-plugin</artifactId>
@@ -165,7 +163,7 @@
 										<version>${core.artifact.version}</version>
 									</artifact>
 									<moduleInfoSource>
-										module dev.ikm.jpms.hl7.fhir.utilities {
+										module dev.ikm.jpms.hapi.fhir.utilities {
 											requires dev.ikm.jpms.hapi.fhir.base;
 
 											exports org.hl7.fhir.utilities.xhtml;

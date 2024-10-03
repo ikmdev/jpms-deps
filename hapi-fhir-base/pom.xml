@@ -20,7 +20,7 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>7.0.2</core.artifact.version>
-		<core.artifact.release>r9</core.artifact.release>
+		<core.artifact.release>r10</core.artifact.release>
 
 		<!-- transitive dependency versions -->
 		<jackson.version>2.16.1</jackson.version>
@@ -213,9 +213,9 @@
 											requires com.fasterxml.jackson.core;
 											requires com.fasterxml.jackson.databind;
 											requires com.fasterxml.jackson.datatype.jsr310;
-											requires dev.ikm.jpms.commons.io;
-											requires dev.ikm.jpms.commons.lang3;
-											requires dev.ikm.jpms.commons.text;
+											requires org.apache.commons.io;
+											requires org.apache.commons.lang3;
+											requires org.apache.commons.text;
 										  	requires com.google.common;
 
 											exports ca.uhn.fhir.context;

@@ -23,10 +23,10 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>7.0.2</core.artifact.version>
-		<core.artifact.release>r8</core.artifact.release>
+		<core.artifact.release>r9</core.artifact.release>
 
 		<!-- transitive dependency versions -->
-		<hapi-fhir-base.version>7.0.2-r9</hapi-fhir-base.version>
+		<hapi-fhir-base.version>7.0.2-r10</hapi-fhir-base.version>
 		<hapi-fhir-caching-api.version>7.0.2-r1</hapi-fhir-caching-api.version>
 		<hapi-fhir-utilities.version>6.3.3-r8</hapi-fhir-utilities.version>
 		<hapi-fhir-r4.version>6.3.3-r9</hapi-fhir-r4.version>
@@ -169,8 +169,8 @@
 										module dev.ikm.jpms.hapi.fhir.structures.r4 {
 											requires dev.ikm.jpms.hapi.fhir.base;
 											requires dev.ikm.jpms.hapi.fhir.caching.api;
-											requires dev.ikm.jpms.org.hl7.fhir.r4;
-											requires dev.ikm.jpms.org.hl7.fhir.utilities;
+											requires dev.ikm.jpms.hapi.fhir.r4;
+											requires dev.ikm.jpms.hapi.fhir.utilities;
 
 											exports org.hl7.fhir.r4.hapi.ctx;
 										}
