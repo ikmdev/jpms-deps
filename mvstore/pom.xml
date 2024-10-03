@@ -142,8 +142,8 @@
                                         <version>${core.artifact.version}</version>
                                     </artifact>
                                     <moduleInfoSource>
-                                        open module org.h2.mvstore {
-                                        exports org.h2.mvstore;
+                                        open module dev.ikm.jpms.h2.mvstore {
+                                            exports org.h2.mvstore;
                                         }
                                     </moduleInfoSource>
                                 </module>
