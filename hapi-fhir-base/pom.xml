@@ -20,7 +20,7 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>7.0.2</core.artifact.version>
-		<core.artifact.release>r10</core.artifact.release>
+		<core.artifact.release>r11</core.artifact.release>
 
 		<!-- transitive dependency versions -->
 		<jackson.version>2.16.1</jackson.version>
@@ -208,6 +208,8 @@
 									<moduleInfoSource>
 										module dev.ikm.jpms.hapi.fhir.base {
 
+											requires dev.ikm.jpms.google.common;
+
 											requires org.slf4j;
 											requires com.fasterxml.jackson.annotation;
 											requires com.fasterxml.jackson.core;
@@ -216,7 +218,6 @@
 											requires org.apache.commons.io;
 											requires org.apache.commons.lang3;
 											requires org.apache.commons.text;
-										  	requires com.google.common;
 
 											exports ca.uhn.fhir.context;
 											exports ca.uhn.fhir.model.api;
