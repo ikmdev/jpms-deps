@@ -23,10 +23,10 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>7.0.2</core.artifact.version>
-		<core.artifact.release>r2</core.artifact.release>
+		<core.artifact.release>r3</core.artifact.release>
 
 		<!-- transitive dependency versions -->
-		<hapi-fhir-base.version>7.0.2-r10</hapi-fhir-base.version>
+		<hapi-fhir-base.version>7.0.2-r11</hapi-fhir-base.version>
 
 		<maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
 	</properties>

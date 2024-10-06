@@ -26,7 +26,7 @@
 		<core.artifact.release>r9</core.artifact.release>
 
 		<!-- transitive dependency versions -->
-		<hapi-fhir-base.version>7.0.2-r9</hapi-fhir-base.version>
+		<hapi-fhir-base.version>7.0.2-r11</hapi-fhir-base.version>
 		<icu4j.version>72.1</icu4j.version>
 		<commons-net.version>3.9.0</commons-net.version>
 
