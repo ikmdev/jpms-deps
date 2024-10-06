@@ -28,7 +28,7 @@
 		<!-- transitive dependency versions -->
 		<hapi-fhir-base.version>7.0.2-r10</hapi-fhir-base.version>
 		<hapi-fhir-caching-api.version>7.0.2-r3</hapi-fhir-caching-api.version>
-		<hapi-fhir-utilities.version>6.3.3-r9</hapi-fhir-utilities.version>
+		<hapi-fhir-utilities.version>6.3.3-r10</hapi-fhir-utilities.version>
 		<hapi-fhir-r4.version>6.3.3-r10</hapi-fhir-r4.version>
 
 		<maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
