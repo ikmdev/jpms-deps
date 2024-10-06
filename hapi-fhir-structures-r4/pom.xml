@@ -23,7 +23,7 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>7.0.2</core.artifact.version>
-		<core.artifact.release>r9</core.artifact.release>
+		<core.artifact.release>r10</core.artifact.release>
 
 		<!-- transitive dependency versions -->
 		<hapi-fhir-base.version>7.0.2-r10</hapi-fhir-base.version>
