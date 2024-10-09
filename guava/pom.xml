@@ -20,12 +20,12 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>33.3.0-jre</core.artifact.version>
-		<core.artifact.release>r1</core.artifact.release>
+		<core.artifact.release>r2</core.artifact.release>
 
 		<!-- transitive dependency versions -->
 		<guava-failureaccess.version>1.0.2</guava-failureaccess.version>
 		<guava-lisstenablefuture.version>9999.0-empty-to-avoid-conflict-with-guava</guava-lisstenablefuture.version>
-		<jsr305.version>3.0.2-r6</jsr305.version>
+		<jsr305.version>3.0.2-r7</jsr305.version>
 		<checkerqual.version>3.47.0</checkerqual.version>
 		<google.errorprone.version>2.28.0</google.errorprone.version>
 		<j2objc-annotations.version>3.0.0</j2objc-annotations.version>
