@@ -187,6 +187,7 @@
 
 											exports com.google.common.annotations;
 											exports com.google.common.base;
+											exports com.google.common.base.internal;
 											exports com.google.common.cache;
 											exports com.google.common.collect;
 											exports com.google.common.escape;
