@@ -20,7 +20,7 @@
 	<properties>
 		<!-- change release here-->
 		<core.artifact.version>33.3.0-jre</core.artifact.version>
-		<core.artifact.release>r2</core.artifact.release>
+		<core.artifact.release>r3</core.artifact.release>
 
 		<!-- transitive dependency versions -->
 		<guava-failureaccess.version>1.0.2</guava-failureaccess.version>
