@@ -22,10 +22,10 @@
     <properties>
         <!-- change release here-->
         <core.artifact.version>11.1.0</core.artifact.version>
-        <core.artifact.release>r12</core.artifact.release>
+        <core.artifact.release>r13</core.artifact.release>
 
         <!-- transitive dependency versions -->
-        <eclipse-collections-api.version>11.1.0-r10</eclipse-collections-api.version>
+        <eclipse-collections-api.version>11.1.0-r11</eclipse-collections-api.version>
 
         <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
