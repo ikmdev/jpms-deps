@@ -33,22 +33,7 @@ exec_mvn_build eclipse-collections
 # Required for Guava and Hapi projects
 exec_mvn_build jsr305
 
-# Required by hapi-fhir-base
 exec_mvn_build guava
-
-# required by all hapi-fhir projects
-exec_mvn_build hapi-fhir-base
-
-# Required by hapi-fhir-structures-r4
-exec_mvn_build hapi-fhir-utilities
-
-# Required by hapi-fhir-structures-r4
-exec_mvn_build hapi-fhir-r4
-
-# Required by hapi-fhir-structures-r4
-exec_mvn_build hapi-fhir-caching-api
-
-exec_mvn_build hapi-fhir-structures-r4
 
 # Required for httpmime
 exec_mvn_build httpclient
