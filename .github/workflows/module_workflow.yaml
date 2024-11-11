@@ -76,14 +76,14 @@ jobs:
                     --batch-mode \
                     -e \
                     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn 
-              working_directory: ${{env.GITHUB_MODULE_DIR}}
+            working-directory: ${{env.GITHUB_MODULE_DIR}}
 
           - name: Get jar count
             id: set-jar-count
             run: |
               find ./target -maxdepth 1 -type f -name '*[!-javadoc][!-sources].jar' -exec jar tf  {} \; | grep -c 'dev.ikm.jpms' | xargs
               size=$(find ./target -maxdepth 1 -type f -name '*[!-javadoc][!-sources].jar' -exec jar tf  {} \; | grep -c 'dev.ikm.jpms' | xargs )
-              working_directory: ${{env.GITHUB_MODULE_DIR}}
+            working-directory: ${{env.GITHUB_MODULE_DIR}}
 
           - name: The demo step has failed
             env:
@@ -97,7 +97,7 @@ jobs:
                 nexus_repo_password: ${{secrets.EC2_NEXUS_PASSWORD}}
                 repo_name: ${{github.event.workflow_run.head_repository.full_name}}
                 branch_name: ${{github.event.workflow_run.head_branch}}
-                working_directory: ${{env.GITHUB_MODULE_DIR}}
+                working-directory: ${{env.GITHUB_MODULE_DIR}}
 
 
           - name: Publish to OSSRH Maven Central
@@ -113,7 +113,7 @@ jobs:
                     -Dmaven.source.skip=true  \
                     -Dmaven.javadoc.skip=true \
                     -PstageOSSRH
-                working_directory: ${{env.GITHUB_MODULE_DIR}}
+            working-directory: ${{env.GITHUB_MODULE_DIR}}
             env:
               MAVEN_USERNAME: ${{secrets.OSSRH_TOKEN_USER}}
               MAVEN_CENTRAL_TOKEN: ${{secrets.OSSRH_TOKEN_PASS}}
