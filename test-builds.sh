@@ -21,7 +21,7 @@ function exec_mvn_build() {
 exec_mvn_build activej-common
 
 exec_mvn_build activej-bytebuf
-exec_mvn_build antlr-runtime
+exec_mvn_build antlr4-runtime
 exec_mvn_build auto-service
 exec_mvn_build bugsplat
 
