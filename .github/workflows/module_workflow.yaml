@@ -18,11 +18,6 @@ on:
                     - eclipse-collections
                     - eclipse-collections-api
                     - guava
-                    - hapi-fhir-base
-                    - hapi-fhir-caching-api
-                    - hapi-fhir-r4
-                    - hapi-fhir-structures-r4
-                    - hapi-fhir-utilities
                     - httpclient
                     - httpcore
                     - httpmime
@@ -97,7 +92,7 @@ jobs:
             run: exit 1
 
           - name: Deploy Artifacts To Nexus
-            uses: ikmdev/maven-nexus-deploy-action@jpms-deps_v1
+            uses: ikmdev/maven-nexus-deploy-action@main
             with:
                 nexus_repo_password: ${{secrets.EC2_NEXUS_PASSWORD}}
                 repo_name: ${{github.event.workflow_run.head_repository.full_name}}
