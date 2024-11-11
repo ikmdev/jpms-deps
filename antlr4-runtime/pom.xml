@@ -135,11 +135,17 @@
 										<artifactId>antlr4-runtime</artifactId>
 										<version>${core.artifact.version}</version>
 									</artifact>
-									<moduleInfo>
-										<name>dev.ikm.jpms.antlr4.runtime</name>
-										<open>true</open>
-										<exports>*;</exports>
-									</moduleInfo>
+									<moduleInfoSource>
+										open module dev.ikm.jpms.antlr4.runtime {
+											exports org.antlr.v4.runtime;
+											exports org.antlr.v4.runtime.atn;
+											exports org.antlr.v4.runtime.dfa;
+											exports org.antlr.v4.runtime.misc;
+											exports org.antlr.v4.runtime.tree;
+											exports org.antlr.v4.runtime.tree.pattern;
+											exports org.antlr.v4.runtime.tree.xpath;
+										}
+									</moduleInfoSource>
 								</module>
 							</modules>
 						</configuration>
