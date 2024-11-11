@@ -12,6 +12,7 @@ on:
                     - --SELECT--
                     - activej-bytebuf
                     - activej-common
+                    - antlr-runtime
                     - auto-service
                     - bugsplat
                     - directory-watcher
